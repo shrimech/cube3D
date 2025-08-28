@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:19 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/08/28 10:05:07 by shrimech         ###   ########.fr       */
+/*   Updated: 2025/08/28 10:54:31 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define FREEFIRE_H
 
 #include "./types.h"
+#include "../src/gnl/get_next_line.h"
 #include <stdio.h>
 #include <unistd.h>
 
