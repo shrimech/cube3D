@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:35 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/08/28 10:18:45 by shrimech         ###   ########.fr       */
+/*   Updated: 2025/08/28 12:14:31 by ehamza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef enum e_tile
     SOUTH = 'S',
     WEST = 'W',
     NORTH = 'N',
+	NONE,
 } t_tile;
 
 typedef enum e_identifier
@@ -47,15 +48,13 @@ typedef struct s_map_elements
 typedef struct s_point
 {
     t_tile tile;
-    struct s_point *south;
-	struct s_point *east;
-	struct s_point *west;
-	struct s_point *north;
 }	t_point;
 
 typedef struct s_map
 {
+	t_point	**grid;
+	long	width;
+	long	height;
 }	t_map;
-
 
 #endif

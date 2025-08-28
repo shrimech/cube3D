@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   freefire.h                                         :+:      :+:    :+:   */
+/*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ehamza <ehamza@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 06:52:19 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/08/28 10:05:07 by shrimech         ###   ########.fr       */
+/*   Created: 2025/08/28 11:57:13 by ehamza            #+#    #+#             */
+/*   Updated: 2025/08/28 12:44:09 by ehamza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FREEFIRE_H
-#define FREEFIRE_H
 
-#include "./types.h"
-#include "./parse.h"
-#include <stdio.h>
-#include <unistd.h>
+#ifndef PARSE_H
+# define PARSE_H
 
+# include "./types.h"
+# include <stdbool.h>
+# include <stdlib.h>
+# include <stdio.h>
+
+
+t_map	parse_map_grid(char **raw_chars, long max_with, long height);
 
 #endif
