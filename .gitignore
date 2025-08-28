@@ -1,0 +1,13 @@
+# Ignore all a.out files
+**/a.out
+
+# Ignore all minishell files
+**/cub3D
+
+# Ignore all object files
+**/*.o
+
+# Ignore all archive files
+**/*.a
+
+
