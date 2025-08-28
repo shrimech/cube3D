@@ -3,10 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
+/*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 06:52:10 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/08/28 06:52:10 by elhaiba hamza    ###   ########.fr       */
+/*   Created: 2025/08/28 06:52:10 by elhaiba ham       #+#    #+#             */
+/*   Updated: 2025/08/28 10:05:54 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../includes/freefire.h"
 
