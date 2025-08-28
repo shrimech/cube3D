@@ -10,3 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+typedef struct s_map
+{
+}	t_map;
+
+typedef struct s_point
+{
+	struct s_point *north;
+	struct s_point *west;
+	struct s_point *east;
+	struct s_point *south;
+}	t_point;
