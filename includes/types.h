@@ -21,6 +21,7 @@ typedef enum e_tile
     SOUTH = 'S',
     WEST = 'W',
     NORTH = 'N',
+	NONE,
 } t_tile;
 
 typedef enum e_identifier
@@ -47,10 +48,6 @@ typedef struct s_map_elements
 typedef struct s_point
 {
     t_tile tile;
-    struct s_point *south;
-	struct s_point *east;
-	struct s_point *west;
-	struct s_point *north;
 }	t_point;
 
 typedef struct s_map
@@ -62,7 +59,9 @@ typedef struct s_map
     char *F;
     char *C;
     char **map;
+	t_point	**grid;
+	long	width;
+	long	height;
 }	t_map;
-
 
 #endif
