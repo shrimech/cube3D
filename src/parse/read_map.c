@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:10 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/08/28 12:37:31 by shrimech         ###   ########.fr       */
+/*   Updated: 2025/08/29 02:58:44 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,19 +91,21 @@ void map_init(t_map *map)
     map->NO = NULL;
     map->SO = NULL;
     map->WE = NULL;
+    map->high = -1;
+    map->width = -1;
 }
 
 void read_map(t_map *map ,int i,int j)
 {
     char *line;
-    int fd = open("map.cub" ,O_WRONLY);
+    int fd = open("map.cub" ,O_RDONLY);
     int indx = 0;
     int z = 0;
     
     map->map = malloc((j- i + 1) * sizeof(char *));
     while(line = get_next_line(fd))
     {
-        if (indx > i && j - indx >= 0)
+        if (indx >= i && j - indx >= 0)
         {
             map->map[z] = ft_strdup(line);
             z++;
@@ -155,4 +157,7 @@ int main()
     int fd = open("map.cub",O_RDONLY);
     map_init(&map);
     all_map_elements(fd,&map);
+    print_map(map);
+    print_texture(map);
+    print_colors(map);
 }
