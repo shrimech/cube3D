@@ -147,6 +147,7 @@ void all_map_elements(int fd,t_map *map)
         else
             j++;
     }
+    
     close(fd);
     read_map(map,i,j);
 }
