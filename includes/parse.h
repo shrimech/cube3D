@@ -22,4 +22,13 @@
 
 t_map	parse_map_grid(char **raw_chars, long max_with, long height);
 
+
+
+//---------------------------- debug ----------------
+
+void print_map(t_map map);
+void  print_texture(t_map map);
+void print_colors(t_map map);
+
+
 #endif

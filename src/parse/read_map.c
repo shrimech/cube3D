@@ -91,7 +91,7 @@ void map_init(t_map *map)
     map->NO = NULL;
     map->SO = NULL;
     map->WE = NULL;
-    map->high = -1;
+    map->height = -1;
     map->width = -1;
 }
 
