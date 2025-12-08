@@ -13,27 +13,36 @@
 #ifndef TYPES_H
 # define TYPES_H
 
+# define NO "NO"
+# define SO "SO"
+# define WE "WE"
+# define EA "EA"
+# define F "F"
+# define C "C"
+
+
 //---------------*** enums ***------------------//
 
 typedef enum e_tile
 {
-	WALL = '1',
-	EMPTY = '0',
-	EAST = 'E',
-	SOUTH = 'S',
-	WEST = 'W',
-	NORTH = 'N',
-	SPACE = ' ',
+	E_WALL = '1',
+	E_EMPTY = '0',
+	E_EAST = 'E',
+	E_SOUTH = 'S',
+	E_WEST = 'W',
+	E_NORTH = 'N',
+	E_SPACE = ' ',
 }			t_tile;
 
 typedef enum e_identifier
 {
-	NO,
-	SO,
-	WE,
-	EA,
-	F,
-	C,
+	E_NO = 1 << 0,                                 // 000001
+	E_SO = 1 << 1,                                 // 000010
+	E_WE = 1 << 2,                                 // 000100
+	E_EA = 1 << 3,                                 // 001000
+	E_F = 1 << 4,                                  // 010000
+	E_C = 1 << 5,                                  // 100000
+	E_ALL = E_NO | E_SO | E_WE | E_EA | E_F | E_C, // 111111
 }			t_identifier;
 
 typedef struct s_map

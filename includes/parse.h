@@ -20,6 +20,7 @@
 
 char	**read_map(t_map *map, int fd);
 void	map_init(t_map *map);
+void	parse_hole_map(t_map *map);
 
 //---------------------------- debug ----------------
 

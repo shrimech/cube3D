@@ -25,5 +25,6 @@ int	main(void)
 	}
 	map_init(&map);
 	map.hole_map = read_map(&map, fd);
+	parse_hole_map(&map);
 	print_hole_map(map);
 }
