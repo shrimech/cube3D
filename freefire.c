@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "freefire.h"
+#include "parse.h"
 
 int	main(void)
 {
@@ -27,4 +28,6 @@ int	main(void)
 	map.hole_map = read_map(&map, fd);
 	parse_hole_map(&map);
 	print_hole_map(map);
+	print_texture(map);
+	print_colors(map);
 }
