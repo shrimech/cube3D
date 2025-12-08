@@ -12,153 +12,67 @@
 
 #include "../../includes/freefire.h"
 
-
-static int	ft_strlenc(const char *str, char c)
+void	map_init(t_map *map)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] != c)
-		i++;
-	return (i);
+	map->no = NULL;
+	map->so = NULL;
+	map->ea = NULL;
+	map->we = NULL;
+	map->f = NULL;
+	map->c = NULL;
+	map->map = NULL;
+	map->hole_map = NULL;
+	map->height = -1;
+	map->width = -1;
 }
 
-static int	count_split(const char *str, char c)
+char	**realloc_map(char **old_map, size_t old_size, char *new_line)
 {
-	int	i;
-	int	count;
-
-	count = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] != c && str[i])
-		{
-			count++;
-			while (str[i] && str[i] != c)
-				i++;
-		}
-		else
-			i++;
-	}
-	return (count);
-}
-
-static char	**ft_freemem(char **split, int i)
-{
-	while (i >= 0)
-	{
-		free(split[i]);
-		i--;
-	}
-	return (NULL);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**split;
-	int		i;
-	int		j;
+	char	**new_map;
+	size_t	i;
 
 	i = 0;
-	split = (char **)malloc ((count_split(s, c) + 1) * 8);
-	if (!split)
+	new_map = malloc(sizeof(char *) * (old_size + 1));
+	if (!new_map)
 		return (NULL);
-	while (*s)
+	while (i < old_size)
 	{
-		if (*s != c)
-		{
-			split[i] = malloc(ft_strlenc(s, c) + 1);
-			if (!split[i])
-				return (ft_freemem(split, i));
-			j = 0;
-			while (*s != c && *s)
-				split[i][j++] = *s++;
-			split[i++][j] = 0;
-		}
-		else
-			s++;
+		new_map[i] = old_map[i];
+		i++;
 	}
-	split[i] = NULL;
-	return (split);
-}
-void map_init(t_map *map)
-{
-    map->C = NULL;
-    map->EA = NULL;
-    map->F = NULL;
-    map->map = NULL;
-    map->NO = NULL;
-    map->SO = NULL;
-    map->WE = NULL;
-    map->height = -1;
-    map->width = -1;
+	new_map[old_size] = new_line;
+	free(old_map);
+	return (new_map);
 }
 
-void read_map(t_map *map ,int i,int j)
+char	**read_map(t_map *map, int fd)
 {
-    char *line;
-    int fd = open("map.cub" ,O_RDONLY);
-    int indx = 0;
-    int z = 0;
-    
-    map->map = malloc((j- i + 1) * sizeof(char *));
-    while(line = get_next_line(fd))
-    {
-        if (indx >= i && j - indx >= 0)
-        {
-            map->map[z] = ft_strdup(line);
-            z++;
-        }
-        indx++;
-    }
-    map->map[z] = NULL;
-    
+	char	**hole_map;
+	char	*line;
+	char	**tmp;
+	int		count_lines;
+
+	hole_map = NULL;
+	count_lines = 0;
+	line = get_next_line(fd);
+	if (!line)
+		return (NULL); //NOTE: ft_exit and free
+	while (line != NULL)
+	{
+		tmp = realloc_map(hole_map, count_lines, line);
+		if (!tmp)
+			return (NULL); //NOTE: ft_exit  and free
+		hole_map = tmp;
+		count_lines++;
+		line = get_next_line(fd);
+	}
+	if (count_lines == 0)
+		return (NULL); //NOTE: ft_exit  and free
+    tmp = realloc_map(hole_map, count_lines, NULL);
+    if (tmp)
+        hole_map = tmp;
+	map->height = count_lines;
+	return (hole_map);
 }
 
-void all_map_elements(int fd,t_map *map)
-{
-    char *line;
-    char **split;
-    int i = 0;
-    int j = 0;
-    
-    while(line = get_next_line(fd))
-    {
-        if (*line == 'N' || *line == 'S' || *line == 'W' || *line == '\n'
-            || *line == 'E' || *line == 'F' || *line == 'C')
-        {
-            split = ft_split(line ,' ');
-            if (*line == 'N')
-                map->NO = ft_strdup(split[1]);
-            if(*line == 'S')
-                map->SO = ft_strdup(split[1]);
-            if (*line == 'W')
-                map->WE = ft_strdup(split[1]);
-            if(*line == 'E')
-                map->EA = ft_strdup(split[1]);
-            if (*line == 'F')
-                map->F = ft_strdup(split[1]);
-            if(*line == 'C')
-                map->C = ft_strdup(split[1]);
-            i++;
-            j++;
-        }
-        else
-            j++;
-    }
-    
-    close(fd);
-    read_map(map,i,j);
-}
 
-int main()
-{
-    t_map   map;
-    int fd = open("map.cub",O_RDONLY);
-    map_init(&map);
-    all_map_elements(fd,&map);
-    print_map(map);
-    print_texture(map);
-    print_colors(map);
-}

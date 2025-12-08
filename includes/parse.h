@@ -10,25 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef PARSE_H
 # define PARSE_H
 
 # include "./types.h"
 # include <stdbool.h>
-# include <stdlib.h>
 # include <stdio.h>
+# include <stdlib.h>
 
-
-t_map	parse_map_grid(char **raw_chars, long max_with, long height);
-
-
+char	**read_map(t_map *map, int fd);
 
 //---------------------------- debug ----------------
 
-void print_map(t_map map);
-void  print_texture(t_map map);
-void print_colors(t_map map);
-
+void	print_hole_map(t_map map);
+void	print_texture(t_map map);
+void	print_colors(t_map map);
 
 #endif

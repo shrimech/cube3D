@@ -12,12 +12,12 @@
 
 #include "../../includes/freefire.h"
 
-void print_map(t_map map)
+void print_hole_map(t_map map)
 {
     int i = 0;
-    while (map.map[i])
+    while (map.hole_map[i])
     {
-        printf("%s",map.map[i]);
+        printf("%s\n",map.hole_map[i]);
         i++;
     }
     printf("\n\n");
@@ -26,16 +26,16 @@ void print_map(t_map map)
 
 void  print_texture(t_map map)
 {
-    printf("EA  ::  %s",map.EA);
-    printf("NO  ::  %s",map.NO);
-    printf("SO  ::  %s",map.SO);
-    printf("WE  ::  %s",map.WE);
+    printf("EA  ::  %s\n",map.ea);
+    printf("NO  ::  %s\n",map.no);
+    printf("SO  ::  %s\n",map.so);
+    printf("WE  ::  %s\n",map.we);
 }
 
 void print_colors(t_map map)
 {
-    printf("F  :: %s",map.F);
-    printf("C  :: %s",map.C);
+    printf("F  :: %s\n",map.f);
+    printf("C  :: %s\n",map.c);
 }
 
 

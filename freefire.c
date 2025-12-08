@@ -10,3 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
+
+int	main(void)
+{
+	t_map	map;
+	int		fd;
+
+	fd = open("map.cub", O_RDONLY);
+	map_init(&map);
+	map.hole_map = read_map(&map, fd);
+	print_hole_map(map);
+}
