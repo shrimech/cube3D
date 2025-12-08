@@ -10,7 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "types.h"
 #include <freefire.h>
+
+bool	is_tile(char c)
+{
+	return (c == '\0' || c == '\n' || c == E_SPACE);
+}
 
 int	check_element(char *first_element)
 {
@@ -38,8 +44,47 @@ int	check_element(char *first_element)
 	return (bit);    // return the bit that was set
 }
 
-void	parse_elements(void)
+/*
+ *in this function i want to split every line of the map->hole_map (char **)
+ *except for lines that have just "\n".
+ *and if the check check_element() return error stop
+ *if not stop till u find '0' or '1'
+ * */
+
+fill_map_element(t_map *map, char *line, int element)
 {
+}
+
+int	parse_elements(t_map *map)
+{
+	int	i;
+	int	ret;
+
+	i = 0;
+	while (map->hole_map[i])
+	{
+		if (is_tile(map->hole_map[i][0]) == false)
+		{
+			i++;
+			continue ;
+		}
+		ret = check_element(map->hole_map[i]);
+		if (ret == -1)
+		{
+			write(2, "Duplicates\n", 25);
+				// NOTE: here change with the exit function
+			return (-1);
+		}
+		else if (ret == 0)
+		{
+			write(2, "Unknown line before map\n", 30);
+				// NOTE: here change with the exit function
+			return (-1);                               // stop parsing, error
+		}
+		fill_map_element(map, map->hole_map[i], ret);
+		i++;
+	}
+	return (i);
 }
 
 void	parse_map(void)
@@ -48,5 +93,4 @@ void	parse_map(void)
 
 void	parse_hole_map(t_map *map)
 {
-
 }
