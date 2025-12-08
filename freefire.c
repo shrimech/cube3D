@@ -10,14 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "freefire.h"
 
 int	main(void)
 {
 	t_map	map;
 	int		fd;
 
-	fd = open("map.cub", O_RDONLY);
+	fd = open("./maps/map.test.cub", O_RDONLY);
+	if (fd < 0)
+	{
+		perror("open");
+		return (1);
+	}
 	map_init(&map);
 	map.hole_map = read_map(&map, fd);
 	print_hole_map(map);

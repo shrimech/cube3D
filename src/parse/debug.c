@@ -17,10 +17,9 @@ void print_hole_map(t_map map)
     int i = 0;
     while (map.hole_map[i])
     {
-        printf("%s\n",map.hole_map[i]);
+        printf("%s",map.hole_map[i]);
         i++;
     }
-    printf("\n\n");
 }
 
 

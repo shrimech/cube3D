@@ -13,7 +13,7 @@ GNL_DIR = ./src/gnl
 PARSE_DIR = ./src/parse
 
 # -------Header dependencies----------
-INCLUDES = -I ../includes -I $(LIBFT_DIR) -I $(GNL_DIR)
+INCLUDES = -I ./includes -I $(LIBFT_DIR) -I $(GNL_DIR)
 
 
 # -----Source files----- 

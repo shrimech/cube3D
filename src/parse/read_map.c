@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/freefire.h"
+#include "freefire.h"
 
 void	map_init(t_map *map)
 {
@@ -70,7 +70,10 @@ char	**read_map(t_map *map, int fd)
 		return (NULL); //NOTE: ft_exit  and free
     tmp = realloc_map(hole_map, count_lines, NULL);
     if (tmp)
+	{
+
         hole_map = tmp;
+}
 	map->height = count_lines;
 	return (hole_map);
 }

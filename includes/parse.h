@@ -19,6 +19,7 @@
 # include <stdlib.h>
 
 char	**read_map(t_map *map, int fd);
+void	map_init(t_map *map);
 
 //---------------------------- debug ----------------
 
