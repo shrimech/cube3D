@@ -22,9 +22,25 @@ void print_hole_map(t_map map)
     }
 }
 
+void print_map(t_map map)
+{
+    int i = 0;
+	printf("___________________________________\n");
+	printf("|       HERE IS YOUR MAP           |\n");
+	printf("___________________________________\n");
+
+    while (map.map[i])
+    {
+        printf("%s\n",map.map[i]);
+        i++;
+    }
+}
 
 void  print_texture(t_map map)
 {
+	printf("___________________________________\n");
+	printf("|    HERE IS YOUR MAP ELEMENTS    |\n");
+	printf("___________________________________\n");
     printf("EA  ::  %s\n",map.ea);
     printf("NO  ::  %s\n",map.no);
     printf("SO  ::  %s\n",map.so);
