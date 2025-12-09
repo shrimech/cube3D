@@ -29,7 +29,7 @@ char *extract_path(char *line)
 {
 	char **elements;
 
-	elements = ft_split(line, E_SPACE);
+	elements = ft_split(line, (char)E_SPACE);
 	if (!elements)
 		return (perror("ERROR SPLIT"), NULL);
 	if (elements[1][0] != '\0' && elements[2] == NULL)

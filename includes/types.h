@@ -51,8 +51,8 @@ typedef struct s_map
 	char	*so;
 	char	*we;
 	char	*ea;
-	char	*f;
-	char	*c;
+	int		*f;
+	int		*c;
 	char	**map;
 	char	**hole_map;
 	long	width;
