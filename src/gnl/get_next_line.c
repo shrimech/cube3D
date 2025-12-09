@@ -65,13 +65,13 @@ void	fill_word(int fd, char **word, char **line, char **newline_pos)
 		size = read(fd, *word, BUFFER_SIZE);
 		if (size <= 0)
 		{
-			*newline_pos = ft_memchr(*line);
+			*newline_pos = ft_mem_chr(*line);
 			free(*word);
 			break ;
 		}
 		(*word)[size] = 0;
-		*line = ft_strjoin(*line, *word);
-		*newline_pos = ft_memchr(*line);
+		*line = ft_str_join(*line, *word);
+		*newline_pos = ft_mem_chr(*line);
 		if (*newline_pos)
 			break ;
 	}
@@ -88,7 +88,7 @@ char	*read_buffer(int fd)
 	newline_pos = NULL;
 	if (reminder)
 	{
-		line = ft_strjoin(line, reminder);
+		line = ft_str_join(line, reminder);
 		reminder = NULL;
 	}
 	if (fd < 0 || BUFFER_SIZE <= 0)

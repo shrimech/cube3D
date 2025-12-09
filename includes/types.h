@@ -13,12 +13,12 @@
 #ifndef TYPES_H
 # define TYPES_H
 
-# define NO "NO"
-# define SO "SO"
-# define WE "WE"
-# define EA "EA"
-# define F "F"
-# define C "C"
+# define NO "NO "
+# define SO "SO "
+# define WE "WE "
+# define EA "EA "
+# define F "F "
+# define C "C "
 
 
 //---------------*** enums ***------------------//

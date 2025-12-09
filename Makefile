@@ -20,7 +20,8 @@ INCLUDES = -I ./includes -I $(LIBFT_DIR) -I $(GNL_DIR)
 
 PARSE = $(PARSE_DIR)/build_map.c \
 		$(PARSE_DIR)/parse_map.c \
-		$(PARSE_DIR)/read_map.c
+		$(PARSE_DIR)/read_map.c \
+		$(PARSE_DIR)/map_helpers.c
 
 GNL = $(GNL_DIR)/get_next_line.c\
 	  $(GNL_DIR)/get_next_line_utils.c
