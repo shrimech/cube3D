@@ -37,8 +37,6 @@ int	check_element(char *first_element)
 	if (mask & bit)
 		return (-1); // duplicate detected
 	mask |= bit;     // set the bit
-	if (mask == E_ALL)
-		return (E_ALL);
 	return (bit); // return the bit that was set
 }
 
@@ -96,39 +94,17 @@ int	parse_elements(t_map *map)
 	return (i);
 }
 
-void	parse_map(void)
+void	parse_map(t_map *map, int map_line)
 {
+	(void)map;
+	(void)map_line;
 }
 
 void	parse_hole_map(t_map *map)
 {
-	// Fill the textures and colors
-	map->no = ft_strdup("./path_to_the_north_texture");
-	map->so = ft_strdup("./path_to_the_south_texture");
-	map->we = ft_strdup("./path_to_the_west_texture");
-	map->ea = ft_strdup("./path_to_the_east_texture");
-	map->f = ft_strdup("220,100,0");
-	map->c = ft_strdup("225,30,0");
-	// Allocate memory for map (14 lines)
-	map->map = malloc(sizeof(char *) * 15); // 14 lines + NULL
-	if (!map->map)
-		return ;
-	map->map[0] = ft_strdup("        1111111111111111111111111");
-	map->map[1] = ft_strdup("        1000000000110000000000001");
-	map->map[2] = ft_strdup("        1011000001110000000000001");
-	map->map[3] = ft_strdup("        1001000000000000000000001");
-	map->map[4] = ft_strdup("111111111011000001110000000000001");
-	map->map[5] = ft_strdup("100000000011000001110111111111111");
-	map->map[6] = ft_strdup("11110111111111011100000010001    ");
-	map->map[7] = ft_strdup("11110111111111011101010010001    ");
-	map->map[8] = ft_strdup("11000000110101011100000010001    ");
-	map->map[9] = ft_strdup("10000000000000001100000010001    ");
-	map->map[10] = ft_strdup("10000000000000001101010010001   ");
-	map->map[11] = ft_strdup("11000001110101011111011110N0111 ");
-	map->map[12] = ft_strdup("11110111 1110101 101111010001   ");
-	map->map[13] = ft_strdup("11111111 1111111 111111111111   ");
-	map->map[14] = NULL; // Null-terminate
-	// Optional width/height
-	map->height = 14;
-	map->width = strlen(map->map[4]);
+	int		map_line;
+
+	map_line = parse_elements(map);
+	parse_map(map, map_line);
 }
+

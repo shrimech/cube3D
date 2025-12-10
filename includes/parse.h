@@ -29,7 +29,7 @@ bool	is_map_line(char c);
 
 //---------------------------- debug ----------------
 char	*extract_path(char *line);
-int		extract_color(char *line);
+int		*extract_color(char *line);
 
 //---------------------------- debug ----------------
 void	print_hole_map(t_map map);

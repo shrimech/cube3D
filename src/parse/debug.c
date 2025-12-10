@@ -47,12 +47,12 @@ void  print_texture(t_map map)
     printf("WE  ::  %s\n",map.we);
 }
 
+
 void print_colors(t_map map)
 {
-    printf("F  :: %s\n",map.f);
-    printf("C  :: %s\n",map.c);
+    printf("F  ::  %d, %d, %d\n", map.f[0], map.f[1], map.f[2]);
+    printf("C  ::  %d, %d, %d\n", map.c[0], map.c[1], map.c[2]);
 }
-
 
 
 

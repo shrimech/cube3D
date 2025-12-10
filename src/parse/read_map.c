@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "types.h"
 #include <freefire.h>
+#include <stdlib.h>
 
 void	map_init(t_map *map)
 {
