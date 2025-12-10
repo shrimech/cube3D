@@ -74,5 +74,8 @@ int	*extract_color(char *element)
 	rgb_arr[0] = ft_atoi(rgb_str[0]);
 	rgb_arr[1] = ft_atoi(rgb_str[1]);
 	rgb_arr[2] = ft_atoi(rgb_str[2]);
-	return (rgb_arr);
+    for (int i = 0; rgb_str[i]; i++)
+        free(rgb_str[i]);
+    free(rgb_str);
+    return rgb_arr;
 }
