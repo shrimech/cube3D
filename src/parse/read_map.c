@@ -20,8 +20,6 @@ void	map_init(t_map *map)
 	map->so = NULL;
 	map->ea = NULL;
 	map->we = NULL;
-	map->f = NULL;
-	map->c = NULL;
 	map->map = NULL;
 	map->hole_map = NULL;
 	map->height = -1;
