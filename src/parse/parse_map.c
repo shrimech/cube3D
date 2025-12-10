@@ -51,9 +51,9 @@ void	fill_map_element(t_map *map, char *line, int element)
 	else if (element == E_EA)
 		map->ea = extract_path(line);
 	else if (element == E_F)
-		map->f = extract_color(line);
+		map->f = extract_color(extract_path(line));
 	else if (element == E_C)
-		map->c = extract_color(line);
+		map->c = extract_color(extract_path(line));
 }
 
 int	parse_elements(t_map *map)

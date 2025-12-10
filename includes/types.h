@@ -20,7 +20,6 @@
 # define F "F "
 # define C "C "
 
-
 /*---------------*** enums ***------------------*/
 typedef enum e_tile
 {
@@ -50,8 +49,8 @@ typedef struct s_map
 	char	*so;
 	char	*we;
 	char	*ea;
-	int		*f;
-	int		*c;
+	int		f[3];
+	int		c[3];
 	char	**map;
 	char	**hole_map;
 	long	width;
