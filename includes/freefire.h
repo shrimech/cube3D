@@ -14,6 +14,7 @@
 #define FREEFIRE_H
 
 #include "../src/gnl/get_next_line.h"
+#include "../src/libft/libft.h"
 #include "./types.h"
 #include "./parse.h"
 #include <stdio.h>
