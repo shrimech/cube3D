@@ -69,7 +69,7 @@ int	*extract_color(char *element)
 	if (!rgb_arr)
 		return (NULL);
 	rgb_str = ft_split(element, ',');
-	if (!element)
+	if (!rgb_str)
 		return (perror("ERROR SPLIT"), NULL);
 	rgb_arr[0] = ft_atoi(rgb_str[0]);
 	rgb_arr[1] = ft_atoi(rgb_str[1]);
