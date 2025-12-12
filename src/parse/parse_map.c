@@ -71,7 +71,7 @@ int	parse_elements(t_map *map)
 	int	ret;
 
 	i = 0;
-	while (map->hole_map[i])
+	while (i < map->height)
 	{
 		if (is_map_line(map->hole_map[i][0]))
 		{

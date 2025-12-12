@@ -56,26 +56,23 @@ char	**read_map(t_map *map, int fd)
 	count_lines = 0;
 	line = get_next_line(fd);
 	if (!line)
-		return (NULL); //NOTE: ft_exit and free
+		return (NULL); // NOTE: ft_exit and free
 	while (line != NULL)
 	{
 		tmp = realloc_map(hole_map, count_lines, line);
 		if (!tmp)
-			return (NULL); //NOTE: ft_exit  and free
+			return (NULL); // NOTE: ft_exit  and free
 		hole_map = tmp;
 		count_lines++;
 		line = get_next_line(fd);
 	}
 	if (count_lines == 0)
-		return (NULL); //NOTE: ft_exit  and free
-    tmp = realloc_map(hole_map, count_lines, NULL);
-    if (tmp)
+		return (NULL); // NOTE: ft_exit  and free
+	tmp = realloc_map(hole_map, count_lines, NULL);
+	if (tmp)
 	{
-
-        hole_map = tmp;
-}
+		hole_map = tmp;
+	}
 	map->height = count_lines;
 	return (hole_map);
 }
-
-

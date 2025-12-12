@@ -41,10 +41,10 @@ void  print_texture(t_map map)
 	printf("___________________________________\n");
 	printf("|    HERE IS YOUR MAP ELEMENTS    |\n");
 	printf("___________________________________\n");
-    printf("EA  ::  %s\n",map.ea);
-    printf("NO  ::  %s\n",map.no);
-    printf("SO  ::  %s\n",map.so);
-    printf("WE  ::  %s\n",map.we);
+     printf("EA  ::  %s\n", map.ea ? map.ea : "(null)");
+     printf("NO  ::  %s\n", map.no ? map.no : "(null)");
+     printf("SO  ::  %s\n", map.so ? map.so : "(null)");
+     printf("WE  ::  %s\n", map.we ? map.we : "(null)");
 }
 
 

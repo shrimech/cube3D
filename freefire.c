@@ -26,6 +26,10 @@ int	main(void)
 	}
 	map_init(&map);
 	map.hole_map = read_map(&map, fd);
+	if (!map.hole_map) {
+		perror("Failed to read map");
+		return (1);
+	}
 	parse_hole_map(&map);
 	// print_map(map);
 	print_texture(map);
