@@ -6,7 +6,7 @@
 /*   By: ehamza <ehamza@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:57:13 by ehamza            #+#    #+#             */
-/*   Updated: 2025/12/13 06:31:15 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/13 13:57:59 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	is_empty_line(char c);
 bool	is_map_line(char c);
 
 //---------------------------- debug ----------------
-char	*extract_path(char *line);
+char	*extract_path(t_map *map, char *line);
 int		*extract_color(char *line);
 
 //---------------------------- debug ----------------

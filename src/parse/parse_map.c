@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 00:34:27 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/13 06:15:26 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/13 14:18:31 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	is_valid_mapline(char *mapline)
 		i++;
 	}
 	if (i == 0)
-		return (set_error(ERR_MAP_MISSING), false);
+		return (set_error(ERR_INV_MAP_LINE), false);
 	return (true);
 }
 
@@ -45,13 +45,15 @@ void	map_width(t_map *map, int mapline)
 
 	width = 0;
 	first_line = mapline;
+	if (first_line >= map->height)
+	{
+		set_error(ERR_MAP_MISSING);
+		ft_exit(map);
+	}
 	while (mapline < map->height)
 	{
 		if (!is_valid_mapline(map->hole_map[mapline]))
-		{
-			printf("MAP ERROR\n");
-			return ;
-		}
+			ft_exit(map);
 		len = ft_strlen(map->hole_map[mapline]);
 		if (map->hole_map[mapline][len - 1] == '\n')
 			len--;

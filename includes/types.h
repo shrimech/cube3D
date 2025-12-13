@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:35 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/13 04:51:59 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/13 14:03:49 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ERR_INV_ELEMENT "invalid content before map"
 # define ERR_INV_TILE "invalid map tile"
 # define ERR_MAP_MISSING "no map section found"
+# define ERR_INV_MAP_LINE "invalid line detected inside map section"
 
 # define NO "NO "
 # define SO "SO "

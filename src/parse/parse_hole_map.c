@@ -6,7 +6,7 @@
 /*   By: ehamza <ehamza@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:55:37 by ehamza            #+#    #+#             */
-/*   Updated: 2025/12/13 06:23:42 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/13 13:59:01 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,22 @@ void	fill_map_element(t_map *map, char *line, int element)
 
 	tmp = NULL;
 	if (element == E_NO)
-		map->no = extract_path(line);
+		map->no = extract_path(map, line);
 	else if (element == E_SO)
-		map->so = extract_path(line);
+		map->so = extract_path(map, line);
 	else if (element == E_WE)
-		map->we = extract_path(line);
+		map->we = extract_path(map, line);
 	else if (element == E_EA)
-		map->ea = extract_path(line);
+		map->ea = extract_path(map, line);
 	else if (element == E_F)
 	{
-		tmp = extract_color(extract_path(line));
+		tmp = extract_color(extract_path(map, line));
 		ft_memcpy(map->f, tmp, sizeof(int) * 3);
 		free(tmp);
 	}
 	else if (element == E_C)
 	{
-		tmp = extract_color(extract_path(line));
+		tmp = extract_color(extract_path(map, line));
 		ft_memcpy(map->c, tmp, sizeof(int) * 3);
 		free(tmp);
 	}
@@ -82,7 +82,7 @@ int	parse_elements(t_map *map)
 		if (is_map_line(map->hole_map[i][0]))
 		{
 			if (g_mask != E_ALL)
-				return (set_error(ERR_MAP_EARLY), -1);
+				return (set_error(ERR_MAP_EARLY), ft_exit(map), -1);
 			return (i);
 		}
 		if (is_empty_line(map->hole_map[i][0]))
@@ -92,9 +92,9 @@ int	parse_elements(t_map *map)
 		}
 		ret = check_element(map->hole_map[i]);
 		if (ret == -1)
-			return (set_error(ERR_DUP_ELEMENTS), -1);
+			return (set_error(ERR_DUP_ELEMENTS), ft_exit(map), -1);
 		else if (ret == 0)
-			return (set_error(ERR_INV_ELEMENT), -1);
+			return (set_error(ERR_INV_ELEMENT), ft_exit(map), -1);
 		fill_map_element(map, map->hole_map[i++], ret);
 	}
 	return (i);
