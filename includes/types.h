@@ -53,8 +53,8 @@ typedef struct s_map
 	int		c[3];
 	char	**map;
 	char	**hole_map;
-	long	width;
-	long	height;
+	int		width;
+	int		height;
 }			t_map;
 
 #endif

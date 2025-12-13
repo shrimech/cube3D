@@ -22,6 +22,7 @@
 char	**read_map(t_map *map, int fd);
 void	map_init(t_map *map);
 void	parse_hole_map(t_map *map);
+void	map_width(t_map *map, int mapline);
 
 /*---------------------------- debug ----------------*/
 bool	is_empty_line(char c);

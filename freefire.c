@@ -31,7 +31,8 @@ int	main(void)
 		return (1);
 	}
 	parse_hole_map(&map);
-	// print_map(map);
 	print_texture(map);
 	print_colors(map);
+	print_map(map);
+
 }

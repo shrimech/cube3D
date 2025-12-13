@@ -27,8 +27,14 @@ void print_map(t_map map)
     int i = 0;
 	printf("___________________________________\n");
 	printf("|       HERE IS YOUR MAP           |\n");
+	printf("|   WIDTH: %d   HEIGHT: %d         |\n", map.width, map.height);
 	printf("___________________________________\n");
 
+	if (!map.map)
+	{
+		printf("error");
+		return;
+}
     while (map.map[i])
     {
         printf("%s\n",map.map[i]);
