@@ -16,13 +16,14 @@
 /*---------------*** macros ***------------------*/
 
 # define ERR_GNL "get_next_line failed"
+# define ERR_SPLIT "ft_split failed"
+# define ERR_TEXTURE_LINE "Invalid texture line, expected: NO ./path_to_texture"
 # define ERR_ALLOC "memory allocation failed"
 # define ERR_MAP_EARLY "map encountered before all elements were loaded"
 # define ERR_DUP_ELEMENTS "duplicate elements in map header"
 # define ERR_INV_ELEMENT "invalid content before map"
 # define ERR_INV_TILE "invalid map tile"
 # define ERR_MAP_MISSING "no map section found"
-
 
 # define NO "NO "
 # define SO "SO "
@@ -43,15 +44,24 @@ typedef enum e_tile
 	E_SPACE = ' ',
 }			t_tile;
 
+/* 000001
+ * 000010
+ * 000100
+ * 001000
+ * 010000
+ * 100000
+ * 111111
+ * */
+
 typedef enum e_identifier
 {
-	E_NO = 1 << 0,                                 // 000001
-	E_SO = 1 << 1,                                 // 000010
-	E_WE = 1 << 2,                                 // 000100
-	E_EA = 1 << 3,                                 // 001000
-	E_F = 1 << 4,                                  // 010000
-	E_C = 1 << 5,                                  // 100000
-	E_ALL = E_NO | E_SO | E_WE | E_EA | E_F | E_C, // 111111
+	E_NO = 1 << 0,
+	E_SO = 1 << 1,
+	E_WE = 1 << 2,
+	E_EA = 1 << 3,
+	E_F = 1 << 4,
+	E_C = 1 << 5,
+	E_ALL = E_NO | E_SO | E_WE | E_EA | E_F | E_C,
 }			t_identifier;
 
 typedef struct s_map

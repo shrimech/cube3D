@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parse.h"
 #include "types.h"
 #include <freefire.h>
 #include <stdio.h>
@@ -46,13 +47,13 @@ char	*extract_path(char *line)
 	count = 0;
 	elements = ft_split(line, ' ');
 	if (!elements)
-		return (perror("ERROR SPLIT"), NULL);
+		return (set_error(ERR_SPLIT), NULL);
 	while (elements[count])
 		count++;
 	if (count != 2 || elements[1][0] == '\0')
 	{
 		ft_free_split(elements);
-		printf("ERROR");
+		set_error(ERR_TEXTURE_LINE);
 		return (NULL);
 	}
 	path = ft_strdup(elements[1]);

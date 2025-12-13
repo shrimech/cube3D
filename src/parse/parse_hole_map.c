@@ -109,6 +109,7 @@ void	parse_hole_map(t_map *map)
 	int	map_line;
 
 	map_line = parse_elements(map);
+	print_error();
 	parse_map(map, map_line);
 	map_width(map, map_line);
 }

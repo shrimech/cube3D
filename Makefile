@@ -28,7 +28,8 @@ PARSE = $(PARSE_DIR)/build_map.c \
 GNL = $(GNL_DIR)/get_next_line.c\
 	  $(GNL_DIR)/get_next_line_utils.c
 
-MISC = $(MISC_DIR)/error.c
+MISC =	$(MISC_DIR)/error.c \
+		$(MISC_DIR)/exit.c
 
 TEST = $(PARSE_DIR)/debug.c
 
