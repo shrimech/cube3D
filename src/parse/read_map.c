@@ -6,10 +6,11 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:10 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/08/29 02:58:44 by shrimech         ###   ########.fr       */
+/*   Updated: 2025/12/13 05:06:14 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parse.h"
 #include "types.h"
 #include <freefire.h>
 #include <stdlib.h>
@@ -56,18 +57,16 @@ char	**read_map(t_map *map, int fd)
 	count_lines = 0;
 	line = get_next_line(fd);
 	if (!line)
-		return (NULL); // NOTE: ft_exit and free
+		return (set_error(ERR_GNL), NULL); // NOTE: ft_exit and free
 	while (line != NULL)
 	{
 		tmp = realloc_map(hole_map, count_lines, line);
 		if (!tmp)
-			return (NULL); // NOTE: ft_exit  and free
+			return (set_error(ERR_ALLOC), NULL); // NOTE: ft_exit  and free
 		hole_map = tmp;
 		count_lines++;
 		line = get_next_line(fd);
 	}
-	if (count_lines == 0)
-		return (NULL); // NOTE: ft_exit  and free
 	tmp = realloc_map(hole_map, count_lines, NULL);
 	if (tmp)
 	{

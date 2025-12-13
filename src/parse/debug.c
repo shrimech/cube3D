@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 02:42:13 by shrimech          #+#    #+#             */
-/*   Updated: 2025/08/29 02:59:16 by shrimech         ###   ########.fr       */
+/*   Updated: 2025/12/13 04:59:45 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	print_map(t_map map)
 	printf("___________________________________\n");
 	if (!map.map)
 	{
-		printf("error");
 		return ;
 	}
 	while (map.map[i])

@@ -11,6 +11,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 LIBFT_DIR = ./src/libft
 GNL_DIR = ./src/gnl
 PARSE_DIR = ./src/parse
+MISC_DIR = ./src/misc
 
 # -------Header dependencies----------
 INCLUDES = -I ./includes -I $(LIBFT_DIR) -I $(GNL_DIR)
@@ -27,13 +28,15 @@ PARSE = $(PARSE_DIR)/build_map.c \
 GNL = $(GNL_DIR)/get_next_line.c\
 	  $(GNL_DIR)/get_next_line_utils.c
 
+MISC = $(MISC_DIR)/error.c
+
 TEST = $(PARSE_DIR)/debug.c
 
 # -------Main----------
 
 MAIN_SRCS = freefire.c
 
-SRCS = $(GNL) $(PARSE) $(MAIN_SRCS) $(TEST)
+SRCS = $(GNL) $(PARSE) $(MAIN_SRCS) $(TEST) $(MISC)
 
 # -------Object files----------
 

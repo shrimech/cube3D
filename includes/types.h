@@ -6,12 +6,23 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:35 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/08/28 12:27:18 by shrimech         ###   ########.fr       */
+/*   Updated: 2025/12/13 04:51:59 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
+
+/*---------------*** macros ***------------------*/
+
+# define ERR_GNL "get_next_line failed"
+# define ERR_ALLOC "memory allocation failed"
+# define ERR_MAP_EARLY "map encountered before all elements were loaded"
+# define ERR_DUP_ELEMENTS "duplicate elements in map header"
+# define ERR_INV_ELEMENT "invalid content before map"
+# define ERR_INV_TILE "invalid map tile"
+# define ERR_MAP_MISSING "no map section found"
+
 
 # define NO "NO "
 # define SO "SO "

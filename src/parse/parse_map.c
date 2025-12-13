@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 00:34:27 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/13 00:34:54 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/13 04:53:09 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ bool	is_valid_mapline(char *mapline)
 	while (mapline[i] && mapline[i] != '\n')
 	{
 		if (!(mapline[i] == E_WALL || mapline[i] == E_EMPTY
-			|| mapline[i] == E_EAST || mapline[i] == E_SOUTH
-			|| mapline[i] == E_WEST || mapline[i] == E_NORTH
-			|| mapline[i] == E_SPACE))
+				|| mapline[i] == E_EAST || mapline[i] == E_SOUTH
+				|| mapline[i] == E_WEST || mapline[i] == E_NORTH
+				|| mapline[i] == E_SPACE))
 		{
 			return (false);
 		}

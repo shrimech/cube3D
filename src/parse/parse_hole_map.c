@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   parse_hole_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehamza <ehamza@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:55:37 by ehamza            #+#    #+#             */
-/*   Updated: 2025/12/09 18:41:25 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/13 05:07:41 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parse.h"
 #include "types.h"
 #include <freefire.h>
 #include <stdio.h>
@@ -79,7 +80,7 @@ int	parse_elements(t_map *map)
 		if (is_map_line(map->hole_map[i][0]))
 		{
 			if (mask != E_ALL)
-				return (printf("Map reached before all elements loaded"));
+				return (set_error(ERR_MAP_EARLY), -1);
 			return (i);
 		}
 		if (is_empty_line(map->hole_map[i][0]))
@@ -89,17 +90,10 @@ int	parse_elements(t_map *map)
 		}
 		ret = check_element(map->hole_map[i]);
 		if (ret == -1)
-		{
-			write(2, "Duplicate elements\n", 20);
-			return (-1);
-		}
+			return (set_error(ERR_DUP_ELEMENTS), -1);
 		else if (ret == 0)
-		{
-			write(2, "Unknown line before map\n", 25);
-			return (-1);
-		}
-		fill_map_element(map, map->hole_map[i], ret);
-		i++;
+			return (set_error(ERR_INV_ELEMENT), -1);
+		fill_map_element(map, map->hole_map[i++], ret);
 	}
 	return (i);
 }
