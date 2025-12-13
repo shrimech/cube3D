@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 04:13:55 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/13 04:25:08 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/13 06:31:00 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,22 @@ void	set_error(char *error)
 	g_error = ft_strdup(error);
 }
 
+bool	is_there_an_error()
+{
+	if (g_error)
+		return (false);
+	return (true);
+}
+
 void	print_error()
 {
-	ft_putendl_fd(g_error, 2);
+	if (g_error)
+		ft_putendl_fd(g_error, 2);
+}
+
+void	free_error()
+{
+	if (g_error)
+		free(g_error);
+	g_error = NULL;
 }

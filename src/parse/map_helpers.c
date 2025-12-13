@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 18:34:48 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/09 19:20:52 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/13 06:23:07 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*extract_path(char *line)
 	if (count != 2 || elements[1][0] == '\0')
 	{
 		ft_free_split(elements);
-		set_error(ERR_TEXTURE_LINE);
+		printf("ERROR");
 		return (NULL);
 	}
 	path = ft_strdup(elements[1]);

@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:10 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/13 05:06:14 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/13 06:52:51 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	map_init(t_map *map)
 	map->width = -1;
 }
 
-char	**realloc_map(char **old_map, size_t old_size, char *new_line)
+static char	**realloc_map(char **old_map, size_t old_size, char *new_line)
 {
 	char	**new_map;
 	size_t	i;
@@ -35,7 +35,7 @@ char	**realloc_map(char **old_map, size_t old_size, char *new_line)
 	i = 0;
 	new_map = malloc(sizeof(char *) * (old_size + 1));
 	if (!new_map)
-		return (NULL);
+		return (set_error(ERR_ALLOC), NULL);
 	while (i < old_size)
 	{
 		new_map[i] = old_map[i];
@@ -57,21 +57,19 @@ char	**read_map(t_map *map, int fd)
 	count_lines = 0;
 	line = get_next_line(fd);
 	if (!line)
-		return (set_error(ERR_GNL), NULL); // NOTE: ft_exit and free
+		return (set_error(ERR_GNL), ft_exit(map), NULL);
 	while (line != NULL)
 	{
 		tmp = realloc_map(hole_map, count_lines, line);
 		if (!tmp)
-			return (set_error(ERR_ALLOC), NULL); // NOTE: ft_exit  and free
+			return (set_error(ERR_ALLOC), NULL);
 		hole_map = tmp;
 		count_lines++;
 		line = get_next_line(fd);
 	}
 	tmp = realloc_map(hole_map, count_lines, NULL);
 	if (tmp)
-	{
 		hole_map = tmp;
-	}
 	map->height = count_lines;
 	return (hole_map);
 }

@@ -6,7 +6,7 @@
 /*   By: ehamza <ehamza@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:57:13 by ehamza            #+#    #+#             */
-/*   Updated: 2025/12/13 04:55:32 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/13 06:31:15 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	parse_hole_map(t_map *map);
 void	map_width(t_map *map, int mapline);
 void	set_error(char *error);
 void	print_error();
+bool	is_there_an_error();
 
 /*---------------------------- debug ----------------*/
 bool	is_empty_line(char c);

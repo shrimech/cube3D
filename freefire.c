@@ -6,12 +6,13 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:15 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/08/28 06:52:15 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/13 06:42:39 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "freefire.h"
 #include "parse.h"
+#include <fcntl.h>
 
 int	main(void)
 {
@@ -22,18 +23,17 @@ int	main(void)
 	if (fd < 0)
 	{
 		perror("open");
-		return (1);
+		ft_exit(NULL);
 	}
 	map_init(&map);
 	map.hole_map = read_map(&map, fd);
 	if (!map.hole_map) {
 		perror("Failed to read map");
-		return (1);
+		ft_exit(&map);
 	}
 	parse_hole_map(&map);
 	print_error();
 	print_texture(map);
 	print_colors(map);
 	print_map(map);
-
 }

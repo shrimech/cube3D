@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 00:34:27 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/13 04:53:09 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/13 06:15:26 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ bool	is_valid_mapline(char *mapline)
 				|| mapline[i] == E_WEST || mapline[i] == E_NORTH
 				|| mapline[i] == E_SPACE))
 		{
-			return (false);
+			return (set_error(ERR_INV_TILE), false);
 		}
 		i++;
 	}
 	if (i == 0)
-		return (false);
+		return (set_error(ERR_MAP_MISSING), false);
 	return (true);
 }
 

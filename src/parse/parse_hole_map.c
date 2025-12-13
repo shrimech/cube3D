@@ -6,7 +6,7 @@
 /*   By: ehamza <ehamza@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:55:37 by ehamza            #+#    #+#             */
-/*   Updated: 2025/12/13 05:07:41 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/13 06:23:42 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <freefire.h>
 #include <stdio.h>
 
-static int	mask = 0;
+static int	g_mask = 0;
 
 int	check_element(char *first_element)
 {
@@ -36,9 +36,9 @@ int	check_element(char *first_element)
 		bit = E_C;
 	else
 		return (0);
-	if (mask & bit)
+	if (g_mask & bit)
 		return (-1);
-	mask |= bit;
+	g_mask |= bit;
 	return (bit);
 }
 
@@ -59,11 +59,13 @@ void	fill_map_element(t_map *map, char *line, int element)
 	{
 		tmp = extract_color(extract_path(line));
 		ft_memcpy(map->f, tmp, sizeof(int) * 3);
+		free(tmp);
 	}
 	else if (element == E_C)
 	{
 		tmp = extract_color(extract_path(line));
 		ft_memcpy(map->c, tmp, sizeof(int) * 3);
+		free(tmp);
 	}
 }
 
@@ -79,7 +81,7 @@ int	parse_elements(t_map *map)
 	{
 		if (is_map_line(map->hole_map[i][0]))
 		{
-			if (mask != E_ALL)
+			if (g_mask != E_ALL)
 				return (set_error(ERR_MAP_EARLY), -1);
 			return (i);
 		}
