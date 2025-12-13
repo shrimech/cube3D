@@ -12,54 +12,52 @@
 
 #include "../../includes/freefire.h"
 
-void print_hole_map(t_map map)
+void	print_hole_map(t_map map)
 {
-    int i = 0;
-    while (map.hole_map[i])
-    {
-        printf("%s",map.hole_map[i]);
-        i++;
-    }
+	int	i;
+
+	i = 0;
+	while (map.hole_map[i])
+	{
+		printf("%s", map.hole_map[i]);
+		i++;
+	}
 }
 
-void print_map(t_map map)
+void	print_map(t_map map)
 {
-    int i = 0;
+	int	i;
+
+	i = 0;
 	printf("___________________________________\n");
 	printf("|       HERE IS YOUR MAP           |\n");
 	printf("|   WIDTH: %d   HEIGHT: %d         |\n", map.width, map.height);
 	printf("___________________________________\n");
-
 	if (!map.map)
 	{
 		printf("error");
-		return;
-}
-    while (map.map[i])
-    {
-        printf("%s\n",map.map[i]);
-        i++;
-    }
+		return ;
+	}
+	while (map.map[i])
+	{
+		printf("%s\n", map.map[i]);
+		i++;
+	}
 }
 
-void  print_texture(t_map map)
+void	print_texture(t_map map)
 {
 	printf("___________________________________\n");
 	printf("|    HERE IS YOUR MAP ELEMENTS    |\n");
 	printf("___________________________________\n");
-     printf("EA  ::  %s\n", map.ea ? map.ea : "(null)");
-     printf("NO  ::  %s\n", map.no ? map.no : "(null)");
-     printf("SO  ::  %s\n", map.so ? map.so : "(null)");
-     printf("WE  ::  %s\n", map.we ? map.we : "(null)");
+	printf("EA  ::  %s\n", map.ea ? map.ea : "(null)");
+	printf("NO  ::  %s\n", map.no ? map.no : "(null)");
+	printf("SO  ::  %s\n", map.so ? map.so : "(null)");
+	printf("WE  ::  %s\n", map.we ? map.we : "(null)");
 }
 
-
-void print_colors(t_map map)
+void	print_colors(t_map map)
 {
-    printf("F  ::  %d, %d, %d\n", map.f[0], map.f[1], map.f[2]);
-    printf("C  ::  %d, %d, %d\n", map.c[0], map.c[1], map.c[2]);
+	printf("F  ::  %d, %d, %d\n", map.f[0], map.f[1], map.f[2]);
+	printf("C  ::  %d, %d, %d\n", map.c[0], map.c[1], map.c[2]);
 }
-
-
-
-// gcc read_map.c debug.c ../gnl/get_next_line.c ../gnl/get_next_line_utils.c  ../libft/libft.a -g

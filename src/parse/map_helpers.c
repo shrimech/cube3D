@@ -64,8 +64,8 @@ int	*extract_color(char *element)
 {
 	int		*rgb_arr;
 	char	**rgb_str;
-	int i;
-	
+	int		i;
+
 	i = 0;
 	rgb_arr = malloc(sizeof(int) * 3);
 	if (!rgb_arr)
@@ -76,11 +76,11 @@ int	*extract_color(char *element)
 	rgb_arr[0] = ft_atoi(rgb_str[0]);
 	rgb_arr[1] = ft_atoi(rgb_str[1]);
 	rgb_arr[2] = ft_atoi(rgb_str[2]);
-    while ( rgb_str[i])
+	while (rgb_str[i])
 	{
-        free(rgb_str[i]);
+		free(rgb_str[i]);
 		i++;
 	}
 	free(rgb_str);
-    return rgb_arr;
+	return (rgb_arr);
 }

@@ -34,11 +34,11 @@ int	check_element(char *first_element)
 	else if (strncmp(first_element, C, 2) == 0)
 		bit = E_C;
 	else
-		return (0); // line is not an element
+		return (0);
 	if (mask & bit)
-		return (-1); // duplicate detected
-	mask |= bit;     // set the bit
-	return (bit);    // return the bit that was set
+		return (-1);
+	mask |= bit;
+	return (bit);
 }
 
 void	fill_map_element(t_map *map, char *line, int element)
@@ -66,6 +66,8 @@ void	fill_map_element(t_map *map, char *line, int element)
 	}
 }
 
+// NOTE: here change with the exit function
+
 int	parse_elements(t_map *map)
 {
 	int	i;
@@ -89,13 +91,11 @@ int	parse_elements(t_map *map)
 		if (ret == -1)
 		{
 			write(2, "Duplicate elements\n", 20);
-			// NOTE: here change with the exit function
 			return (-1);
 		}
 		else if (ret == 0)
 		{
 			write(2, "Unknown line before map\n", 25);
-			// NOTE: here change with the exit function
 			return (-1);
 		}
 		fill_map_element(map, map->hole_map[i], ret);
