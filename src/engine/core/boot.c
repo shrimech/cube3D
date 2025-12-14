@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
 #include <freefire.h>
 
 void	init_game(t_game *game)
@@ -22,5 +21,3 @@ void	init_game(t_game *game)
 			&game->endian);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
-
-

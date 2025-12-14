@@ -13,11 +13,11 @@
 #ifndef FREEFIRE_H
 # define FREEFIRE_H
 
-# include "../src/gnl/get_next_line.h"
-# include "../src/libft/libft.h"
-# include "./game.h"
-# include "./parse.h"
-# include "./types.h"
+# include "get_next_line.h"
+# include "libft.h"
+# include "game.h"
+# include "parse.h"
+# include "types.h"
 
 # include <stdio.h>
 # include <unistd.h>
