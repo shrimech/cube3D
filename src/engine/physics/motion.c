@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 04:10:30 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/14 06:41:21 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/14 07:01:58 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	apply_motion(t_camera *cam)
 	int		speed;
 	float	angle_speed;
 
-	speed = 5;
+	speed = 1;
 	angle_speed = 0.05;
 	
 	if (cam->move_fwd && cam->pos_y > speed)
@@ -75,8 +75,6 @@ void	apply_motion(t_camera *cam)
 		cam->pos_x -= speed;
 	if (cam->truck_right && cam->pos_x < WIDTH - speed - 10)
 		cam->pos_x += speed;
-	
-	// Add rotation functionality
 	if (cam->rotate_left)
 		cam->view_angle -= angle_speed;
 	if (cam->rotate_right)
@@ -85,24 +83,4 @@ void	apply_motion(t_camera *cam)
 		cam->view_angle = 0;
 	if (cam->view_angle < 0)
 		cam->view_angle = 2 * PI;
-	// if (cam->move_fwd)
-	// {
-	// 	cam->pos_x += cos_angle * speed;
-	// 	cam->pos_y += sin_angle * speed;
-	// }
-	// if (cam->move_back)
-	// {
-	// 	cam->pos_x -= cos_angle * speed;
-	// 	cam->pos_y -= sin_angle * speed;
-	// }
-	// if (cam->truck_left)
-	// {
-	// 	cam->pos_x += sin_angle * speed;
-	// 	cam->pos_y -= cos_angle * speed;
-	// }
-	// if (cam->truck_right)
-	// {
-	// 	cam->pos_x -= sin_angle * speed;
-	// 	cam->pos_y += cos_angle * speed;
-	// }
 }
