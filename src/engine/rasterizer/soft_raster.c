@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "game.h"
 #include <freefire.h>
+#include <stdio.h>
 
 void	put_pixel(int x, int y, int color, t_game *game)
 {
@@ -23,3 +25,41 @@ void	put_pixel(int x, int y, int color, t_game *game)
 	game->data[index + 1] = (color >> 8) & 0xFF;
 	game->data[index + 2] = (color >> 16) & 0xFF;
 }
+
+void	draw_square(int x, int y, int size, int color, t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size)
+		{
+			put_pixel(x + j, y + i, color, game);
+			j++;
+		}
+		i++;
+	}
+}
+
+int	draw_loop(t_game *game)
+{
+	t_camera camera;
+	
+	camera = game->camera;
+	
+}
+// void	drawConsoleSquare(int size)
+// {
+// 	for (int i = 0; i < size; i++)
+// 	{
+// 		for (int j = 0; j < size; j++)
+// 		{
+// 			printf("* ");
+// 		}
+// 		printf("\n");
+// 	}
+// }
+

@@ -21,7 +21,6 @@
 # define HEIGHT 720.0
 # define PI 3.14159265359
 
-
 # define KEY_W 119
 # define KEY_S 97
 # define KEY_A 115
@@ -29,32 +28,44 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 
-
-
 typedef struct s_camera
 {
-	double	pos_x;
-	double	pos_y;
-	double	view_angle;
-	bool	move_fwd;
-	bool	move_back;
-	bool	truck_left;
-	bool	truck_right;
-	bool	rotate_left;
-	bool	rotate_right;
-}			t_camera;
+	double		pos_x;
+	double		pos_y;
+	double		view_angle;
+	bool		move_fwd;
+	bool		move_back;
+	bool		truck_left;
+	bool		truck_right;
+	bool		rotate_left;
+	bool		rotate_right;
+}				t_camera;
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*data;
-	int		bpp;
-	int		line_lengh;
-	int		endian;
-}			t_game;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	char		*data;
+	int			bpp;
+	int			line_lengh;
+	int			endian;
+	t_camera	camera;
+	char		**map;
+}				t_game;
 
-void		init_game(t_game *game);
 
+
+/*---------------***	Core	***------------------*/
+void			init_game(t_game *game);
+
+/*---------------***  phyisics  ***------------------*/
+void			calibrate_optics(t_camera *cam);
+int				assert_motion(int keycode, t_camera *cam);
+int				stop_motion(int keycode, t_camera *cam);
+void			apply_motion(t_camera *cam);
+
+/*---------------*** Rasterizer ***------------------*/
+void	put_pixel(int x, int y, int color, t_game *game);
+void	draw_square(int x, int y, int size, int color, t_game *game);
 #endif
