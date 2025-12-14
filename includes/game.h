@@ -28,6 +28,9 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 
+# define KEY_ESC 65307
+# define ON_DESTROY 17
+
 typedef struct s_camera
 {
 	double		pos_x;

@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include <freefire.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 void	calibrate_optics(t_camera *cam)
 {
@@ -27,6 +29,11 @@ void	calibrate_optics(t_camera *cam)
 
 int	assert_motion(int keycode, t_camera *cam)
 {
+	if (keycode == KEY_ESC)
+	{
+		printf("ESC key pressed - exiting...\n");
+		exit(0);
+	}
 	if (keycode == KEY_W)
 		cam->move_fwd = true;
 	if (keycode == KEY_S)
