@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 02:22:41 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/14 02:43:05 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/14 06:15:21 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <math.h>
 # include <stdbool.h>
 
-# define WIDTH 720.0
-# define HEIGHT 720.0
+# define WIDTH 720
+# define HEIGHT 720
 # define PI 3.14159265359
 
 # define KEY_W 119
@@ -68,4 +68,6 @@ void			apply_motion(t_camera *cam);
 /*---------------*** Rasterizer ***------------------*/
 void	put_pixel(int x, int y, int color, t_game *game);
 void	draw_square(int x, int y, int size, int color, t_game *game);
+int	draw_loop(t_game *game);
+
 #endif

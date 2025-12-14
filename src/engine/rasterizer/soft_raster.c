@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_pixel.c                                        :+:      :+:    :+:   */
+/*   soft_raster.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 04:18:19 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/14 04:19:04 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/14 06:19:03 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 #include <freefire.h>
+#include <minilibx-linux/mlx.h>
 #include <stdio.h>
 
 void	put_pixel(int x, int y, int color, t_game *game)
@@ -46,11 +47,16 @@ void	draw_square(int x, int y, int size, int color, t_game *game)
 
 int	draw_loop(t_game *game)
 {
-	t_camera camera;
+	t_camera *camera;
 	
-	camera = game->camera;
-	
+	camera = &game->camera;
+	calibrate_optics(camera);
+	apply_motion(camera);
+	draw_square(camera->pos_x, camera->pos_y, 10, 0xFFFF00, game);
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	return 0;
 }
+
 // void	drawConsoleSquare(int size)
 // {
 // 	for (int i = 0; i < size; i++)
