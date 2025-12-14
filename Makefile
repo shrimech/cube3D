@@ -11,6 +11,9 @@ LIBFT = $(LIBFT_DIR)/libft.a
 LIBFT_DIR = ./src/libft
 GNL_DIR = ./src/gnl
 ENGINE_DIR = ./src/engine
+ENGINE_CORE_DIR = $(ENGINE_DIR)/core
+ENGINE_PHYSICS_DIR = $(ENGINE_DIR)/physics
+ENGINE_RASTERIZER_DIR = $(ENGINE_DIR)/rasterizer
 PARSE_DIR = ./src/parse
 MISC_DIR = ./src/misc
 
@@ -23,13 +26,17 @@ INCLUDES = -I ./includes -I $(LIBFT_DIR) -I $(GNL_DIR) -I $(MLX_PATH)
 
 # -----Source files----- 
 
-ENGINE = $(ENGINE_DIR)/init_game.c
 
 PARSE = $(PARSE_DIR)/build_map.c \
 		$(PARSE_DIR)/parse_hole_map.c \
 		$(PARSE_DIR)/parse_map.c \
 		$(PARSE_DIR)/read_map.c \
 		$(PARSE_DIR)/map_helpers.c
+
+ENGINE_CORE = $(ENGINE_CORE_DIR)/boot.c
+EMGINE_PHYSICS = $(ENGINE_PHYSICS_DIR)/motion.c
+ENGINE_RASTERIZER = $(ENGINE_RASTERIZER_DIR)/put_pixel.c
+ENGINE = $(ENGINE_CORE) $(EMGINE_PHYSICS)  $(ENGINE_RASTERIZER)
 
 GNL = $(GNL_DIR)/get_next_line.c\
 	  $(GNL_DIR)/get_next_line_utils.c

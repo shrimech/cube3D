@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "game.h"
 #include <freefire.h>
 
 void	calibrate_optics(t_camera *cam)
@@ -59,7 +60,43 @@ int	stop_motion(int keycode, t_camera *cam)
 	return (0);
 }
 
-int	move_camera()
+void	apply_motion(t_camera *cam)
 {
+	int		speed;
+	float	angle_speed;
+	float	cos_angle;
+	float	sin_angle;
 
+	speed = 3;
+	angle_speed = 0.03;
+	cos_angle = cos(cam->view_angle);
+	sin_angle = sin(cam->view_angle);
+	if (cam->rotate_left)
+		cam->view_angle -= angle_speed;
+	if (cam->rotate_right)
+		cam->view_angle += angle_speed;
+	if (cam->view_angle > 2 * PI)
+		cam->view_angle = 0;
+	if (cam->view_angle < 0)
+		cam->view_angle = 2 * PI;
+	if (cam->move_fwd)
+	{
+		cam->pos_x += cos_angle * speed;
+		cam->pos_y += sin_angle * speed;
+	}
+	if (cam->move_back)
+	{
+		cam->pos_x -= cos_angle * speed;
+		cam->pos_y -= sin_angle * speed;
+	}
+	if (cam->truck_left)
+	{
+		cam->pos_x += sin_angle * speed;
+		cam->pos_y -= cos_angle * speed;
+	}
+	if (cam->truck_right)
+	{
+		cam->pos_x -= sin_angle * speed;
+		cam->pos_y += cos_angle * speed;
+	}
 }
