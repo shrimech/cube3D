@@ -14,6 +14,41 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+void	find_player_spawn(char **map, t_camera *cam)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E' || map[y][x] == 'W')
+			{
+				cam->pos_x = x * BLOCK + BLOCK / 2;
+				cam->pos_y = y * BLOCK + BLOCK / 2;
+				if (map[y][x] == 'N')
+					cam->view_angle = 3 * PI / 2;
+				else if (map[y][x] == 'S')
+					cam->view_angle = PI / 2;
+				else if (map[y][x] == 'E')
+					cam->view_angle = 0;
+				else if (map[y][x] == 'W')
+					cam->view_angle = PI;
+				return;
+			}
+			x++;
+		}
+		y++;
+	}
+	// Default position if no player spawn found
+	cam->pos_x = WIDTH / 2;
+	cam->pos_y = HEIGHT / 2;
+	cam->view_angle = PI / 2;
+}
+
 void	calibrate_optics(t_camera *cam)
 {
 	cam->pos_x = WIDTH / 2;
@@ -71,7 +106,7 @@ void	apply_motion(t_camera *cam)
 	int		speed;
 	float	angle_speed;
 
-	speed = 1;
+	speed = 3;
 	angle_speed = 0.05;
 	
 	if (cam->move_fwd && cam->pos_y > speed)

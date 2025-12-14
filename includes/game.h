@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 02:22:41 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/14 06:44:25 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/14 22:17:41 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 
 # define KEY_ESC 65307
 # define ON_DESTROY 17
+
+#define BLOCK 25
 
 typedef struct s_camera
 {
@@ -62,6 +64,7 @@ void			init_game(t_game *game);
 
 /*---------------***  phyisics  ***------------------*/
 void			calibrate_optics(t_camera *cam);
+void			find_player_spawn(char **map, t_camera *cam);
 int				assert_motion(int keycode, t_camera *cam);
 int				stop_motion(int keycode, t_camera *cam);
 void			apply_motion(t_camera *cam);
@@ -71,5 +74,9 @@ void			put_pixel(int x, int y, int color, t_game *game);
 void			draw_square(int x, int y, int size, int color, t_game *game);
 int				draw_loop(t_game *game);
 void			clear_image(t_game *game);
+
+
+/*---------------*** bullshit ***------------------*/
+char **get_map(void);
 
 #endif
