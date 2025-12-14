@@ -79,4 +79,7 @@ typedef struct s_map
 	int		height;
 }			t_map;
 
+
+
+
 #endif

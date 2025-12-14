@@ -10,14 +10,20 @@ LIBFT = $(LIBFT_DIR)/libft.a
 # -------Directories----------
 LIBFT_DIR = ./src/libft
 GNL_DIR = ./src/gnl
+ENGINE_DIR = ./src/engine
 PARSE_DIR = ./src/parse
 MISC_DIR = ./src/misc
 
-# -------Header dependencies----------
-INCLUDES = -I ./includes -I $(LIBFT_DIR) -I $(GNL_DIR)
+#-------MLX Setup
+MLX_PATH = /usr/include/minilibx-linux
+MLX_FLAGS = -L$(MLX_PATH) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 
+# -------Header dependencies----------
+INCLUDES = -I ./includes -I $(LIBFT_DIR) -I $(GNL_DIR) -I $(MLX_PATH)
 
 # -----Source files----- 
+
+ENGINE = $(ENGINE_DIR)/init_game.c
 
 PARSE = $(PARSE_DIR)/build_map.c \
 		$(PARSE_DIR)/parse_hole_map.c \
@@ -37,7 +43,7 @@ TEST = $(PARSE_DIR)/debug.c
 
 MAIN_SRCS = freefire.c
 
-SRCS = $(GNL) $(PARSE) $(MAIN_SRCS) $(TEST) $(MISC)
+SRCS = $(GNL) $(PARSE) $(MAIN_SRCS) $(TEST) $(MISC) $(ENGINE)
 
 # -------Object files----------
 
@@ -46,7 +52,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(READLINE_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
