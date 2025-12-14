@@ -6,10 +6,8 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:33:26 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/13 13:33:36 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/14 01:21:07 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <freefire.h>
-

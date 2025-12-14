@@ -6,7 +6,7 @@
 /*   By: ehamza <ehamza@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:57:13 by ehamza            #+#    #+#             */
-/*   Updated: 2025/12/13 13:57:59 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/14 01:20:42 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-/*---------------------------- debug ----------------*/
+/*---------------------------- Parsers ----------------*/
 char	**read_map(t_map *map, int fd);
 void	map_init(t_map *map);
 void	parse_hole_map(t_map *map);
@@ -27,15 +27,15 @@ void	set_error(char *error);
 void	print_error(void);
 bool	is_there_an_error(void);
 
-/*---------------------------- debug ----------------*/
+/*---------------------------- Checkers ----------------*/
 bool	is_empty_line(char c);
 bool	is_map_line(char c);
 
-//---------------------------- debug ----------------
+//---------------------------- Extractors ----------------
 char	*extract_path(t_map *map, char *line);
 int		*extract_color(t_map *map, char *element);
 
-//---------------------------- debug ----------------
+//---------------------------- Eebug ----------------
 void	print_hole_map(t_map map);
 void	print_map(t_map map);
 void	print_texture(t_map map);

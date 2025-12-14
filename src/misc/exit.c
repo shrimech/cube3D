@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 05:47:29 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/13 06:32:29 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/14 01:20:59 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	free_hole_map(t_map *map)
 	int	i;
 
 	if (!map->hole_map)
-		return;
+		return ;
 	i = 0;
 	while (i < map->height)
 	{
@@ -47,7 +47,7 @@ static void	free_map(t_map *map)
 	int	i;
 
 	if (!map->map)
-		return;
+		return ;
 	i = 0;
 	while (i < map->height)
 	{
@@ -67,4 +67,3 @@ void	ft_exit(t_map *map)
 	free_error();
 	exit(1);
 }
-
