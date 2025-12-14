@@ -62,7 +62,7 @@ char	*extract_path(t_map *map, char *line)
 	return (path);
 }
 
-int	*extract_color(char *element)
+int	*extract_color(t_map *map, char *element)
 {
 	int		*rgb_arr;
 	char	**rgb_str;
@@ -74,7 +74,7 @@ int	*extract_color(char *element)
 		return (NULL);
 	rgb_str = ft_split(element, ',');
 	if (!rgb_str)
-		return (perror("ERROR SPLIT"), NULL);
+		return (set_error(ERR_SPLIT), ft_exit(map), NULL);
 	rgb_arr[0] = ft_atoi(rgb_str[0]);
 	rgb_arr[1] = ft_atoi(rgb_str[1]);
 	rgb_arr[2] = ft_atoi(rgb_str[2]);

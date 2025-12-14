@@ -24,8 +24,8 @@ void	map_init(t_map *map);
 void	parse_hole_map(t_map *map);
 void	map_width(t_map *map, int mapline);
 void	set_error(char *error);
-void	print_error();
-bool	is_there_an_error();
+void	print_error(void);
+bool	is_there_an_error(void);
 
 /*---------------------------- debug ----------------*/
 bool	is_empty_line(char c);
@@ -33,7 +33,7 @@ bool	is_map_line(char c);
 
 //---------------------------- debug ----------------
 char	*extract_path(t_map *map, char *line);
-int		*extract_color(char *line);
+int		*extract_color(t_map *map, char *element);
 
 //---------------------------- debug ----------------
 void	print_hole_map(t_map map);
