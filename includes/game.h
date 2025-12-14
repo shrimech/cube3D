@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 02:22:41 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/14 06:15:21 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/14 06:44:25 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # define PI 3.14159265359
 
 # define KEY_W 119
-# define KEY_S 97
-# define KEY_A 115
+# define KEY_S 115
+# define KEY_A 97
 # define KEY_D 100
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
@@ -54,8 +54,6 @@ typedef struct s_game
 	char		**map;
 }				t_game;
 
-
-
 /*---------------***	Core	***------------------*/
 void			init_game(t_game *game);
 
@@ -66,8 +64,9 @@ int				stop_motion(int keycode, t_camera *cam);
 void			apply_motion(t_camera *cam);
 
 /*---------------*** Rasterizer ***------------------*/
-void	put_pixel(int x, int y, int color, t_game *game);
-void	draw_square(int x, int y, int size, int color, t_game *game);
-int	draw_loop(t_game *game);
+void			put_pixel(int x, int y, int color, t_game *game);
+void			draw_square(int x, int y, int size, int color, t_game *game);
+int				draw_loop(t_game *game);
+void			clear_image(t_game *game);
 
 #endif

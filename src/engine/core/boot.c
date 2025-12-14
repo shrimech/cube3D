@@ -19,5 +19,6 @@ void	init_game(t_game *game)
 	game->img = mlx_new_image(game->mlx, 720, 720);
 	game->data = mlx_get_data_addr(game->img, &game->bpp, &game->line_lengh,
 			&game->endian);
+	calibrate_optics(&game->camera);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }

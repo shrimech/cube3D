@@ -50,8 +50,8 @@ int	draw_loop(t_game *game)
 	t_camera *camera;
 	
 	camera = &game->camera;
-	calibrate_optics(camera);
 	apply_motion(camera);
+	clear_image(game);
 	draw_square(camera->pos_x, camera->pos_y, 10, 0xFFFF00, game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	return 0;
