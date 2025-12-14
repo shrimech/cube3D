@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:35 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/14 01:19:31 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/14 20:43:07 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,18 @@ typedef struct s_map
 	int		width;
 	int		height;
 }			t_map;
+
+typedef enum e_scope
+{
+	SCOPE_PARSE,
+	SCOPE_GAME,
+}						t_mem_scope;
+
+typedef struct s_collect
+{
+	void				*ptr;
+	t_mem_scope			scope;
+	struct s_collect	*next;
+}						t_collect;
 
 #endif
