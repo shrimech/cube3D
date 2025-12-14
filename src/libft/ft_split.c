@@ -89,7 +89,7 @@ char	**ft_split(char const *s, char c)
 // int	main()
 // {
 // 	int i;
-// 	char	str[] = ",,,,,,,,sasa,,,,,,with,hipoh,gggghgssshggghhg,,,,,,,";
+// 	char	str[] = "255,,,,244,";
 // 	char	**res = ft_split(str, ',');
 
 // 	if (!res)
@@ -100,7 +100,7 @@ char	**ft_split(char const *s, char c)
 // 	i = 0;
 // 	while (res[i])
 // 	{
-// 		printf( "%s\n", res[i]);
+// 		printf( "$$%s --------------------\n", res[i]);
 // 		i++;
 // 	}
 // 	printf("%s \n", res[i]);

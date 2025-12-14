@@ -44,9 +44,6 @@ int	check_element(char *first_element)
 
 void	fill_map_element(t_map *map, char *line, int element)
 {
-	int	*tmp;
-
-	tmp = NULL;
 	if (element == E_NO)
 		map->no = extract_path(map, line);
 	else if (element == E_SO)
@@ -57,15 +54,11 @@ void	fill_map_element(t_map *map, char *line, int element)
 		map->ea = extract_path(map, line);
 	else if (element == E_F)
 	{
-		tmp = extract_color(map, extract_path(map, line));
-		ft_memcpy(map->f, tmp, sizeof(int) * 3);
-		free(tmp);
+		map->f = extract_color(map, extract_path(map, line));
 	}
 	else if (element == E_C)
 	{
-		tmp = extract_color(map, extract_path(map, line));
-		ft_memcpy(map->c, tmp, sizeof(int) * 3);
-		free(tmp);
+		map->c = extract_color(map, extract_path(map, line));
 	}
 }
 

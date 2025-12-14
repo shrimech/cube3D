@@ -18,6 +18,7 @@
 # include "./game.h"
 # include "./parse.h"
 # include "./types.h"
+#include <stdio.h>
 
 # include <stdio.h>
 # include <unistd.h>

@@ -71,8 +71,8 @@ typedef struct s_map
 	char	*so;
 	char	*we;
 	char	*ea;
-	int		f[3];
-	int		c[3];
+	int		f;
+	int		c;
 	char	**map;
 	char	**hole_map;
 	int		width;

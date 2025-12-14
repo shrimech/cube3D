@@ -57,6 +57,5 @@ void	print_texture(t_map map)
 
 void	print_colors(t_map map)
 {
-	printf("F  ::  %d, %d, %d\n", map.f[0], map.f[1], map.f[2]);
-	printf("C  ::  %d, %d, %d\n", map.c[0], map.c[1], map.c[2]);
+	printf("floor:      %d   , ceil:       %d\n", map.f, map.c);
 }

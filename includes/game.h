@@ -16,6 +16,7 @@
 # include "/usr/include/minilibx-linux/mlx.h"
 # include <math.h>
 # include <stdbool.h>
+#include <stdio.h>
 
 # define WIDTH 720.0
 # define HEIGHT 720.0

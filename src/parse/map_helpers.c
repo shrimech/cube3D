@@ -62,27 +62,50 @@ char	*extract_path(t_map *map, char *line)
 	return (path);
 }
 
-int	*extract_color(t_map *map, char *element)
+int takergb(char **rgb_str)
 {
-	int		*rgb_arr;
-	char	**rgb_str;
-	int		i;
+	int i;
+	int value;
+	int rgb;
 
 	i = 0;
-	rgb_arr = malloc(sizeof(int) * 3);
-	if (!rgb_arr)
-		return (NULL);
-	rgb_str = ft_split(element, ',');
-	if (!rgb_str)
-		return (set_error(ERR_SPLIT), ft_exit(map), NULL);
-	rgb_arr[0] = ft_atoi(rgb_str[0]);
-	rgb_arr[1] = ft_atoi(rgb_str[1]);
-	rgb_arr[2] = ft_atoi(rgb_str[2]);
-	while (rgb_str[i])
+	rgb = 0;
+	while (i < 3)
 	{
-		free(rgb_str[i]);
+		value = ft_atoi(rgb_str[i]);
+		if (value != (unsigned char)value)
+		{
+			write(2, "Error: RGB values are just one byte\n", 36);
+			exit(1);
+		}
+		rgb |= (value << (16 - 8 * i));
 		i++;
 	}
-	free(rgb_str);
-	return (rgb_arr);
+	return (rgb);
+}
+
+int	extract_color(t_map *map, char *element)
+{
+	char	**rgb_str;
+	int		rgb;
+	int		i;
+	int 	count;
+
+	count = 0;
+	i = 0;
+	while(element[i])
+	{
+		if (element[i] == ',')
+			count++;
+		i++;
+	}
+	i = 0;
+	if(count != 2)
+		return (set_error(ERR_SPLIT), ft_exit(map), -1);
+	rgb_str = ft_split(element, ',');
+	
+	if (!rgb_str|| !rgb_str[0] || !rgb_str[1] || !rgb_str[2] || rgb_str[2][0]=='\n')
+		return (set_error(ERR_SPLIT), ft_exit(map), -1);
+	rgb = takergb(rgb_str);
+	return (rgb);
 }
