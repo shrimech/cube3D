@@ -6,12 +6,48 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 04:10:30 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/14 04:10:30 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/14 07:01:58 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
 #include <freefire.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+void	find_player_spawn(char **map, t_camera *cam)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E' || map[y][x] == 'W')
+			{
+				cam->pos_x = x * BLOCK + BLOCK / 2;
+				cam->pos_y = y * BLOCK + BLOCK / 2;
+				if (map[y][x] == 'N')
+					cam->view_angle = 3 * PI / 2;
+				else if (map[y][x] == 'S')
+					cam->view_angle = PI / 2;
+				else if (map[y][x] == 'E')
+					cam->view_angle = 0;
+				else if (map[y][x] == 'W')
+					cam->view_angle = PI;
+				return;
+			}
+			x++;
+		}
+		y++;
+	}
+	// Default position if no player spawn found
+	cam->pos_x = WIDTH / 2;
+	cam->pos_y = HEIGHT / 2;
+	cam->view_angle = PI / 2;
+}
 
 void	calibrate_optics(t_camera *cam)
 {
@@ -28,6 +64,11 @@ void	calibrate_optics(t_camera *cam)
 
 int	assert_motion(int keycode, t_camera *cam)
 {
+	if (keycode == KEY_ESC)
+	{
+		printf("ESC key pressed - exiting...\n");
+		exit(0);
+	}
 	if (keycode == KEY_W)
 		cam->move_fwd = true;
 	if (keycode == KEY_S)
@@ -64,13 +105,18 @@ void	apply_motion(t_camera *cam)
 {
 	int		speed;
 	float	angle_speed;
-	float	cos_angle;
-	float	sin_angle;
 
 	speed = 3;
-	angle_speed = 0.03;
-	cos_angle = cos(cam->view_angle);
-	sin_angle = sin(cam->view_angle);
+	angle_speed = 0.05;
+	
+	if (cam->move_fwd && cam->pos_y > speed)
+		cam->pos_y -= speed;
+	if (cam->move_back && cam->pos_y < HEIGHT - speed - 10)
+		cam->pos_y += speed;
+	if (cam->truck_left && cam->pos_x > speed)
+		cam->pos_x -= speed;
+	if (cam->truck_right && cam->pos_x < WIDTH - speed - 10)
+		cam->pos_x += speed;
 	if (cam->rotate_left)
 		cam->view_angle -= angle_speed;
 	if (cam->rotate_right)
@@ -79,24 +125,4 @@ void	apply_motion(t_camera *cam)
 		cam->view_angle = 0;
 	if (cam->view_angle < 0)
 		cam->view_angle = 2 * PI;
-	if (cam->move_fwd)
-	{
-		cam->pos_x += cos_angle * speed;
-		cam->pos_y += sin_angle * speed;
-	}
-	if (cam->move_back)
-	{
-		cam->pos_x -= cos_angle * speed;
-		cam->pos_y -= sin_angle * speed;
-	}
-	if (cam->truck_left)
-	{
-		cam->pos_x += sin_angle * speed;
-		cam->pos_y -= cos_angle * speed;
-	}
-	if (cam->truck_right)
-	{
-		cam->pos_x -= sin_angle * speed;
-		cam->pos_y += cos_angle * speed;
-	}
 }

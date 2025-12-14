@@ -13,10 +13,8 @@
 #ifndef PARSE_H
 # define PARSE_H
 
-# include "./types.h"
+# include "types.h"
 # include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
 
 /*---------------------------- Parsers ----------------*/
 char	**read_map(t_map *map, int fd);
