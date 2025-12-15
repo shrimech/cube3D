@@ -16,12 +16,11 @@
 void	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->map = get_map();
+	game->map = game->hole_map.map;
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "freefire");
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->data = mlx_get_data_addr(game->img, &game->bpp, &game->line_lengh,
 			&game->endian);
 	calibrate_optics(&game->camera);
-	find_player_spawn(game->map, &game->camera);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }

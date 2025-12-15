@@ -72,28 +72,6 @@ void	draw_map(t_game *game)
 	}
 }
 
-char	**get_map(void)
-{
-	char	**map;
-
-	map = malloc(sizeof(char *) * 15);
-	map[0] = "        1111111111111111111111111";
-	map[1] = "        1000000000110000000000001";
-	map[2] = "        1011000001110000000000001";
-	map[3] = "        1001000000000000000000001";
-	map[4] = "111111111011000001110000000000001";
-	map[5] = "100000000011000001110111111111111";
-	map[6] = "11110111111111011100000010001    ";
-	map[7] = "11110111111111011101010010001    ";
-	map[8] = "11000000110101011100000010001    ";
-	map[9] = "10000000000000001100000010001    ";
-	map[10] = "10000000000000001101010010001    ";
-	map[11] = "11000001110101011111011110N0111  ";
-	map[12] = "11110111 1110101 101111010001    ";
-	map[13] = "11111111 1111111 111111111111    ";
-	map[14] = NULL;
-	return (map);
-}
 
 int	draw_loop(t_game *game)
 {
@@ -102,7 +80,7 @@ int	draw_loop(t_game *game)
 
 	camera = &game->camera;
 	apply_motion(camera);
-	/* clear_image(game); */
+	clear_image(game);
 	draw_map(game);
 	draw_square(camera->pos_x - 5, camera->pos_y - 5, 10, 0xFF0000, game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);

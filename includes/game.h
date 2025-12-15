@@ -14,6 +14,7 @@
 # define GAME_H
 
 # include "/usr/include/minilibx-linux/mlx.h"
+#include "parse.h"
 # include <math.h>
 # include <stdbool.h>
 #include <stdio.h>
@@ -57,6 +58,7 @@ typedef struct s_game
 	int			line_lengh;
 	int			endian;
 	t_camera	camera;
+	t_map		hole_map;
 	char		**map;
 }				t_game;
 
@@ -65,7 +67,6 @@ void			init_game(t_game *game);
 
 /*---------------***  phyisics  ***------------------*/
 void			calibrate_optics(t_camera *cam);
-void			find_player_spawn(char **map, t_camera *cam);
 int				assert_motion(int keycode, t_camera *cam);
 int				stop_motion(int keycode, t_camera *cam);
 void			apply_motion(t_camera *cam);
