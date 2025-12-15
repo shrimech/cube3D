@@ -33,10 +33,12 @@ PARSE = $(PARSE_DIR)/build_map.c \
 		$(PARSE_DIR)/read_map.c \
 		$(PARSE_DIR)/map_helpers.c
 
-ENGINE_CORE = $(ENGINE_CORE_DIR)/boot.c
-EMGINE_PHYSICS = $(ENGINE_PHYSICS_DIR)/motion.c
-ENGINE_RASTERIZER = $(ENGINE_RASTERIZER_DIR)/frame_flush.c \
-					$(ENGINE_RASTERIZER_DIR)/soft_raster.c
+ENGINE_CORE =		$(ENGINE_CORE_DIR)/boot.c
+EMGINE_PHYSICS =	$(ENGINE_PHYSICS_DIR)/motion.c
+ENGINE_RASTERIZER =	$(ENGINE_RASTERIZER_DIR)/frame_flush.c \
+					$(ENGINE_RASTERIZER_DIR)/soft_raster.c \
+					$(ENGINE_RASTERIZER_DIR)/geometry.c
+
 ENGINE = $(ENGINE_CORE) $(EMGINE_PHYSICS)  $(ENGINE_RASTERIZER)
 
 GNL = $(GNL_DIR)/get_next_line.c\
