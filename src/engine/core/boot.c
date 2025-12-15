@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "game.h"
 #include <freefire.h>
 
 void	init_game(t_game *game)
@@ -17,7 +18,7 @@ void	init_game(t_game *game)
 	game->mlx = mlx_init();
 	game->map = get_map();
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "freefire");
-	game->img = mlx_new_image(game->mlx, 720, 720);
+	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->data = mlx_get_data_addr(game->img, &game->bpp, &game->line_lengh,
 			&game->endian);
 	calibrate_optics(&game->camera);

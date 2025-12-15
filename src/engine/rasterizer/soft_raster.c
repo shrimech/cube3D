@@ -59,17 +59,13 @@ void	draw_map(t_game *game)
 		{
 			if (map[y][x] == '1')
 				draw_square(x * BLOCK, y * BLOCK, BLOCK, 0x8B4513, game);
-					// Brown walls
 			else if (map[y][x] == '0')
 				draw_square(x * BLOCK, y * BLOCK, BLOCK, 0xFFFFE0, game);
-					// Light yellow floor
 			else if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
 				|| map[y][x] == 'W')
 				draw_square(x * BLOCK, y * BLOCK, BLOCK, 0x00FF00, game);
-					// Green player spawn
 			else if (map[y][x] == ' ')
 				draw_square(x * BLOCK, y * BLOCK, BLOCK, 0x000000, game);
-					// Black void
 			x++;
 		}
 		y++;
@@ -106,7 +102,7 @@ int	draw_loop(t_game *game)
 
 	camera = &game->camera;
 	apply_motion(camera);
-	clear_image(game);
+	/* clear_image(game); */
 	draw_map(game);
 	draw_square(camera->pos_x - 5, camera->pos_y - 5, 10, 0xFF0000, game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
