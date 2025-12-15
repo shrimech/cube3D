@@ -85,22 +85,22 @@ void	apply_motion(t_camera *cam)
 		cam->view_angle = 0;
 	if (cam->view_angle < 0)
 		cam->view_angle = 2 * PI;
-	if (cam->move_fwd)
+	if (cam->move_back)
 	{
 		cam->pos_x += cos_angle * speed;
 		cam->pos_y += sin_angle * speed;
 	}
-	if (cam->move_back)
+	if (cam->move_fwd)
 	{
 		cam->pos_x -= cos_angle * speed;
 		cam->pos_y -= sin_angle * speed;
 	}
-	if (cam->truck_left)
+	if (cam->truck_right)
 	{
 		cam->pos_x += sin_angle * speed;
 		cam->pos_y -= cos_angle * speed;
 	}
-	if (cam->truck_right)
+	if (cam->truck_left)
 	{
 		cam->pos_x -= sin_angle * speed;
 		cam->pos_y += cos_angle * speed;
