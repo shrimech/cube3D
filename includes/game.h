@@ -18,8 +18,8 @@
 # include <stdbool.h>
 #include <stdio.h>
 
-# define WIDTH 720
-# define HEIGHT 720
+# define WIDTH 1000
+# define HEIGHT 1000
 # define PI 3.14159265359
 
 # define KEY_W 119
