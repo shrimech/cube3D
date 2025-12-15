@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 04:18:19 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/14 22:30:27 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/15 15:59:41 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ void	draw_map(t_game *game)
 		while (map[y][x])
 		{
 			if (map[y][x] == '1')
-				draw_square(x * BLOCK, y * BLOCK, BLOCK, 0x8B4513, game);
+				draw_square(x * BLOCK, y * BLOCK, BLOCK, 0x234C6A, game);
 			else if (map[y][x] == '0')
-				draw_square(x * BLOCK, y * BLOCK, BLOCK, 0xFFFFE0, game);
+				draw_square(x * BLOCK, y * BLOCK, BLOCK, 0xE3E3E3, game);
 			else if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
 				|| map[y][x] == 'W')
-				draw_square(x * BLOCK, y * BLOCK, BLOCK, 0x00FF00, game);
+				draw_square(x * BLOCK, y * BLOCK, BLOCK, 0xE3E3E3, game);
 			else if (map[y][x] == ' ')
-				draw_square(x * BLOCK, y * BLOCK, BLOCK, 0x000000, game);
+				draw_square(x * BLOCK, y * BLOCK, BLOCK, 0x222222, game);
 			x++;
 		}
 		y++;
