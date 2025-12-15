@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:15 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/14 06:01:22 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/15 15:10:49 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ int	main(void)
 		ft_exit(&map);
 	}
 	parse_hole_map(&map);
+	print_texture(map);
+	print_colors(map);
+	print_map(map);
 	init_game(&game);
 	mlx_hook(game.win, ON_DESTROY, 0, exit_game, &game);
 	mlx_hook(game.win, 2, 1L << 0, assert_motion, &game.camera);
@@ -67,10 +70,4 @@ int	main(void)
 	mlx_loop_hook(game.mlx, draw_loop, &game);
 	mlx_loop(game.mlx);
 	return (0);
-	print_error();
-	print_texture(map);
-	print_colors(map);
-	print_map(map);
-	init_game(&game);
-	mlx_loop(game.mlx);
 }

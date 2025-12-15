@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 02:42:13 by shrimech          #+#    #+#             */
-/*   Updated: 2025/12/14 01:21:40 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/15 15:15:48 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,26 @@ void	print_map(t_map map)
 	{
 		return ;
 	}
-	while (map.map[i])
+	while (i <= map.width)
 	{
-		printf("$%s$\n", map.map[i]);
+		printf("$");
 		i++;
 	}
+	printf("$");
+	i = 0;
+	while (map.map[i])
+	{
+		printf("\n$%s$", map.map[i]);
+		i++;
+	}
+	printf("\n");
+	i = 0;
+	while (i <= map.width)
+	{
+		printf("$");
+		i++;
+	}
+	printf("$\n");
 }
 
 void	print_texture(t_map map)
