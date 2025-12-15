@@ -24,6 +24,7 @@ void	map_width(t_map *map, int mapline);
 void	set_error(char *error);
 void	print_error(void);
 bool	is_there_an_error(void);
+void 	overwrite_spaces(t_map *map,int map_line);
 
 /*---------------------------- Checkers ----------------*/
 bool	is_empty_line(char c);

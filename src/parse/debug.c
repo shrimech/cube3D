@@ -39,7 +39,7 @@ void	print_map(t_map map)
 	}
 	while (map.map[i])
 	{
-		printf("%s\n", map.map[i]);
+		printf("$%s$\n", map.map[i]);
 		i++;
 	}
 }
