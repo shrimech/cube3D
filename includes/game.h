@@ -13,7 +13,7 @@
 #ifndef GAME_H
 # define GAME_H
 
-# include "/usr/include/minilibx-linux/mlx.h"
+# include "./minilibx-linux/mlx.h"
 # include "parse.h"
 # include <math.h>
 # include <stdbool.h>
@@ -33,7 +33,7 @@
 # define KEY_ESC 65307
 # define ON_DESTROY 17
 
-# define BLOCK 10
+# define BLOCK 32
 
 typedef struct s_camera
 {

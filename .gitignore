@@ -11,7 +11,7 @@
 **/*.a
 
 # Ignore LSP configuration files
-
+./includes/minilibx-linux
 
 compile_flags.txt
 .clangd

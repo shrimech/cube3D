@@ -18,7 +18,7 @@ PARSE_DIR = ./src/parse
 MISC_DIR = ./src/misc
 
 #-------MLX Setup
-MLX_PATH = /usr/include/minilibx-linux
+MLX_PATH = ./includes/minilibx-linux
 MLX_FLAGS = -L$(MLX_PATH) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 
 # -------Header dependencies----------
@@ -64,7 +64,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_PATH)/libmlx.a $(MLX_FLAGS) -o $(NAME)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
