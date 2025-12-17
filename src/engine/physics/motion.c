@@ -68,12 +68,12 @@ int	stop_motion(int keycode, t_camera *cam)
 
 void	apply_motion(t_camera *cam)
 {
-	int		speed;
+	float		speed;
 	float	angle_speed;
 	float	cos_angle;
 	float	sin_angle;
 
-	speed = 3;
+	speed = 0.01;
 	angle_speed = 0.03;
 	cos_angle = cos(cam->view_angle);
 	sin_angle = sin(cam->view_angle);
@@ -85,22 +85,22 @@ void	apply_motion(t_camera *cam)
 		cam->view_angle = 0;
 	if (cam->view_angle < 0)
 		cam->view_angle = 2 * PI;
-	if (cam->move_back)
+	if (cam->move_fwd)
 	{
 		cam->pos_x += cos_angle * speed;
 		cam->pos_y += sin_angle * speed;
 	}
-	if (cam->move_fwd)
+	if (cam->move_back)
 	{
 		cam->pos_x -= cos_angle * speed;
 		cam->pos_y -= sin_angle * speed;
 	}
-	if (cam->truck_right)
+	if (cam->truck_left)
 	{
 		cam->pos_x += sin_angle * speed;
 		cam->pos_y -= cos_angle * speed;
 	}
-	if (cam->truck_left)
+	if (cam->truck_right)
 	{
 		cam->pos_x -= sin_angle * speed;
 		cam->pos_y += cos_angle * speed;

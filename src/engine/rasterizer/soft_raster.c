@@ -108,6 +108,11 @@ void draw_line(t_camera *cam, t_game *game, float angle, int x)
             map_y += step_y;
             side = 1;
         }
+		if (map_y < 0 || map_y >= game->hole_map.height || map_x < 0 || map_x >= game->hole_map.width)
+        {
+            hit = 1; // Force loop exit
+            break;   // Stop processing to avoid the segfault
+        }
         // Check for wall hit
         if (game->map[map_y][map_x] == '1')
             hit = 1;
@@ -124,6 +129,8 @@ void draw_line(t_camera *cam, t_game *game, float angle, int x)
     float distance = perp_wall_dist * BLOCK;
     // Fix Fisheye effect
     distance *= cos(angle - cam->view_angle);
+	if (distance < 0.00001)
+		distance = 0.00001;
     // 7. Calculate Wall Height and Draw
     float height = (BLOCK / distance) * (WIDTH / 2);
     int start_y = (HEIGHT - height) / 2;

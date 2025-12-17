@@ -79,7 +79,4 @@ void			draw_square(int x, int y, int size, int color, t_game *game);
 int				draw_loop(t_game *game);
 void			clear_image(t_game *game);
 
-/*---------------*** bullshit ***------------------*/
-char			**get_map(void);
-
 #endif
