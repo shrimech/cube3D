@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <freefire.h>
 
-float distance(float x, float y)
+float	distance(float x, float y)
 {
-    return (sqrt(x * x + y * y));
+	return (sqrt(x * x + y * y));
 }

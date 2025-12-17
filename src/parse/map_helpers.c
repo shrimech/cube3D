@@ -15,19 +15,6 @@
 #include <freefire.h>
 #include <stdio.h>
 
-void	ft_free_split(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
-
 bool	is_map_line(char c)
 {
 	return (c == E_WALL || c == E_EMPTY || c == E_SPACE);
@@ -52,21 +39,19 @@ char	*extract_path(t_map *map, char *line)
 		count++;
 	if (count != 2 || elements[1][0] == '\0')
 	{
-		ft_free_split(elements);
 		set_error(ERR_TEXTURE_LINE);
 		ft_exit(map);
 		return (NULL);
 	}
 	path = ft_strdup(elements[1]);
-	ft_free_split(elements);
 	return (path);
 }
 
-int takergb(char **rgb_str)
+int	takergb(char **rgb_str)
 {
-	int i;
-	int value;
-	int rgb;
+	int	i;
+	int	value;
+	int	rgb;
 
 	i = 0;
 	rgb = 0;
@@ -89,22 +74,22 @@ int	extract_color(t_map *map, char *element)
 	char	**rgb_str;
 	int		rgb;
 	int		i;
-	int 	count;
+	int		count;
 
 	count = 0;
 	i = 0;
-	while(element[i])
+	while (element[i])
 	{
 		if (element[i] == ',')
 			count++;
 		i++;
 	}
 	i = 0;
-	if(count != 2)
+	if (count != 2)
 		return (set_error(ERR_SPLIT), ft_exit(map), -1);
 	rgb_str = ft_split(element, ',');
-	
-	if (!rgb_str|| !rgb_str[0] || !rgb_str[1] || !rgb_str[2] || rgb_str[2][0]=='\n')
+	if (!rgb_str || !rgb_str[0] || !rgb_str[1] || !rgb_str[2]
+		|| rgb_str[2][0] == '\n')
 		return (set_error(ERR_SPLIT), ft_exit(map), -1);
 	rgb = takergb(rgb_str);
 	return (rgb);

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
 #include <freefire.h>
 #include <minilibx-linux/mlx.h>
 
@@ -71,7 +70,6 @@ void	draw_map(t_game *game)
 		y++;
 	}
 }
-
 
 int	draw_loop(t_game *game)
 {

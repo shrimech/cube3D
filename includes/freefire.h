@@ -13,7 +13,6 @@
 #ifndef FREEFIRE_H
 # define FREEFIRE_H
 
-
 # include "game.h"
 # include "get_next_line.h"
 # include "libft.h"

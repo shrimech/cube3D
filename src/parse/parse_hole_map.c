@@ -93,30 +93,6 @@ int	parse_elements(t_map *map)
 	return (i);
 }
 
-void	*ft_salloc(size_t nmemb, size_t size)
-{
-	void	*res;
-
-	res = malloc(nmemb * size);
-	if (!res)
-		return (NULL);
-	ft_memset(res, ' ', nmemb * size);
-	return (res);
-}
-
-void	parse_map(t_map *map, int map_line)
-{
-	(void)map_line;
-	int i;
-
-	i = 0;
-	map->map = malloc((map->height + 1) * 8);
-	while(i<map->height)
-		map->map[i++] = ft_salloc(1,map->width + 1);
-	overwrite_spaces(map,map_line);
-	map->map[map->height] = NULL;
-}
-
 void	parse_hole_map(t_map *map)
 {
 	int	map_line;

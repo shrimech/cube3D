@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <freefire.h>
 
 void	delete_collected(t_collect **head, t_collect *prev,

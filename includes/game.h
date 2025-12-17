@@ -14,10 +14,10 @@
 # define GAME_H
 
 # include "/usr/include/minilibx-linux/mlx.h"
-#include "parse.h"
+# include "parse.h"
 # include <math.h>
 # include <stdbool.h>
-#include <stdio.h>
+# include <stdio.h>
 
 # define WIDTH 1000
 # define HEIGHT 1000
@@ -33,7 +33,7 @@
 # define KEY_ESC 65307
 # define ON_DESTROY 17
 
-#define BLOCK 25
+# define BLOCK 10
 
 typedef struct s_camera
 {
@@ -77,8 +77,7 @@ void			draw_square(int x, int y, int size, int color, t_game *game);
 int				draw_loop(t_game *game);
 void			clear_image(t_game *game);
 
-
 /*---------------*** bullshit ***------------------*/
-char **get_map(void);
+char			**get_map(void);
 
 #endif
