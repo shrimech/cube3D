@@ -23,6 +23,8 @@
 # define HEIGHT 1000
 # define PI 3.14159265359
 
+#define FOV (PI / 3)
+
 # define KEY_W 119
 # define KEY_S 115
 # define KEY_A 97
