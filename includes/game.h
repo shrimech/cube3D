@@ -82,4 +82,6 @@ void			draw_square(int x, int y, int size, int color, t_game *game);
 int				draw_loop(t_game *game);
 void			clear_image(t_game *game);
 
+void	print_map(t_map map, t_camera camera);
+
 #endif

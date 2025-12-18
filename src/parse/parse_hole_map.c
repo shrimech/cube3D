@@ -180,8 +180,8 @@ void player_position(t_map *map,t_game *game)
 		{
 			if(is_player(map->map[i][j]) && !one_p)
 			{
-				game->camera.pos_x = j*BLOCK;
-				game->camera.pos_y = i*BLOCK;
+				game->camera.pos_x = j;
+				game->camera.pos_y = i;
 				game->camera.player = map->map[i][j];
 				one_p = !one_p;
 			}

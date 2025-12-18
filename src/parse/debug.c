@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/freefire.h"
+#include "game.h"
 
 void	print_hole_map(t_map map)
 {
@@ -24,15 +25,16 @@ void	print_hole_map(t_map map)
 	}
 }
 
-void	print_map(t_map map)
+void	print_map(t_map map, t_camera camera)
 {
 	int	i;
 
 	i = 0;
-	printf("___________________________________\n");
-	printf("|       HERE IS YOUR MAP           |\n");
-	printf("|   WIDTH: %d   HEIGHT: %d         |\n", map.width, map.height);
-	printf("___________________________________\n");
+	printf("_________________________________________________\n");
+	printf("|       HERE IS YOUR MAP         		|\n");
+	printf("|   WIDTH: %d   HEIGHT: %d       		|\n", map.width, map.height);
+	printf("|   POS_X: %f    POS_Y: %f         |\n", camera.pos_x, camera.pos_y);
+	printf("|_______________________________________________|\n");
 	if (!map.map)
 	{
 		return ;
@@ -63,7 +65,7 @@ void	print_texture(t_map map)
 {
 	printf("___________________________________\n");
 	printf("|    HERE IS YOUR MAP ELEMENTS    |\n");
-	printf("___________________________________\n");
+	printf("|_________________________________|\n");
 	printf("EA :: %s", map.ea ? map.ea : "(null)");
 	printf("NO :: %s", map.no ? map.no : "(null)");
 	printf("SO :: %s", map.so ? map.so : "(null)");

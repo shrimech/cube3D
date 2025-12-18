@@ -36,7 +36,6 @@ int		extract_color(t_map *map, char *element);
 
 //---------------------------- Eebug ----------------
 void	print_hole_map(t_map map);
-void	print_map(t_map map);
 void	print_texture(t_map map);
 void	print_colors(t_map map);
 

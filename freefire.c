@@ -61,7 +61,7 @@ int	main(void)
 	parse_hole_map(&map, &game);
 	print_texture(map);
 	print_colors(map);
-	print_map(map);
+	print_map(map, game.camera);
 	init_game(&game);
 	mlx_hook(game.win, ON_DESTROY, 0, exit_game, &game);
 	mlx_hook(game.win, 2, 1L << 0, assert_motion, &game.camera);

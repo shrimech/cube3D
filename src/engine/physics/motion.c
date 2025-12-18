@@ -15,15 +15,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void	calibrate_optics(t_camera *cam)
+
+void calibrate_optics(t_camera *cam)
 {
-	cam->view_angle = PI / 2;
-	cam->move_fwd = false;
-	cam->move_back = false;
-	cam->truck_left = false;
-	cam->truck_right = false;
-	cam->rotate_left = false;
-	cam->rotate_right = false;
+    if (cam->player == 'E')
+        cam->view_angle = 0;
+    else if (cam->player == 'S')
+        cam->view_angle = PI / 2;
+    else if (cam->player == 'W')
+        cam->view_angle = PI;
+    else if (cam->player == 'N')
+        cam->view_angle = 3 * PI / 2;
+    cam->pos_x += 0.5;
+    cam->pos_y += 0.5;
+    cam->move_fwd = false;
+    cam->move_back = false;
+    cam->truck_left = false;
+    cam->truck_right = false;
+    cam->rotate_left = false;
+    cam->rotate_right = false;
 }
 
 int	assert_motion(int keycode, t_camera *cam)
