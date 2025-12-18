@@ -58,7 +58,7 @@ int	main(void)
 		perror("Failed to read map");
 		ft_exit(&map);
 	}
-	parse_hole_map(&map);
+	parse_hole_map(&map, &game);
 	print_texture(map);
 	print_colors(map);
 	print_map(map);

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "game.h"
 #include "parse.h"
 #include "types.h"
 #include <freefire.h>
@@ -158,10 +159,10 @@ void map_border(t_map *map)
 	}
 }
 
-void	parse_hole_map(t_map *map)
+void	parse_hole_map(t_map *map, t_game *game)
 {
 	int	map_line;
-
+	(void)game;
 	map_line = parse_elements(map);
 	print_error();
 	map_width(map, map_line);

@@ -19,7 +19,6 @@
 /*---------------------------- Parsers ----------------*/
 char	**read_map(t_map *map, int fd);
 void	map_init(t_map *map);
-void	parse_hole_map(t_map *map);
 void	parse_map(t_map *map, int map_line);
 void	map_width(t_map *map, int mapline);
 void	set_error(char *error);

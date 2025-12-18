@@ -38,5 +38,5 @@ void	append_collected(t_collect **head, t_collect **tail,
 			t_collect *new_col);
 void	delete_collected(t_collect **head, t_collect *prev,
 			t_collect **to_delete);
-
+void	parse_hole_map(t_map *map, t_game *game);
 #endif
