@@ -23,6 +23,10 @@
 # define HEIGHT 1000
 # define PI 3.14159265359
 
+#define FOV (PI / 3)
+#define MOVE_SPEED 0.05
+#define ROT_SPEED  0.03
+
 # define KEY_W 119
 # define KEY_S 115
 # define KEY_A 97
@@ -69,15 +73,12 @@ void			init_game(t_game *game);
 void			calibrate_optics(t_camera *cam);
 int				assert_motion(int keycode, t_camera *cam);
 int				stop_motion(int keycode, t_camera *cam);
-void			apply_motion(t_camera *cam);
+void			apply_motion(t_game *game, t_camera *cam);
 
 /*---------------*** Rasterizer ***------------------*/
 void			put_pixel(int x, int y, int color, t_game *game);
 void			draw_square(int x, int y, int size, int color, t_game *game);
 int				draw_loop(t_game *game);
 void			clear_image(t_game *game);
-
-/*---------------*** bullshit ***------------------*/
-char			**get_map(void);
 
 #endif

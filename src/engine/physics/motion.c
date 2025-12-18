@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "game.h"
 #include <freefire.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -66,43 +67,63 @@ int	stop_motion(int keycode, t_camera *cam)
 	return (0);
 }
 
-void	apply_motion(t_camera *cam)
+int	is_valid_move(t_game *game, double x, double y)
 {
-	int		speed;
-	float	angle_speed;
+    int map_x;
+    int map_y;
+    if (x < 0 || y < 0)
+        return (0);
+    map_x = (int)x;
+    map_y = (int)y;
+    if (game->map[map_y / BLOCK][map_x / BLOCK] == '1')
+        return (0);
+    return (1);
+}
+
+void	apply_motion(t_game *game, t_camera *cam)
+{
+	float	move_step;
 	float	cos_angle;
 	float	sin_angle;
+	float	new_x;
+	float	new_y;
 
-	speed = 3;
-	angle_speed = 0.03;
-	cos_angle = cos(cam->view_angle);
-	sin_angle = sin(cam->view_angle);
+	new_x = 0;
+	new_y = 0;
 	if (cam->rotate_left)
-		cam->view_angle -= angle_speed;
+		cam->view_angle -= ROT_SPEED;
 	if (cam->rotate_right)
-		cam->view_angle += angle_speed;
-	if (cam->view_angle > 2 * PI)
-		cam->view_angle = 0;
+		cam->view_angle += ROT_SPEED;
 	if (cam->view_angle < 0)
-		cam->view_angle = 2 * PI;
-	if (cam->move_back)
-	{
-		cam->pos_x += cos_angle * speed;
-		cam->pos_y += sin_angle * speed;
-	}
+		cam->view_angle += 2 * PI;
+	if (cam->view_angle > 2 * PI)
+		cam->view_angle -= 2 * PI;
+	move_step = MOVE_SPEED;
+	cos_angle = cos(cam->view_angle);
+    sin_angle = sin(cam->view_angle);
 	if (cam->move_fwd)
 	{
-		cam->pos_x -= cos_angle * speed;
-		cam->pos_y -= sin_angle * speed;
+	new_x += cos_angle * move_step;
+	new_y += sin_angle * move_step;
 	}
-	if (cam->truck_right)
+	if (cam->move_back)
 	{
-		cam->pos_x += sin_angle * speed;
-		cam->pos_y -= cos_angle * speed;
+	new_x -= cos_angle * move_step;
+	new_y -= sin_angle * move_step;
 	}
 	if (cam->truck_left)
 	{
-		cam->pos_x -= sin_angle * speed;
-		cam->pos_y += cos_angle * speed;
+	new_x += sin_angle * move_step;
+	new_y -= cos_angle * move_step;
 	}
+	if (cam->truck_right)
+	{
+	new_x -= sin_angle * move_step;
+	new_y += cos_angle * move_step;
+	}
+	if (is_valid_move(game, cam->pos_x + new_x,cam->pos_y))
+       cam->pos_x += new_x;
+    if (is_valid_move(game,cam->pos_x,cam->pos_y + new_y))
+       cam->pos_y += new_y;
 }
+
