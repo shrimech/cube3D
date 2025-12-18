@@ -24,6 +24,8 @@
 # define PI 3.14159265359
 
 #define FOV (PI / 3)
+#define MOVE_SPEED 0.05
+#define ROT_SPEED  0.03
 
 # define KEY_W 119
 # define KEY_S 115
@@ -71,7 +73,7 @@ void			init_game(t_game *game);
 void			calibrate_optics(t_camera *cam);
 int				assert_motion(int keycode, t_camera *cam);
 int				stop_motion(int keycode, t_camera *cam);
-void			apply_motion(t_camera *cam);
+void			apply_motion(t_game *game, t_camera *cam);
 
 /*---------------*** Rasterizer ***------------------*/
 void			put_pixel(int x, int y, int color, t_game *game);

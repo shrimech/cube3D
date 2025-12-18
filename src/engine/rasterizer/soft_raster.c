@@ -180,7 +180,7 @@ int draw_loop(t_game *game)
 {
     t_camera *camera = &game->camera;
 
-    apply_motion(camera);
+    apply_motion(game, camera);
 
     clear_image(game);
 
