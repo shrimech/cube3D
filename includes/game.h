@@ -37,12 +37,13 @@
 # define KEY_ESC 65307
 # define ON_DESTROY 17
 
-# define BLOCK 32
+# define BLOCK 30
 
 typedef struct s_camera
 {
 	double		pos_x;
 	double		pos_y;
+	char		player;
 	double		view_angle;
 	bool		move_fwd;
 	bool		move_back;

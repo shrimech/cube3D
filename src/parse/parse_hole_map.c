@@ -159,13 +159,57 @@ void map_border(t_map *map)
 	}
 }
 
+bool	is_player(char c)
+{
+	return(c == E_EAST|| c == E_SOUTH || c == E_NORTH || c == E_WEST);
+}
+
+void player_position(t_map *map,t_game *game)
+{
+	int i;
+	int j;
+	bool one_p;
+
+	one_p = false;
+	i = 0;
+	j = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while(j < map->width)
+		{
+			if(is_player(map->map[i][j]) && !one_p)
+			{
+				game->camera.pos_x = j*BLOCK;
+				game->camera.pos_y = i*BLOCK;
+				game->camera.player = map->map[i][j];
+				one_p = !one_p;
+			}
+			else if(is_player(map->map[i][j]) && one_p)
+			{
+				write(2,"Error : more than one player in the map\n",29);
+				exit(1);
+			}
+			j++;
+		}
+		i++;
+	}
+	if (!one_p)
+	{
+		write(2,"Error : there is no player in the map\n",29);
+		exit(1);
+	}
+}
+
 void	parse_hole_map(t_map *map, t_game *game)
 {
 	int	map_line;
-	(void)game;
+
+
 	map_line = parse_elements(map);
 	print_error();
 	map_width(map, map_line);
 	parse_map(map, map_line);
+	player_position(map,game);
 	map_border(map);
 }

@@ -17,8 +17,6 @@
 
 void	calibrate_optics(t_camera *cam)
 {
-	cam->pos_x = WIDTH / 2;
-	cam->pos_y = HEIGHT / 2;
 	cam->view_angle = PI / 2;
 	cam->move_fwd = false;
 	cam->move_back = false;
