@@ -12,7 +12,7 @@
 
 #include "game.h"
 #include <freefire.h>
-#include <minilibx-linux/mlx.h>
+// #include <minilibx-linux/mlx.h>
 
 void	put_pixel(int x, int y, int color, t_game *game)
 {
@@ -81,7 +81,7 @@ int	draw_loop(t_game *game)
 	apply_motion(game, camera);
 	clear_image(game);
 	draw_map(game);
-	draw_square(camera->pos_x * BLOCK, camera->pos_y * BLOCK, 10, 0xFF0000, game);
+	draw_square(camera->pos_x, camera->pos_y, 10, 0xFF0000, game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	if (frame_count % 120 == 0)
 	{

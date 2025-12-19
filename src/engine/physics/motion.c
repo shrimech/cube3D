@@ -25,8 +25,8 @@ void	calibrate_optics(t_camera *cam)
 		cam->view_angle = PI;
 	else if (cam->player == E_NORTH)
 		cam->view_angle = 3 * PI / 2;
-	cam->pos_x += 0.5;
-	cam->pos_y += 0.5;
+	cam->pos_x = cam->pos_x * BLOCK + BLOCK / 2.0;
+	cam->pos_y = cam->pos_y * BLOCK + BLOCK / 2.0;
 	cam->move_fwd = false;
 	cam->move_back = false;
 	cam->truck_left = false;
