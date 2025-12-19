@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 02:22:41 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/14 22:17:41 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/19 16:59:34 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,18 @@
 # include <stdbool.h>
 # include <stdio.h>
 
+/*---***	Window	***---*/
+
 # define WIDTH 1000
 # define HEIGHT 1000
+
+/*---***	Math	***---*/
 # define PI 3.14159265359
+# define FOV 1.0471975512
+# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.03
 
-#define FOV (PI / 3)
-#define MOVE_SPEED 0.05
-#define ROT_SPEED  0.03
-
+/*---***	Keys	***---*/
 # define KEY_W 119
 # define KEY_S 115
 # define KEY_A 97
@@ -37,13 +41,14 @@
 # define KEY_ESC 65307
 # define ON_DESTROY 17
 
+/*---***		***---*/
 # define BLOCK 30
 
 typedef struct s_camera
 {
 	double		pos_x;
 	double		pos_y;
-	char		player;
+	t_tile		player;
 	double		view_angle;
 	bool		move_fwd;
 	bool		move_back;
@@ -82,6 +87,7 @@ void			draw_square(int x, int y, int size, int color, t_game *game);
 int				draw_loop(t_game *game);
 void			clear_image(t_game *game);
 
-void	print_map(t_map map, t_camera camera);
+/*---------------*** Debug ***------------------*/
+void			print_map(t_map map, t_camera camera);
 
 #endif

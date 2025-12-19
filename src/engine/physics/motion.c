@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 04:10:30 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/14 07:01:58 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/19 17:03:46 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 void	calibrate_optics(t_camera *cam)
 {
-	if (cam->player == 'E')
+	if (cam->player == E_EAST)
 		cam->view_angle = 0;
-	else if (cam->player == 'S')
+	else if (cam->player == E_SOUTH)
 		cam->view_angle = PI / 2;
-	else if (cam->player == 'W')
+	else if (cam->player == E_WEST)
 		cam->view_angle = PI;
-	else if (cam->player == 'N')
+	else if (cam->player == E_NORTH)
 		cam->view_angle = 3 * PI / 2;
 	cam->pos_x += 0.5;
 	cam->pos_y += 0.5;
