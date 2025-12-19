@@ -6,14 +6,11 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 18:34:48 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/14 01:21:51 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/19 16:47:21 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "types.h"
 #include <freefire.h>
-#include <stdio.h>
 
 bool	is_map_line(char c)
 {

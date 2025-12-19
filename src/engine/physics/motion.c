@@ -15,25 +15,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-void calibrate_optics(t_camera *cam)
+void	calibrate_optics(t_camera *cam)
 {
-    if (cam->player == 'E')
-        cam->view_angle = 0;
-    else if (cam->player == 'S')
-        cam->view_angle = PI / 2;
-    else if (cam->player == 'W')
-        cam->view_angle = PI;
-    else if (cam->player == 'N')
-        cam->view_angle = 3 * PI / 2;
-    cam->pos_x += 0.5;
-    cam->pos_y += 0.5;
-    cam->move_fwd = false;
-    cam->move_back = false;
-    cam->truck_left = false;
-    cam->truck_right = false;
-    cam->rotate_left = false;
-    cam->rotate_right = false;
+	if (cam->player == 'E')
+		cam->view_angle = 0;
+	else if (cam->player == 'S')
+		cam->view_angle = PI / 2;
+	else if (cam->player == 'W')
+		cam->view_angle = PI;
+	else if (cam->player == 'N')
+		cam->view_angle = 3 * PI / 2;
+	cam->pos_x += 0.5;
+	cam->pos_y += 0.5;
+	cam->move_fwd = false;
+	cam->move_back = false;
+	cam->truck_left = false;
+	cam->truck_right = false;
+	cam->rotate_left = false;
+	cam->rotate_right = false;
 }
 
 int	assert_motion(int keycode, t_camera *cam)
@@ -77,15 +76,16 @@ int	stop_motion(int keycode, t_camera *cam)
 
 int	is_valid_move(t_game *game, double x, double y)
 {
-    int map_x;
-    int map_y;
-    if (x < 0 || y < 0)
-        return (0);
-    map_x = (int)x;
-    map_y = (int)y;
-    if (game->map[map_y / BLOCK][map_x / BLOCK] == '1')
-        return (0);
-    return (1);
+	int	map_x;
+	int	map_y;
+
+	if (x < 0 || y < 0)
+		return (0);
+	map_x = (int)x;
+	map_y = (int)y;
+	if (game->map[map_y / BLOCK][map_x / BLOCK] == '1')
+		return (0);
+	return (1);
 }
 
 void	apply_motion(t_game *game, t_camera *cam)
@@ -108,30 +108,29 @@ void	apply_motion(t_game *game, t_camera *cam)
 		cam->view_angle -= 2 * PI;
 	move_step = MOVE_SPEED;
 	cos_angle = cos(cam->view_angle);
-    sin_angle = sin(cam->view_angle);
+	sin_angle = sin(cam->view_angle);
 	if (cam->move_fwd)
 	{
-	new_x += cos_angle * move_step;
-	new_y += sin_angle * move_step;
+		new_x += cos_angle * move_step;
+		new_y += sin_angle * move_step;
 	}
 	if (cam->move_back)
 	{
-	new_x -= cos_angle * move_step;
-	new_y -= sin_angle * move_step;
+		new_x -= cos_angle * move_step;
+		new_y -= sin_angle * move_step;
 	}
 	if (cam->truck_left)
 	{
-	new_x += sin_angle * move_step;
-	new_y -= cos_angle * move_step;
+		new_x += sin_angle * move_step;
+		new_y -= cos_angle * move_step;
 	}
 	if (cam->truck_right)
 	{
-	new_x -= sin_angle * move_step;
-	new_y += cos_angle * move_step;
+		new_x -= sin_angle * move_step;
+		new_y += cos_angle * move_step;
 	}
-	if (is_valid_move(game, cam->pos_x + new_x,cam->pos_y))
-       cam->pos_x += new_x;
-    if (is_valid_move(game,cam->pos_x,cam->pos_y + new_y))
-       cam->pos_y += new_y;
+	if (is_valid_move(game, cam->pos_x + new_x, cam->pos_y))
+		cam->pos_x += new_x;
+	if (is_valid_move(game, cam->pos_x, cam->pos_y + new_y))
+		cam->pos_y += new_y;
 }
-

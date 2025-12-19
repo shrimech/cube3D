@@ -6,15 +6,11 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 00:34:27 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/13 14:18:31 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/19 16:47:39 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "types.h"
 #include <freefire.h>
-#include <stdbool.h>
-#include <stdio.h>
 
 void	*ft_salloc(size_t nmemb, size_t size)
 {
@@ -74,17 +70,4 @@ void	map_width(t_map *map, int mapline)
 	}
 	map->width = width;
 	map->height = map->height - first_line;
-}
-
-void	parse_map(t_map *map, int map_line)
-{
-	int	i;
-
-	(void)map_line;
-	i = 0;
-	map->map = malloc((map->height + 1) * 8);
-	while (i < map->height)
-		map->map[i++] = ft_salloc(1, map->width + 1);
-	overwrite_spaces(map, map_line);
-	map->map[map->height] = NULL;
 }

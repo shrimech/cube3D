@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/freefire.h"
+#include "freefire.h"
 
 void	overwrite_spaces(t_map *map, int map_line)
 {
@@ -33,5 +33,25 @@ void	overwrite_spaces(t_map *map, int map_line)
 		}
 		i++;
 		map_line++;
+	}
+}
+
+void	fill_map_element(t_map *map, char *line, int element)
+{
+	if (element == E_NO)
+		map->no = extract_path(map, line);
+	else if (element == E_SO)
+		map->so = extract_path(map, line);
+	else if (element == E_WE)
+		map->we = extract_path(map, line);
+	else if (element == E_EA)
+		map->ea = extract_path(map, line);
+	else if (element == E_F)
+	{
+		map->f = extract_color(map, extract_path(map, line));
+	}
+	else if (element == E_C)
+	{
+		map->c = extract_color(map, extract_path(map, line));
 	}
 }

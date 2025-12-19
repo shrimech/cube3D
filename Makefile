@@ -31,6 +31,7 @@ PARSE = $(PARSE_DIR)/build_map.c \
 		$(PARSE_DIR)/parse_hole_map.c \
 		$(PARSE_DIR)/parse_map.c \
 		$(PARSE_DIR)/read_map.c \
+		$(PARSE_DIR)/checkers.c \
 		$(PARSE_DIR)/map_helpers.c
 
 ENGINE_CORE =		$(ENGINE_CORE_DIR)/boot.c

@@ -6,14 +6,11 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:10 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/13 06:52:51 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/19 16:49:52 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "types.h"
 #include <freefire.h>
-#include <stdlib.h>
 
 void	map_init(t_map *map)
 {

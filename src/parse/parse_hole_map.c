@@ -6,15 +6,11 @@
 /*   By: ehamza <ehamza@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:55:37 by ehamza            #+#    #+#             */
-/*   Updated: 2025/12/13 13:59:01 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/19 16:49:37 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
-#include "parse.h"
-#include "types.h"
 #include <freefire.h>
-#include <stdio.h>
 
 static int	g_mask = 0;
 
@@ -42,28 +38,6 @@ int	check_element(char *first_element)
 	g_mask |= bit;
 	return (bit);
 }
-
-void	fill_map_element(t_map *map, char *line, int element)
-{
-	if (element == E_NO)
-		map->no = extract_path(map, line);
-	else if (element == E_SO)
-		map->so = extract_path(map, line);
-	else if (element == E_WE)
-		map->we = extract_path(map, line);
-	else if (element == E_EA)
-		map->ea = extract_path(map, line);
-	else if (element == E_F)
-	{
-		map->f = extract_color(map, extract_path(map, line));
-	}
-	else if (element == E_C)
-	{
-		map->c = extract_color(map, extract_path(map, line));
-	}
-}
-
-// NOTE: here change with the exit function
 
 int	parse_elements(t_map *map)
 {
@@ -94,81 +68,11 @@ int	parse_elements(t_map *map)
 	return (i);
 }
 
-void	check_start_end(t_map *map)
+void	player_position(t_map *map, t_game *game)
 {
-	int i;
-
-	i = 0;
-	while(i < map->height)
-	{
-		if(!is_map_line(map->map[i][0]) || !is_map_line(map->map[i][map->width - 1]) 
-			|| map->map[i][map->width - 1] == E_EMPTY || map->map[i][0] == E_EMPTY)
-		{
-			write(2,"ERROR: 0 in vertic of line\n",27);
-			exit(1);
-		}
-		i++;
-	}
-	i = 0;
-	while(i < map->width)
-	{
-		if(!is_map_line(map->map[0][i]) || !is_map_line(map->map[map->height - 1][i]) 
-			|| map->map[0][i] == E_EMPTY || map->map[map->height - 1][i] == E_EMPTY)
-		{
-			write(2,"ERROR: 0 in horizont of line\n",29);
-			exit(1);
-		}
-		i++;
-	}
-}
-
-bool	check_for_an_space(t_map *map,int i,int j)
-{
-	return(map->map[i+1][j] == E_SPACE
-		|| map->map[i-1][j] == E_SPACE
-		|| map->map[i][j+1] == E_SPACE
-		|| map->map[i][j-1] == E_SPACE
-		|| map->map[i+1][j+1] == E_SPACE 
-		|| map->map[i-1][j+1] == E_SPACE 
-		|| map->map[i+1][j-1] == E_SPACE 
-		|| map->map[i-1][j+1] == E_SPACE);
-}
-
-void map_border(t_map *map)
-{
-	int i = 1;
-	int j = 1;
-
-	check_start_end(map);
-	while(i < map->height - 1)
-	{
-		j = 1;
-		while(j < map->width - 1)
-		{
-			if(map->map[i][j] == E_EMPTY)
-			{
-				if(check_for_an_space(map,i,j))
-				{
-					write(2,"Error: an space collective with an empty\n",41);
-					exit(1);
-				}
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-bool	is_player(char c)
-{
-	return(c == E_EAST|| c == E_SOUTH || c == E_NORTH || c == E_WEST);
-}
-
-void player_position(t_map *map,t_game *game)
-{
-	int i;
-	int j;
-	bool one_p;
+	int		i;
+	int		j;
+	bool	one_p;
 
 	one_p = false;
 	i = 0;
@@ -176,18 +80,18 @@ void player_position(t_map *map,t_game *game)
 	while (i < map->height)
 	{
 		j = 0;
-		while(j < map->width)
+		while (j < map->width)
 		{
-			if(is_player(map->map[i][j]) && !one_p)
+			if (is_player(map->map[i][j]) && !one_p)
 			{
 				game->camera.pos_x = j;
 				game->camera.pos_y = i;
 				game->camera.player = map->map[i][j];
 				one_p = !one_p;
 			}
-			else if(is_player(map->map[i][j]) && one_p)
+			else if (is_player(map->map[i][j]) && one_p)
 			{
-				write(2,"Error : more than one player in the map\n",29);
+				write(2, "Error : more than one player in the map\n", 29);
 				exit(1);
 			}
 			j++;
@@ -196,20 +100,30 @@ void player_position(t_map *map,t_game *game)
 	}
 	if (!one_p)
 	{
-		write(2,"Error : there is no player in the map\n",29);
+		write(2, "Error : there is no player in the map\n", 29);
 		exit(1);
 	}
+}
+
+void	parse_map(t_map *map, int map_line)
+{
+	int	i;
+
+	i = 0;
+	map->map = malloc((map->height + 1) * 8);
+	while (i < map->height)
+		map->map[i++] = ft_salloc(1, map->width + 1);
+	overwrite_spaces(map, map_line);
+	map->map[map->height] = NULL;
 }
 
 void	parse_hole_map(t_map *map, t_game *game)
 {
 	int	map_line;
 
-
 	map_line = parse_elements(map);
-	print_error();
 	map_width(map, map_line);
 	parse_map(map, map_line);
-	player_position(map,game);
+	player_position(map, game);
 	map_border(map);
 }
