@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
+/*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 20:38:43 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/14 20:38:53 by elhaiba hamza    ###   ########.fr       */
+/*   Created: 2025/12/14 20:38:43 by elhaiba ham       #+#    #+#             */
+/*   Updated: 2025/12/20 01:15:37 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

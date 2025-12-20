@@ -18,11 +18,12 @@
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
+#include <stdlib.h>
 
 /*---***	Window	***---*/
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 1920
+# define HEIGHT 1010
 
 /*---***	Math	***---*/
 # define PI 3.14159265359
@@ -86,6 +87,7 @@ void			put_pixel(int x, int y, int color, t_game *game);
 void			draw_square(int x, int y, int size, int color, t_game *game);
 int				draw_loop(t_game *game);
 void			clear_image(t_game *game);
+void draw_line(int x0, int y0, int x1, int y1, int color, t_game *game);
 
 /*---------------*** Debug ***------------------*/
 void			print_map(t_map map, t_camera camera);
