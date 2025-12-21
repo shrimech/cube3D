@@ -12,7 +12,20 @@
 
 #include <freefire.h>
 
-float	distance(float x, float y)
+double	distance(double x1, double y1, double x2, double y2)
 {
-	return (sqrt(x * x + y * y));
+	double	dx;
+	double	dy;
+
+	dx = x2 - x1;
+	dy = y2 - y1;
+	return (sqrt(dx * dx + dy * dy));
+}
+
+double	normalize_angle(double angle)
+{
+	angle = remainder(angle, 2 * PI);
+	if (angle < 0)
+		angle += 2 * PI;
+	return (angle);
 }

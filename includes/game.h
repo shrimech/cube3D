@@ -59,6 +59,33 @@ typedef struct s_camera
 	bool		rotate_right;
 }				t_camera;
 
+
+
+
+typedef struct s_ray
+{
+	// 1. The Angle
+	double angle; // The angle of THIS specific ray (not the player)
+
+	// 2. Horizontal Intersection Data
+	double horz_x;    // The x position where the ray hits a horizontal line
+	double horz_y;    // The y position where the ray hits a horizontal line
+	double horz_dist; // Distance from player to this point
+	int horz_content; // What is in the map at this hit? ('1', '0', etc.)
+
+	// 3. Vertical Intersection Data
+	double vert_x;    // The x position where the ray hits a vertical line
+	double vert_y;    // The y position where the ray hits a vertical line
+	double vert_dist; // Distance from player to this point
+	int vert_content; // What is in the map at this hit?
+
+	// 4. The Winner (The Shortest)
+	double wall_hit_x; // The final x coordinate of the wall hit
+	double wall_hit_y; // The final y coordinate of the wall hit
+	double distance;   // The SHORTEST distance (min of horz and vert)
+	int was_vertical;  // boolean: true if the vertical wall was closer
+}				t_ray;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -88,6 +115,9 @@ void			draw_square(int x, int y, int size, int color, t_game *game);
 int				draw_loop(t_game *game);
 void			clear_image(t_game *game);
 void draw_line(int x0, int y0, int x1, int y1, int color, t_game *game);
+
+double			normalize_angle(double angle);
+double	distance(double x1, double y1, double x2, double y2);
 
 /*---------------*** Debug ***------------------*/
 void			print_map(t_map map, t_camera camera);
