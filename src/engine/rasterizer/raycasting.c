@@ -6,13 +6,12 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 19:15:04 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/19 19:15:41 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 20:28:39 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 #include <freefire.h>
-#include <math.h>
 
 int	is_wall(t_game *game, double x, double y)
 {
@@ -31,87 +30,73 @@ int	is_wall(t_game *game, double x, double y)
 
 void	check_vertical(t_game *game, t_ray *ray)
 {
-	double	px;
-	double	py;
-	double	x_step;
-	double	y_step;
-	double	x_intercept;
-	double	y_intercept;
-	bool	is_facing_right;
-	double	next_x;
-	double	next_y;
-	double	check;
+	t_ray_step	step;
 
-	px = game->camera.pos_x;
-	py = game->camera.pos_y;
-	is_facing_right = (ray->angle < PI / 2 || ray->angle > 3 * PI / 2);
-	x_intercept = floor(px / BLOCK) * BLOCK;
-	if (is_facing_right)
-		x_intercept += BLOCK;
-	y_intercept = py + (px - x_intercept) * tan(ray->angle);
-	x_step = BLOCK;
-	if (!is_facing_right)
-		x_step *= -1;
-	y_step = x_step * tan(ray->angle);
-	next_x = x_intercept;
-	next_y = y_intercept;
-	while (next_x >= 0 && next_x <= WIDTH && next_y >= 0 && next_y <= HEIGHT)
+	step.px = game->camera.pos_x;
+	step.py = game->camera.pos_y;
+	step.is_facing_right = (ray->angle < PI / 2 || ray->angle > 3 * PI / 2);
+	step.x_intercept = floor(step.px / BLOCK) * BLOCK;
+	if (step.is_facing_right)
+		step.x_intercept += BLOCK;
+	step.y_intercept = step.py + (step.px - step.x_intercept) * tan(ray->angle);
+	step.x_step = BLOCK;
+	if (!step.is_facing_right)
+		step.x_step *= -1;
+	step.y_step = step.x_step * tan(ray->angle);
+	step.next_x = step.x_intercept;
+	step.next_y = step.y_intercept;
+	while (step.next_x >= 0 && step.next_x <= WIDTH && step.next_y >= 0
+		&& step.next_y <= HEIGHT)
 	{
-		check = next_y;
-		if (!is_facing_right)
-			check -= 1;
-		if (is_wall(game, next_x, check))
+		step.check = step.next_y;
+		if (!step.is_facing_right)
+			step.check -= 1;
+		if (is_wall(game, step.next_x, step.check))
 		{
-			ray->horz_x = next_x;
-			ray->horz_y = next_y;
-			ray->horz_dist = distance(next_x, next_y, px, py);
+			ray->vert_x = step.next_x;
+			ray->vert_y = step.next_y;
+			ray->vert_dist = distance(step.next_x, step.next_y, step.px,
+					step.py);
 			return ;
 		}
-		next_x += x_step;
-		next_y += y_step;
+		step.next_x += step.x_step;
+		step.next_y += step.y_step;
 	}
 }
 
 void	check_horizontal(t_game *game, t_ray *ray)
 {
-	double	px;
-	double	py;
-	double	y_step;
-	double	x_step;
-	double	y_intercept;
-	double	x_intercept;
-	bool	is_facing_down;
-	double	next_x;
-	double	next_y;
-	double	check;
+	t_ray_step	step;
 
-	px = game->camera.pos_x;
-	py = game->camera.pos_y;
-	is_facing_down = (ray->angle > 0 && ray->angle < PI);
-	y_intercept = floor(py / BLOCK) * BLOCK;
-	if (is_facing_down)
-		y_intercept += BLOCK;
-	x_intercept = px + (y_intercept - py) / tan(ray->angle);
-	y_step = BLOCK;
-	if (!is_facing_down)
-		y_step *= -1;
-	x_step = y_step / tan(ray->angle);
-	next_y = y_intercept;
-	next_x = x_intercept;
-	while (next_x >= 0 && next_x <= WIDTH && next_y >= 0 && next_y <= HEIGHT)
+	step.px = game->camera.pos_x;
+	step.py = game->camera.pos_y;
+	step.is_facing_down = (ray->angle > 0 && ray->angle < PI);
+	step.y_intercept = floor(step.py / BLOCK) * BLOCK;
+	if (step.is_facing_down)
+		step.y_intercept += BLOCK;
+	step.x_intercept = step.px + (step.y_intercept - step.py) / tan(ray->angle);
+	step.y_step = BLOCK;
+	if (!step.is_facing_down)
+		step.y_step *= -1;
+	step.x_step = step.y_step / tan(ray->angle);
+	step.next_y = step.y_intercept;
+	step.next_x = step.x_intercept;
+	while (step.next_x >= 0 && step.next_x <= WIDTH && step.next_y >= 0
+		&& step.next_y <= HEIGHT)
 	{
-		check = next_y;
-		if (!is_facing_down)
-			check -= 1;
-		if (is_wall(game, next_x, check))
+		step.check = step.next_y;
+		if (!step.is_facing_down)
+			step.check -= 1;
+		if (is_wall(game, step.next_x, step.check))
 		{
-			ray->horz_x = next_x;
-			ray->horz_y = next_y;
-			ray->horz_dist = distance(next_x, next_y, px, py);
+			ray->horz_x = step.next_x;
+			ray->horz_y = step.next_y;
+			ray->horz_dist = distance(step.next_x, step.next_y, step.px,
+					step.py);
 			return ;
 		}
-		next_x += x_step;
-		next_y += y_step;
+		step.next_x += step.x_step;
+		step.next_y += step.y_step;
 	}
 }
 
@@ -129,14 +114,14 @@ void	cast_ray(t_game *game, double ray_angle, t_ray *ray)
 		ray->distance = ray->vert_dist;
 		ray->wall_hit_x = ray->vert_x;
 		ray->wall_hit_y = ray->vert_y;
-		ray->was_vertical = 1;
+		ray->was_vertical = true;
 	}
 	else
 	{
 		ray->distance = ray->horz_dist;
 		ray->wall_hit_x = ray->horz_x;
 		ray->wall_hit_y = ray->horz_y;
-		ray->was_vertical = 0;
+		ray->was_vertical = false;
 	}
 	ca = game->camera.view_angle - ray->angle;
 	if (ca < 0)

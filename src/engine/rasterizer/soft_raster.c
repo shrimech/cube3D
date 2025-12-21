@@ -6,13 +6,11 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 04:18:19 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/20 01:15:46 by shrimech         ###   ########.fr       */
+/*   Updated: 2025/12/21 20:00:59 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
 #include <freefire.h>
-// #include <minilibx-linux/mlx.h>
 
 void	put_pixel(int x, int y, int color, t_game *game)
 {
