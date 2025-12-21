@@ -6,7 +6,7 @@
 /*   By: ehamza <ehamza@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:57:13 by ehamza            #+#    #+#             */
-/*   Updated: 2025/12/19 16:46:02 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 21:33:36 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /*---------------------------- Parsers ----------------*/
 char	**read_map(t_map *map, int fd);
-void	map_init(t_map *map);
+t_map	*map_init(void);
 void	parse_map(t_map *map, int map_line);
 void	map_width(t_map *map, int mapline);
 void	set_error(char *error);

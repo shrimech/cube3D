@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:35 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/14 20:43:07 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 21:50:18 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_map
 	int		f;
 	int		c;
 	char	**map;
-	char	**hole_map;
+	char	**whole_map;
 	int		width;
 	int		height;
 }			t_map;

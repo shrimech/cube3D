@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 02:22:41 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/21 20:39:21 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 21:52:01 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,18 @@ typedef struct s_camera
 
 typedef struct s_ray_step
 {
-    double  px;
-    double  py;
-    double  x_step;
-    double  y_step;
-    double  x_intercept;
-    double  y_intercept;
-    bool    is_facing_right;
-    bool    is_facing_down;
-    double  next_x;
-    double  next_y;
-    double  check;
-}   t_ray_step;
+	double		px;
+	double		py;
+	double		x_step;
+	double		y_step;
+	double		x_intercept;
+	double		y_intercept;
+	bool		is_facing_right;
+	bool		is_facing_down;
+	double		next_x;
+	double		next_y;
+	double		check;
+}				t_ray_step;
 
 typedef struct s_ray
 {
@@ -101,12 +101,13 @@ typedef struct s_game
 	int			line_lengh;
 	int			endian;
 	t_camera	camera;
-	t_map		hole_map;
+	t_map		whole_map;
 	char		**map;
 }				t_game;
 
 /*---------------***	Core	***------------------*/
 void			init_game(t_game *game);
+t_camera		*init_camera(void);
 
 /*---------------***  phyisics  ***------------------*/
 void			calibrate_optics(t_camera *cam);
@@ -127,7 +128,7 @@ double			normalize_angle(double angle);
 double			distance(double x1, double y1, double x2, double y2);
 
 double			normalize_angle(double angle);
-double	distance(double x1, double y1, double x2, double y2);
+double			distance(double x1, double y1, double x2, double y2);
 
 /*---------------*** Debug ***------------------*/
 void			print_map(t_map map, t_camera camera);

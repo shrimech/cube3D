@@ -6,11 +6,12 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:33:26 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/14 20:49:52 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 21:19:27 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
+#include "libft.h"
 #include "types.h"
 #include <freefire.h>
 
@@ -21,11 +22,6 @@ static t_collect	*g_tail = NULL;
 void	collector_init(t_game *game)
 {
 	game = my_alloc(sizeof(t_game), SCOPE_GAME);
-	if (!(game))
-	{
-		perror("malloc:");
-		exit(1);
-	}
 	g_game = game;
 }
 
@@ -56,7 +52,7 @@ void	collector_cleanup(t_mem_scope scope)
 	}
 }
 
-void	cleanup_exit(int exit_code)
+void	cleanup_exit(int exit_code, char *error)
 {
 	t_collect	*curr;
 	t_collect	*next;
@@ -70,6 +66,7 @@ void	cleanup_exit(int exit_code)
 		free(curr);
 		curr = next;
 	}
+	ft_putstr_fd(error, 2);
 	exit(exit_code);
 }
 
@@ -79,7 +76,7 @@ void	collector_register(void *ptr, t_mem_scope scope)
 
 	collect = malloc(sizeof(t_collect));
 	if (!collect)
-		cleanup_exit(1);
+		cleanup_exit(1, ERR_ALLOC);
 	collect->ptr = ptr;
 	collect->scope = scope;
 	collect->next = NULL;
@@ -92,7 +89,7 @@ void	*my_alloc(size_t size, t_mem_scope scope)
 
 	ptr = malloc(size);
 	if (!ptr)
-		cleanup_exit(1);
+		cleanup_exit(1, ERR_ALLOC);
 	collector_register(ptr, scope);
 	return (ptr);
 }
