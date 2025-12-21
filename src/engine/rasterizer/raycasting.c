@@ -31,18 +31,45 @@ int	is_wall(t_game *game, double x, double y)
 
 void	check_vertical(t_game *game, t_ray *ray)
 {
+	double	px;
+	double	py;
 	double	x_step;
 	double	y_step;
 	double	x_intercept;
 	double	y_intercept;
-	int		is_facing_right;
-	int		is_facing_down;
-	double	next_vert_touch_x;
-	double	next_vert_touch_y;
+	bool	is_facing_right;
+	double	next_x;
+	double	next_y;
+	double	check;
 
-	is_facing_right = (ray->angle < 0.5 * PI || ray->angle > 1.5 * PI);
-	is_facing_down = (ray->angle > 0 && ray->angle < PI);
-
+	px = game->camera.pos_x;
+	py = game->camera.pos_y;
+	is_facing_right = (ray->angle < PI / 2 || ray->angle > 3 * PI / 2);
+	x_intercept = floor(px / BLOCK) * BLOCK;
+	if (is_facing_right)
+		x_intercept += BLOCK;
+	y_intercept = py + (px - x_intercept) * tan(ray->angle);
+	x_step = BLOCK;
+	if (!is_facing_right)
+		x_step *= -1;
+	y_step = x_step * tan(ray->angle);
+	next_x = x_intercept;
+	next_y = y_intercept;
+	while (next_x >= 0 && next_x <= WIDTH && next_y >= 0 && next_y <= HEIGHT)
+	{
+		check = next_y;
+		if (!is_facing_right)
+			check -= 1;
+		if (is_wall(game, next_x, check))
+		{
+			ray->horz_x = next_x;
+			ray->horz_y = next_y;
+			ray->horz_dist = distance(next_x, next_y, px, py);
+			return ;
+		}
+		next_x += x_step;
+		next_y += y_step;
+	}
 }
 
 void	check_horizontal(t_game *game, t_ray *ray)
@@ -96,7 +123,7 @@ void	cast_ray(t_game *game, double ray_angle, t_ray *ray)
 	ray->horz_dist = 1e30;
 	ray->vert_dist = 1e30;
 	check_horizontal(game, ray);
-	// check_vertical(game, ray);
+	check_vertical(game, ray);
 	if (ray->vert_dist < ray->horz_dist)
 	{
 		ray->distance = ray->vert_dist;
