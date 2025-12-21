@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:15 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/21 21:53:06 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 23:22:56 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,14 @@ int	main(void)
 
 	fd = open("./maps/map.test.cub", O_RDONLY);
 	if (fd < 0)
-	{
-		perror("open");
-		ft_exit(NULL);
-	}
+		cleanup_exit(1, ERR_OPEN);
 
 	map = map_init();
 	map->whole_map = read_map(map, fd);
 	parse_hole_map(map, &game);
-
-	game.whole_map = map;
-	printf("%d -------------------------%d\n",game.hole_map->height,game.hole_map->width);
-	print_texture(map);
-	print_colors(map);
-	print_map(map, game.camera);
+	print_texture(*map);
+	print_colors(*map);
+	print_map(*map, game.camera);
 	init_game(&game);
 	mlx_hook(game.win, ON_DESTROY, 0, exit_game, &game);
 	mlx_hook(game.win, 2, 1L << 0, assert_motion, &game.camera);

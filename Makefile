@@ -48,9 +48,7 @@ ENGINE = $(ENGINE_CORE) $(ENGINE_PHYSICS)  $(ENGINE_RASTERIZER)
 GNL = $(GNL_DIR)/get_next_line.c\
 	  $(GNL_DIR)/get_next_line_utils.c
 
-MISC =	$(MISC_DIR)/error.c \
-		$(MISC_DIR)/exit.c \
-		$(MISC_DIR)/helpers.c \
+MISC =	$(MISC_DIR)/helpers.c \
 		$(MISC_DIR)/memory.c
 
 TEST = $(PARSE_DIR)/debug.c

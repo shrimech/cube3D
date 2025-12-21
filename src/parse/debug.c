@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 02:42:13 by shrimech          #+#    #+#             */
-/*   Updated: 2025/12/15 15:15:48 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 23:23:22 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	print_hole_map(t_map map)
 	int	i;
 
 	i = 0;
-	while (map.hole_map[i])
+	while (map.whole_map[i])
 	{
-		printf("%s", map.hole_map[i]);
+		printf("%s", map.whole_map[i]);
 		i++;
 	}
 }

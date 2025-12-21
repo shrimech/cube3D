@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 13:33:26 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/21 21:19:27 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 23:19:15 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,9 @@ void	cleanup_exit(int exit_code, char *error)
 		free(curr);
 		curr = next;
 	}
+	ft_putstr_fd("Error: ", 2);
 	ft_putstr_fd(error, 2);
+	ft_putstr_fd("\n", 2);
 	exit(exit_code);
 }
 

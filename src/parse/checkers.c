@@ -6,11 +6,12 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 16:33:06 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/19 16:38:22 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 22:56:39 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "freefire.h"
+#include "types.h"
 
 bool	is_player(char c)
 {
@@ -28,8 +29,7 @@ void	check_start_end(t_map *map)
 				- 1]) || map->map[i][map->width - 1] == E_EMPTY
 			|| map->map[i][0] == E_EMPTY)
 		{
-			write(2, "ERROR: 0 in vertic of line\n", 27);
-			exit(1);
+			cleanup_exit(1, ERR_MAP_OPEN);
 		}
 		i++;
 	}
@@ -40,8 +40,7 @@ void	check_start_end(t_map *map)
 				- 1][i]) || map->map[0][i] == E_EMPTY || map->map[map->height
 			- 1][i] == E_EMPTY)
 		{
-			write(2, "ERROR: 0 in horizont of line\n", 29);
-			exit(1);
+			cleanup_exit(1, ERR_MAP_OPEN);
 		}
 		i++;
 	}
@@ -73,8 +72,7 @@ void	map_border(t_map *map)
 			{
 				if (check_for_an_space(map, i, j))
 				{
-					write(2, "Error: an space collective with an empty\n", 41);
-					exit(1);
+					cleanup_exit(1, ERR_MAP_OPEN);
 				}
 			}
 			j++;

@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:19 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/21 21:17:20 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 22:29:17 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,6 @@
 # include <stdio.h>
 # include <unistd.h>
 
-// Error functions
-void	set_error(char *error);
-void	print_error(void);
-void	free_error(void);
-
-// Exit function
-void	ft_exit(t_map *map);
 
 /*---------------***	GB_COL	***------------------*/
 void	*my_alloc(size_t size, t_mem_scope scope);

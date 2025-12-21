@@ -6,10 +6,11 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:55:37 by ehamza            #+#    #+#             */
-/*   Updated: 2025/12/21 20:05:32 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 23:11:23 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "types.h"
 #include <freefire.h>
 
 static int	g_mask = 0;
@@ -47,23 +48,23 @@ int	parse_elements(t_map *map)
 	i = 0;
 	while (i < map->height)
 	{
-		if (is_map_line(map->hole_map[i][0]))
+		if (is_map_line(map->whole_map[i][0]))
 		{
 			if (g_mask != E_ALL)
-				return (set_error(ERR_MAP_EARLY), ft_exit(map), -1);
+				return (cleanup_exit(1, ERR_MAP_EARLY), -1);
 			return (i);
 		}
-		if (is_empty_line(map->hole_map[i][0]))
+		if (is_empty_line(map->whole_map[i][0]))
 		{
 			i++;
 			continue ;
 		}
-		ret = check_element(map->hole_map[i]);
+		ret = check_element(map->whole_map[i]);
 		if (ret == -1)
-			return (set_error(ERR_DUP_ELEMENTS), ft_exit(map), -1);
+			cleanup_exit(1, ERR_DUP_ELEMENTS);
 		else if (ret == 0)
-			return (set_error(ERR_INV_ELEMENT), ft_exit(map), -1);
-		fill_map_element(map, map->hole_map[i++], ret);
+			cleanup_exit(1, ERR_INV_ELEMENT);
+		fill_map_element(map, map->whole_map[i++], ret);
 	}
 	return (i);
 }
@@ -89,19 +90,13 @@ void	player_position(t_map *map, t_game *game)
 				one_p = !one_p;
 			}
 			else if (is_player(map->map[i][j]) && one_p)
-			{
-				write(2, "Error : more than one player in the map\n", 29);
-				exit(1);
-			}
+				cleanup_exit(1, ERR_MANY_PLAYERS);
 			j++;
 		}
 		i++;
 	}
 	if (!one_p)
-	{
-		write(2, "Error : there is no player in the map\n", 29);
-		exit(1);
-	}
+		cleanup_exit(1, ERR_NO_PLAYER);
 }
 
 void	parse_map(t_map *map, int map_line)

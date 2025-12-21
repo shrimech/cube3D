@@ -6,19 +6,18 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 00:34:27 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/19 16:47:39 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 22:34:06 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "types.h"
 #include <freefire.h>
 
 void	*ft_salloc(size_t nmemb, size_t size)
 {
 	void	*res;
 
-	res = malloc(nmemb * size);
-	if (!res)
-		return (NULL);
+	res = my_alloc(nmemb * size, SCOPE_PARSE);
 	ft_memset(res, ' ', nmemb * size);
 	return (res);
 }
@@ -35,12 +34,12 @@ bool	is_valid_mapline(char *mapline)
 				|| mapline[i] == E_WEST || mapline[i] == E_NORTH
 				|| mapline[i] == E_SPACE))
 		{
-			return (set_error(ERR_INV_TILE), false);
+			return (cleanup_exit(1, ERR_INV_TILE), false);
 		}
 		i++;
 	}
 	if (i == 0)
-		return (set_error(ERR_INV_MAP_LINE), false);
+		return (cleanup_exit(1, ERR_INV_MAP_LINE), false);
 	return (true);
 }
 
@@ -53,16 +52,13 @@ void	map_width(t_map *map, int mapline)
 	width = 0;
 	first_line = mapline;
 	if (first_line >= map->height)
-	{
-		set_error(ERR_MAP_MISSING);
-		ft_exit(map);
-	}
+		cleanup_exit(1, ERR_MAP_MISSING);
 	while (mapline < map->height)
 	{
-		if (!is_valid_mapline(map->hole_map[mapline]))
-			ft_exit(map);
-		len = ft_strlen(map->hole_map[mapline]);
-		if (map->hole_map[mapline][len - 1] == '\n')
+		if (!is_valid_mapline(map->whole_map[mapline]))
+			cleanup_exit(1, ERR_INV_MAP_LINE);
+		len = ft_strlen(map->whole_map[mapline]);
+		if (map->whole_map[mapline][len - 1] == '\n')
 			len--;
 		if (len > width)
 			width = len;

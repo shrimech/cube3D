@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 19:15:04 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/21 20:40:44 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 23:23:55 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	is_wall(t_game *game, double x, double y)
 	int	map_x;
 	int	map_y;
 
-	if (x < 0 || x >= game->hole_map.width || y < 0
-		|| y >= game->hole_map.height)
+	if (x < 0 || x >= game->whole_map.width || y < 0
+		|| y >= game->whole_map.height)
 		return (1);
 	map_x = (int)floor(x);
 	map_y = (int)floor(y);

@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:35 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/21 21:50:18 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 23:21:25 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@
 # define ERR_INV_TILE "invalid map tile"
 # define ERR_MAP_MISSING "no map section found"
 # define ERR_INV_MAP_LINE "invalid line detected inside map section"
+# define ERR_MANY_PLAYERS "Multiple player spawn points detected."
+# define ERR_NO_PLAYER "No player spawn point found."
+# define ERR_MAP_OPEN "Map must be surrounded by walls."
+# define ERR_RGB "RGB value out of range."
+# define ERR_OPEN "Could not open file."
 
 # define NO "NO "
 # define SO "SO "

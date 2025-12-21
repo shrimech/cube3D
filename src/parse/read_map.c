@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:10 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/21 21:55:54 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 22:55:51 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 t_map	*map_init(void)
 {
-	t_map *map;
+	t_map	*map;
+
 	map = my_alloc(sizeof(t_map), SCOPE_PARSE);
 	map->no = NULL;
 	map->so = NULL;

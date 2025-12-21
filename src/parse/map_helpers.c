@@ -6,10 +6,11 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 18:34:48 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/19 16:47:21 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 23:09:43 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "types.h"
 #include <freefire.h>
 
 bool	is_map_line(char c)
@@ -22,7 +23,7 @@ bool	is_empty_line(char c)
 	return (c == '\n' || c == '\0');
 }
 
-char	*extract_path(t_map *map, char *line)
+char	*extract_path(char *line)
 {
 	char	**elements;
 	char	*path;
@@ -31,14 +32,12 @@ char	*extract_path(t_map *map, char *line)
 	count = 0;
 	elements = ft_split(line, ' ');
 	if (!elements)
-		return (set_error(ERR_SPLIT), ft_exit(map), NULL);
+		cleanup_exit(1, ERR_SPLIT);
 	while (elements[count])
 		count++;
 	if (count != 2 || elements[1][0] == '\0')
 	{
-		set_error(ERR_TEXTURE_LINE);
-		ft_exit(map);
-		return (NULL);
+		cleanup_exit(1, ERR_TEXTURE_LINE);
 	}
 	path = ft_strdup(elements[1]);
 	return (path);
@@ -56,17 +55,14 @@ int	takergb(char **rgb_str)
 	{
 		value = ft_atoi(rgb_str[i]);
 		if (value != (unsigned char)value)
-		{
-			write(2, "Error: RGB values are just one byte\n", 36);
-			exit(1);
-		}
+			cleanup_exit(1, ERR_RGB);
 		rgb |= (value << (16 - 8 * i));
 		i++;
 	}
 	return (rgb);
 }
 
-int	extract_color(t_map *map, char *element)
+int	extract_color(char *element)
 {
 	char	**rgb_str;
 	int		rgb;
@@ -83,11 +79,11 @@ int	extract_color(t_map *map, char *element)
 	}
 	i = 0;
 	if (count != 2)
-		return (set_error(ERR_SPLIT), ft_exit(map), -1);
+		cleanup_exit(1, ERR_SPLIT);
 	rgb_str = ft_split(element, ',');
 	if (!rgb_str || !rgb_str[0] || !rgb_str[1] || !rgb_str[2]
 		|| rgb_str[2][0] == '\n')
-		return (set_error(ERR_SPLIT), ft_exit(map), -1);
+		cleanup_exit(1, ERR_SPLIT);
 	rgb = takergb(rgb_str);
 	return (rgb);
 }
