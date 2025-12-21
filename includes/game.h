@@ -6,7 +6,7 @@
 /*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 02:22:41 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/21 21:52:01 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 23:39:00 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,6 @@ void			draw_line(int x0, int y0, int x1, int y1, int color,
 					t_game *game);
 
 /*---------------*** Geometry ***------------------*/
-double			normalize_angle(double angle);
-double			distance(double x1, double y1, double x2, double y2);
-
 double			normalize_angle(double angle);
 double			distance(double x1, double y1, double x2, double y2);
 

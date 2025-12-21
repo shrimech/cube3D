@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:35 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/21 23:21:25 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 23:36:37 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 
 /*---------------*** macros ***------------------*/
 
-# define ERR_GNL "get_next_line failed"
-# define ERR_SPLIT "ft_split failed"
-# define ERR_TEXTURE_LINE "Invalid texture line, expected: NO ./path_to_texture"
-# define ERR_ALLOC "memory allocation failed"
-# define ERR_MAP_EARLY "map encountered before all elements were loaded"
-# define ERR_DUP_ELEMENTS "duplicate elements in map header"
-# define ERR_INV_ELEMENT "invalid content before map"
-# define ERR_INV_TILE "invalid map tile"
-# define ERR_MAP_MISSING "no map section found"
-# define ERR_INV_MAP_LINE "invalid line detected inside map section"
+# define ERR_GNL "Get_next_line failed"
+# define ERR_SPLIT "Ft_split failed"
+# define ERR_TEXTURE_LINE "Invalid texture line, expected: XX XXXXXXX"
+# define ERR_ALLOC "Memory allocation failed"
+# define ERR_MAP_EARLY "Map encountered before all elements were loaded"
+# define ERR_DUP_ELEMENTS "Duplicate elements in map header"
+# define ERR_INV_ELEMENT "Invalid content before map"
+# define ERR_INV_TILE "Invalid map tile"
+# define ERR_MAP_MISSING "No map section found"
+# define ERR_INV_MAP_LINE "Invalid line detected inside map section"
 # define ERR_MANY_PLAYERS "Multiple player spawn points detected."
 # define ERR_NO_PLAYER "No player spawn point found."
 # define ERR_MAP_OPEN "Map must be surrounded by walls."
