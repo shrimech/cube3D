@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
+/*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/19 19:15:04 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/19 19:15:41 by elhaiba hamza    ###   ########.fr       */
+/*   Created: 2025/12/19 19:15:04 by elhaiba ham       #+#    #+#             */
+/*   Updated: 2025/12/21 16:53:29 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,47 @@ void	check_horizontal(t_game *game, t_ray *ray)
 	}
 }
 
+void check_vertical(t_game *game, t_ray *ray)
+{
+	double	px;
+	double	py;
+	double	x_step;
+	double	y_step;
+	double	x_intercept;
+	double	y_intercept;
+	bool	is_facing_right;
+	double	next_x;
+	double	next_y;
+	
+	px = game->camera.pos_x;
+	py = game->camera.pos_y;
+	is_facing_right = (cos(ray->angle) > 0);
+	if (is_facing_right)
+		x_intercept = floor(px / BLOCK) * BLOCK + BLOCK;
+	else
+		x_intercept = floor(px / BLOCK) * BLOCK - 1;
+	y_intercept = (x_intercept - px) * tan(ray->angle) + py;
+	x_step = BLOCK;
+	if (!is_facing_right)
+		x_step *= -1;
+	y_step = x_step * tan(ray->angle);
+	next_x = x_intercept;
+	next_y = y_intercept;
+	while (next_x >= 0 && next_x <= game->hole_map.width && next_y >= 0
+		&& next_y <= game->hole_map.height)
+	{
+		if (is_wall(game, next_x, next_y))
+		{
+			ray->vert_x = next_x;
+			ray->vert_y = next_y;
+			ray->vert_dist = distance(next_x, next_y, px, py);
+			return ;
+		}
+		next_x += x_step;
+		next_y += y_step;
+	}
+}
+
 void	cast_ray(t_game *game, double ray_angle, t_ray *ray)
 {
 	double	ca;
@@ -94,7 +135,7 @@ void	cast_ray(t_game *game, double ray_angle, t_ray *ray)
 	ray->horz_dist = 1e30;
 	ray->vert_dist = 1e30;
 	check_horizontal(game, ray);
-	// check_vertical(game, ray);
+	check_vertical(game, ray);
 	if (ray->vert_dist < ray->horz_dist)
 	{
 		ray->distance = ray->vert_dist;
