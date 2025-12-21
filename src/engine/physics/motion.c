@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   motion.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
+/*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 04:10:30 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/19 17:03:46 by elhaiba hamza    ###   ########.fr       */
+/*   Created: 2025/12/14 04:10:30 by elhaiba ham       #+#    #+#             */
+/*   Updated: 2025/12/21 19:57:03 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

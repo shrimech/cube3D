@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frame_flush.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
+/*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 05:53:17 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/14 05:53:47 by elhaiba hamza    ###   ########.fr       */
+/*   Created: 2025/12/14 05:53:17 by elhaiba ham       #+#    #+#             */
+/*   Updated: 2025/12/20 01:14:56 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

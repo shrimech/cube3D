@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   soft_raster.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
+/*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 04:18:19 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/15 15:59:41 by elhaiba hamza    ###   ########.fr       */
+/*   Created: 2025/12/14 04:18:19 by elhaiba ham       #+#    #+#             */
+/*   Updated: 2025/12/21 20:00:59 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
 #include <freefire.h>
-// #include <minilibx-linux/mlx.h>
 
 void	put_pixel(int x, int y, int color, t_game *game)
 {
@@ -82,6 +80,36 @@ int	draw_loop(t_game *game)
 	clear_image(game);
 	draw_map(game);
 	draw_square(camera->pos_x, camera->pos_y, 10, 0xFF0000, game);
+	// Draw rays in the range of the FOV in front of the player, stopping at walls
+	{
+		int num_rays = 100; // Number of rays to draw for FOV visualization
+		double half_fov = FOV / 2.0;
+		int x0 = (int)(camera->pos_x + 5);
+		int y0 = (int)(camera->pos_y + 5);
+		for (int i = 0; i < num_rays; i++) {
+			double ratio = (double)i / (num_rays - 1);
+			double ray_angle = camera->view_angle - half_fov + ratio * FOV;
+			double ray_dx = cos(ray_angle);
+			double ray_dy = sin(ray_angle);
+			double cur_x = camera->pos_x + 5;
+			double cur_y = camera->pos_y + 5;
+			// int hit = 0;
+			float max_steps = INFINITY; // max ray length in pixels
+			for (int step = 0; step < max_steps; step++) {
+				int map_x = (int)(cur_x) / BLOCK;
+				int map_y = (int)(cur_y) / BLOCK;
+				if (map_y < 0 || map_x < 0 || !game->map || !game->map[map_y] || game->map[map_y][map_x] == '1') {
+					// hit = 1;
+					break;
+				}
+				cur_x += ray_dx;
+				cur_y += ray_dy;
+			}
+			int x1 = (int)cur_x;
+			int y1 = (int)cur_y;
+			draw_line(x0, y0, x1, y1, 0x00FF00, game); // green rays
+		}
+	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	if (frame_count % 120 == 0)
 	{

@@ -59,6 +59,8 @@ int	main(void)
 		ft_exit(&map);
 	}
 	parse_hole_map(&map, &game);
+	game.hole_map = map;
+	printf("%d -------------------------%d\n",game.hole_map.height,game.hole_map.width);
 	print_texture(map);
 	print_colors(map);
 	print_map(map, game.camera);

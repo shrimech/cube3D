@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_hole_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehamza <ehamza@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:55:37 by ehamza            #+#    #+#             */
-/*   Updated: 2025/12/19 16:49:37 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/21 20:05:32 by elhaiba hamza    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	player_position(t_map *map, t_game *game)
 
 	one_p = false;
 	i = 0;
-	j = 0;
 	while (i < map->height)
 	{
 		j = 0;
