@@ -29,21 +29,21 @@ int	is_wall(t_game *game, double x, double y)
 	return (0);
 }
 
-// void	check_vertical(t_game *game, t_ray *ray)
-// {
-// 	double	x_step;
-// 	double	y_step;
-// 	double	x_intercept;
-// 	double	y_intercept;
-// 	int		is_facing_right;
-// 	int		is_facing_down;
-// 	double	next_vert_touch_x;
-// 	double	next_vert_touch_y;
-//
-// 	is_facing_right = (ray->angle < 0.5 * PI || ray->angle > 1.5 * PI);
-// 	is_facing_down = (ray->angle > 0 && ray->angle < PI);
-//
-// }
+void	check_vertical(t_game *game, t_ray *ray)
+{
+	double	x_step;
+	double	y_step;
+	double	x_intercept;
+	double	y_intercept;
+	int		is_facing_right;
+	int		is_facing_down;
+	double	next_vert_touch_x;
+	double	next_vert_touch_y;
+
+	is_facing_right = (ray->angle < 0.5 * PI || ray->angle > 1.5 * PI);
+	is_facing_down = (ray->angle > 0 && ray->angle < PI);
+
+}
 
 void	check_horizontal(t_game *game, t_ray *ray)
 {
@@ -56,25 +56,27 @@ void	check_horizontal(t_game *game, t_ray *ray)
 	bool	is_facing_down;
 	double	next_x;
 	double	next_y;
+	double	check;
 
 	px = game->camera.pos_x;
 	py = game->camera.pos_y;
 	is_facing_down = (ray->angle > 0 && ray->angle < PI);
+	y_intercept = floor(py / BLOCK) * BLOCK;
 	if (is_facing_down)
-		y_intercept = floor(px / BLOCK) * BLOCK + BLOCK;
-	else
-		y_intercept = floor(px / BLOCK) * BLOCK - 1;
-	x_intercept = (y_intercept - py) / tan(ray->angle) + px;
+		y_intercept += BLOCK;
+	x_intercept = px + (y_intercept - py) / tan(ray->angle);
 	y_step = BLOCK;
-	if (is_facing_down)
+	if (!is_facing_down)
 		y_step *= -1;
 	x_step = y_step / tan(ray->angle);
 	next_y = y_intercept;
 	next_x = x_intercept;
-	while (next_x >= 0 && next_x <= game->hole_map.width && next_y >= 0
-		&& next_y <= game->hole_map.height)
+	while (next_x >= 0 && next_x <= WIDTH && next_y >= 0 && next_y <= HEIGHT)
 	{
-		if (is_wall(game, next_x, next_y))
+		check = next_y;
+		if (!is_facing_down)
+			check -= 1;
+		if (is_wall(game, next_x, check))
 		{
 			ray->horz_x = next_x;
 			ray->horz_y = next_y;
