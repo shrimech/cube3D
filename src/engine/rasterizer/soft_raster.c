@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 04:18:19 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/20 01:15:46 by shrimech         ###   ########.fr       */
+/*   Updated: 2025/12/20 19:06:10 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,20 @@ int	draw_loop(t_game *game)
 	apply_motion(game, camera);
 	clear_image(game);
 	draw_map(game);
-	draw_square(camera->pos_x, camera->pos_y, 10, 0xFF0000, game);
+	draw_square(camera->pos_x, camera->pos_y , 1, 0xFF0000, game);
 	// Draw rays in the range of the FOV in front of the player, stopping at walls
 	{
 		int num_rays = 100; // Number of rays to draw for FOV visualization
 		double half_fov = FOV / 2.0;
-		int x0 = (int)(camera->pos_x + 5);
-		int y0 = (int)(camera->pos_y + 5);
+		int x0 = (int)(camera->pos_x);
+		int y0 = (int)(camera->pos_y);
 		for (int i = 0; i < num_rays; i++) {
 			double ratio = (double)i / (num_rays - 1);
 			double ray_angle = camera->view_angle - half_fov + ratio * FOV;
 			double ray_dx = cos(ray_angle);
 			double ray_dy = sin(ray_angle);
-			double cur_x = camera->pos_x + 5;
-			double cur_y = camera->pos_y + 5;
+			double cur_x = camera->pos_x;
+			double cur_y = camera->pos_y;
 			// int hit = 0;
 			float max_steps = INFINITY; // max ray length in pixels
 			for (int step = 0; step < max_steps; step++) {

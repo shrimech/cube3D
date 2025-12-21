@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 04:10:30 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/20 01:13:36 by shrimech         ###   ########.fr       */
+/*   Updated: 2025/12/20 18:59:51 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,10 @@ int	is_valid_move(t_game *game, double x, double y)
 
 	if (x < 0 || y < 0)
 		return (0);
-	map_x = (int)x;
-	map_y = (int)y;
-	if (game->map[map_y / BLOCK][map_x / BLOCK] == '1')
+	map_x = (int)(x / BLOCK);
+	map_y = (int)(y / BLOCK);
+	printf("Checking move to map cell (%d, %d, %c)\n", map_x, map_y, game->map[map_y][map_x]);
+	if (game->map[map_y][map_x] == '1')
 		return (0);
 	return (1);
 }
@@ -129,7 +130,7 @@ void	apply_motion(t_game *game, t_camera *cam)
 		new_x -= sin_angle * move_step;
 		new_y += cos_angle * move_step;
 	}
-	if (is_valid_move(game, cam->pos_x + new_x, cam->pos_y))
+	if (is_valid_move(game, cam->pos_x + new_x, cam->pos_y + new_y))
 		cam->pos_x += new_x;
 	if (is_valid_move(game, cam->pos_x, cam->pos_y + new_y))
 		cam->pos_y += new_y;

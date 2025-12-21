@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
+/*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 02:22:41 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/19 16:59:34 by elhaiba hamza    ###   ########.fr       */
+/*   Created: 2025/12/14 02:22:41 by elhaiba ham       #+#    #+#             */
+/*   Updated: 2025/12/20 19:07:27 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 /*---***	Math	***---*/
 # define PI 3.14159265359
 # define FOV 1.0471975512
-# define MOVE_SPEED 0.05
-# define ROT_SPEED 0.03
+# define MOVE_SPEED 0.03
+# define ROT_SPEED 0.01
 
 /*---***	Keys	***---*/
 # define KEY_W 119
