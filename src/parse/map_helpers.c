@@ -33,8 +33,12 @@ char	*extract_path(char *line)
 	elements = ft_split(line, ' ');
 	if (!elements)
 		cleanup_exit(1, ERR_SPLIT);
+	collector_register(elements, SCOPE_PARSE);
 	while (elements[count])
+	{
+		collector_register(elements[count], SCOPE_PARSE);
 		count++;
+	}
 	if (count != 2 || elements[1][0] == '\0')
 	{
 		cleanup_exit(1, ERR_TEXTURE_LINE);
@@ -66,7 +70,6 @@ int	takergb(char **rgb_str)
 int	extract_color(char *element)
 {
 	char	**rgb_str;
-	int		rgb;
 	int		i;
 	int		count;
 
@@ -78,13 +81,16 @@ int	extract_color(char *element)
 			count++;
 		i++;
 	}
-	i = 0;
 	if (count != 2)
-		cleanup_exit(1, ERR_SPLIT);
+		cleanup_exit(1, ERR_RGB_CONTENT);
 	rgb_str = ft_split(element, ',');
-	if (!rgb_str || !rgb_str[0] || !rgb_str[1] || !rgb_str[2]
-		|| rgb_str[2][0] == '\n')
+	if (!rgb_str)
 		cleanup_exit(1, ERR_SPLIT);
-	rgb = takergb(rgb_str);
-	return (rgb);
+	collector_register(rgb_str, SCOPE_PARSE);
+	i = 0;
+	while (rgb_str[i])
+		collector_register(rgb_str[i++], SCOPE_PARSE);
+	if (!rgb_str[0] || !rgb_str[1] || !rgb_str[2] || rgb_str[2][0] == '\n')
+		cleanup_exit(1, ERR_SPLIT);
+	return (takergb(rgb_str));
 }

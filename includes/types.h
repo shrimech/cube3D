@@ -29,6 +29,7 @@
 # define ERR_NO_PLAYER "No player spawn point found."
 # define ERR_MAP_OPEN "Map must be surrounded by walls."
 # define ERR_RGB "RGB value out of range."
+# define ERR_RGB_CONTENT "Invalid RGB format (expected R,G,B)."
 # define ERR_OPEN "Could not open file."
 
 # define NO "NO "

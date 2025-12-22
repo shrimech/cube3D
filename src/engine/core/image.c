@@ -35,8 +35,8 @@ void	load_images(t_game *game)
 {
 	int	i;
 
-	open_images(game);
 	i = 0;
+	open_images(game);
 	while (i < 4)
 	{
 		game->images[i].data = mlx_get_data_addr(game->images[i].img_ptr,
@@ -44,8 +44,6 @@ void	load_images(t_game *game)
 				&game->images[i].endian);
 		i++;
 	}
-	mlx_put_image_to_window(game->mlx, game->win, game->images[0].img_ptr, 0,
-		0);
 }
 
 /*
