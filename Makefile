@@ -50,7 +50,8 @@ GNL = $(GNL_DIR)/get_next_line.c\
 	  $(GNL_DIR)/get_next_line_utils.c
 
 MISC =	$(MISC_DIR)/helpers.c \
-		$(MISC_DIR)/memory.c
+		$(MISC_DIR)/memory.c \
+		$(MISC_DIR)/destroy.c
 
 TEST = $(PARSE_DIR)/debug.c
 

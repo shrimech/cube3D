@@ -27,9 +27,10 @@ void	*my_alloc(size_t size, t_mem_scope scope);
 void	collector_init(t_game *game);
 void	collector_register(void *ptr, t_mem_scope scope);
 void	cleanup_exit(int exit_code, char *error);
+void	destroy_game(t_game *game);
 void	append_collected(t_collect **head, t_collect **tail,
-			t_collect *new_col);
+		t_collect *new_col);
 void	delete_collected(t_collect **head, t_collect *prev,
-			t_collect **to_delete);
+		t_collect **to_delete);
 void	parse_hole_map(t_map *map, t_game *game);
 #endif
