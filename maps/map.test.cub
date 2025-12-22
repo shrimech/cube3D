@@ -1,9 +1,9 @@
-NO /home/shrimech/goinfre/dev/cube3d/maps/orange.xpm
+NO ./maps/orange.xpm
 
-SO /home/shrimech/goinfre/dev/cube3d/maps/orange.xpm
-WE  /home/shrimech/goinfre/dev/cube3d/maps/orange.xpm
+SO ./maps/blue.xpm
+WE  ./maps/gold.xpm
 
-EA      /home/shrimech/goinfre/dev/cube3d/maps/orange.xpm
+EA      ./maps/green.xpm
 F       255,255,255
 C       255,0,255
 
