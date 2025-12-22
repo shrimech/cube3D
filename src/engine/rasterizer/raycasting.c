@@ -19,8 +19,8 @@ int	is_wall(t_game *game, double x, double y)
 	int	map_x;
 	int	map_y;
 
-	if (x < 0 || x >= game->whole_map.width || y < 0
-		|| y >= game->whole_map.height)
+	if (x < 0 || x >= game->map_data->width || y < 0
+		|| y >= game->map_data->height)
 		return (1);
 	map_x = (int)floor(x);
 	map_y = (int)floor(y);
@@ -33,8 +33,8 @@ void	check_vertical(t_game *game, t_ray *ray)
 {
 	t_ray_step	step;
 
-	step.px = game->camera.pos_x;
-	step.py = game->camera.pos_y;
+	step.px = game->camera->pos_x;
+	step.py = game->camera->pos_y;
 	step.is_facing_right = (ray->angle < PI / 2 || ray->angle > 3 * PI / 2);
 	step.x_intercept = floor(step.px / BLOCK) * BLOCK;
 	if (step.is_facing_right)
@@ -69,8 +69,8 @@ void	check_horizontal(t_game *game, t_ray *ray)
 {
 	t_ray_step	step;
 
-	step.px = game->camera.pos_x;
-	step.py = game->camera.pos_y;
+	step.px = game->camera->pos_x;
+	step.py = game->camera->pos_y;
 	step.is_facing_down = (ray->angle > 0 && ray->angle < PI);
 	step.y_intercept = floor(step.py / BLOCK) * BLOCK;
 	if (step.is_facing_down)
@@ -124,7 +124,7 @@ void	cast_ray(t_game *game, double ray_angle, t_ray *ray)
 		ray->wall_hit_y = ray->horz_y;
 		ray->was_vertical = false;
 	}
-	ca = game->camera.view_angle - ray->angle;
+	ca = game->camera->view_angle - ray->angle;
 	if (ca < 0)
 		ca += 2 * PI;
 	if (ca > 2 * PI)

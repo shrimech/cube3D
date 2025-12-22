@@ -48,23 +48,23 @@ int	parse_elements(t_map *map)
 	i = 0;
 	while (i < map->height)
 	{
-		if (is_map_line(map->whole_map[i][0]))
+		if (is_map_line(map->file_buffer[i][0]))
 		{
 			if (g_mask != E_ALL)
 				return (cleanup_exit(1, ERR_MAP_EARLY), -1);
 			return (i);
 		}
-		if (is_empty_line(map->whole_map[i][0]))
+		if (is_empty_line(map->file_buffer[i][0]))
 		{
 			i++;
 			continue ;
 		}
-		ret = check_element(map->whole_map[i]);
+		ret = check_element(map->file_buffer[i]);
 		if (ret == -1)
 			cleanup_exit(1, ERR_DUP_ELEMENTS);
 		else if (ret == 0)
 			cleanup_exit(1, ERR_INV_ELEMENT);
-		fill_map_element(map, map->whole_map[i++], ret);
+		fill_map_element(map, map->file_buffer[i++], ret);
 	}
 	return (i);
 }
@@ -84,9 +84,9 @@ void	player_position(t_map *map, t_game *game)
 		{
 			if (is_player(map->map[i][j]) && !one_p)
 			{
-				game->camera.pos_x = j;
-				game->camera.pos_y = i;
-				game->camera.player = map->map[i][j];
+				game->camera->pos_x = j;
+				game->camera->pos_y = i;
+				game->camera->player = map->map[i][j];
 				one_p = !one_p;
 			}
 			else if (is_player(map->map[i][j]) && one_p)

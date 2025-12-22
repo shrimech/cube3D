@@ -24,7 +24,7 @@ t_map	*map_init(void)
 	map->ea = NULL;
 	map->we = NULL;
 	map->map = NULL;
-	map->whole_map = NULL;
+	map->file_buffer = NULL;
 	map->c = -1;
 	map->f = -1;
 	map->height = -1;
@@ -50,24 +50,27 @@ static char	**realloc_map(char **old_map, size_t old_size, char *new_line)
 
 char	**read_map(t_map *map, int fd)
 {
-	char	**hole_map;
+	char	**whole_map;
 	char	*line;
 	char	**tmp;
 	int		count_lines;
 
-	hole_map = NULL;
+	whole_map = NULL;
 	count_lines = 0;
 	line = get_next_line(fd);
 	if (!line)
 		return (cleanup_exit(1, ERR_GNL), NULL);
+	collector_register(line, SCOPE_PARSE);
 	while (line != NULL)
 	{
-		tmp = realloc_map(hole_map, count_lines, line);
-		hole_map = tmp;
+		tmp = realloc_map(whole_map, count_lines, line);
+		whole_map = tmp;
 		count_lines++;
 		line = get_next_line(fd);
+		collector_register(line, SCOPE_PARSE);
 	}
-	tmp = realloc_map(hole_map, count_lines, NULL);
+	tmp = realloc_map(whole_map, count_lines, NULL);
+	whole_map = tmp;
 	map->height = count_lines;
-	return (hole_map);
+	return (whole_map);
 }

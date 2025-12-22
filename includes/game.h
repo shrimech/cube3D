@@ -100,14 +100,15 @@ typedef struct s_game
 	int			bpp;
 	int			line_lengh;
 	int			endian;
-	t_camera	camera;
-	t_map		whole_map;
+	t_camera	*camera;
+	t_map		*map_data;
 	char		**map;
 }				t_game;
 
 /*---------------***	Core	***------------------*/
-void			init_game(t_game *game);
+t_game			*create_game(void);
 t_camera		*init_camera(void);
+void			init_graphics(t_game *game);
 
 /*---------------***  phyisics  ***------------------*/
 void			calibrate_optics(t_camera *cam);

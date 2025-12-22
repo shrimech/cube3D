@@ -106,7 +106,7 @@ void	render_scene(t_game *game)
 	int			slice_bottom;
 	int			color;
 
-	cam = &game->camera;
+	cam = game->camera;
 	half_fov = FOV / 2.0;
 	col = 0;
 	while (col < WIDTH)

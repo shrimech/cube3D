@@ -11,10 +11,6 @@
 /* ************************************************************************** */
 
 #include "freefire.h"
-#include "game.h"
-#include "parse.h"
-#include <fcntl.h>
-#include <minilibx-linux/mlx.h>
 
 int	exit_game(int keycode, t_game *game)
 {
@@ -24,41 +20,26 @@ int	exit_game(int keycode, t_game *game)
     return (0);
 }
 
-// int	main(void)
-// {
-// 	t_game	game;
-
-// 	init_game(&game);
-// 	mlx_hook(game.win, ON_DESTROY, 0, exit_game, &game);
-// 	mlx_hook(game.win, 2, 1L << 0, assert_motion, &game.camera);
-// 	mlx_hook(game.win, 3, 1L << 1, stop_motion, &game.camera);
-// 	mlx_loop_hook(game.mlx, draw_loop, &game);
-// 	mlx_loop(game.mlx);
-// 	return (0);
-// }
-
 int	main(void)
 {
-	t_map	*map;
-	t_game	game;
+	t_game	*game;
 	int		fd;
 
 	fd = open("./maps/map.test.cub", O_RDONLY);
 	if (fd < 0)
 		cleanup_exit(1, ERR_OPEN);
 
-	map = map_init();
-	map->whole_map = read_map(map, fd);
-	parse_hole_map(map, &game);
-	print_texture(*map);
-	print_colors(*map);
-	print_map(*map, game.camera);
-	init_game(&game);
-	mlx_hook(game.win, ON_DESTROY, 0, exit_game, &game);
-	mlx_hook(game.win, 2, 1L << 0, assert_motion, &game.camera);
-	mlx_hook(game.win, 3, 1L << 1, stop_motion, &game.camera);
-	game.map = map->map;
-	mlx_loop_hook(game.mlx, draw_loop, &game);
-	mlx_loop(game.mlx);
+	game = create_game();
+	game->map_data->file_buffer = read_map(game->map_data, fd);
+	parse_hole_map(game->map_data, game);
+	print_texture(*game->map_data);
+	print_colors(*game->map_data);
+	print_map(*game->map_data, *game->camera);
+	init_graphics(game);
+	mlx_hook(game->win, ON_DESTROY, 0, exit_game, game);
+	mlx_hook(game->win, 2, 1L << 0, assert_motion, game->camera);
+	mlx_hook(game->win, 3, 1L << 1, stop_motion, game->camera);
+	mlx_loop_hook(game->mlx, draw_loop, game);
+	mlx_loop(game->mlx);
 	return (0);
 }

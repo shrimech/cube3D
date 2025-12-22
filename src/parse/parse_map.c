@@ -55,10 +55,10 @@ void	map_width(t_map *map, int mapline)
 		cleanup_exit(1, ERR_MAP_MISSING);
 	while (mapline < map->height)
 	{
-		if (!is_valid_mapline(map->whole_map[mapline]))
+		if (!is_valid_mapline(map->file_buffer[mapline]))
 			cleanup_exit(1, ERR_INV_MAP_LINE);
-		len = ft_strlen(map->whole_map[mapline]);
-		if (map->whole_map[mapline][len - 1] == '\n')
+		len = ft_strlen(map->file_buffer[mapline]);
+		if (map->file_buffer[mapline][len - 1] == '\n')
 			len--;
 		if (len > width)
 			width = len;

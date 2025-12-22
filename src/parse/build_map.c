@@ -25,10 +25,10 @@ void	overwrite_spaces(t_map *map, int map_line)
 		map->map[i][map->width] = '\0';
 		while (j < map->width)
 		{
-			if (map->whole_map[map_line][j] == '\n'
-				|| map->whole_map[map_line][j] == '\0')
+			if (map->file_buffer[map_line][j] == '\n'
+				|| map->file_buffer[map_line][j] == '\0')
 				break ;
-			map->map[i][j] = map->whole_map[map_line][j];
+			map->map[i][j] = map->file_buffer[map_line][j];
 			j++;
 		}
 		i++;

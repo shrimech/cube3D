@@ -79,7 +79,7 @@ typedef struct s_map
 	int		f;
 	int		c;
 	char	**map;
-	char	**whole_map;
+	char	**file_buffer;
 	int		width;
 	int		height;
 }			t_map;

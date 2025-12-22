@@ -72,27 +72,27 @@ void	draw_map(t_game *game)
 
 int	draw_loop(t_game *game)
 {
-	t_camera	*camera;
+
 	static int	frame_count = 0;
 
-	camera = &game->camera;
-	apply_motion(game, camera);
+
+	apply_motion(game, game->camera);
 	clear_image(game);
 	draw_map(game);
-	draw_square(camera->pos_x, camera->pos_y, 10, 0xFF0000, game);
+	draw_square(game->camera->pos_x, game->camera->pos_y, 10, 0xFF0000, game);
 	// Draw rays in the range of the FOV in front of the player, stopping at walls
 	{
 		int num_rays = 100; // Number of rays to draw for FOV visualization
 		double half_fov = FOV / 2.0;
-		int x0 = (int)(camera->pos_x + 5);
-		int y0 = (int)(camera->pos_y + 5);
+		int x0 = (int)(game->camera->pos_x + 5);
+		int y0 = (int)(game->camera->pos_y + 5);
 		for (int i = 0; i < num_rays; i++) {
 			double ratio = (double)i / (num_rays - 1);
-			double ray_angle = camera->view_angle - half_fov + ratio * FOV;
+			double ray_angle = game->camera->view_angle - half_fov + ratio * FOV;
 			double ray_dx = cos(ray_angle);
 			double ray_dy = sin(ray_angle);
-			double cur_x = camera->pos_x + 5;
-			double cur_y = camera->pos_y + 5;
+			double cur_x = game->camera->pos_x + 5;
+			double cur_y = game->camera->pos_y + 5;
 			// int hit = 0;
 			float max_steps = INFINITY; // max ray length in pixels
 			for (int step = 0; step < max_steps; step++) {
@@ -114,7 +114,7 @@ int	draw_loop(t_game *game)
 	if (frame_count % 120 == 0)
 	{
 		printf("Frame %d: player at (%.1f, %.1f), angle: %.2f\n", frame_count,
-			camera->pos_x, camera->pos_y, camera->view_angle);
+			game->camera->pos_x, game->camera->pos_y, game->camera->view_angle);
 	}
 	frame_count++;
 	return (0);
