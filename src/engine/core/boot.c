@@ -28,9 +28,9 @@ void	init_graphics(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
 
-t_camera *init_camera(void)
+t_camera	*init_camera(void)
 {
-	t_camera *camera;
+	t_camera	*camera;
 
 	camera = my_alloc(sizeof(t_camera), SCOPE_GAME);
 	camera->pos_x = -1;
@@ -47,7 +47,7 @@ t_camera *init_camera(void)
 
 t_game	*create_game(void)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = my_alloc(sizeof(t_game), SCOPE_GAME);
 	game->map_data = map_init();

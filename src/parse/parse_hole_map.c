@@ -76,8 +76,8 @@ void	player_position(t_map *map, t_game *game)
 	bool	one_p;
 
 	one_p = false;
-	i = 0;
-	while (i < map->height)
+	i = -1;
+	while (++i < map->height)
 	{
 		j = 0;
 		while (j < map->width)
@@ -93,7 +93,6 @@ void	player_position(t_map *map, t_game *game)
 				cleanup_exit(1, ERR_MANY_PLAYERS);
 			j++;
 		}
-		i++;
 	}
 	if (!one_p)
 		cleanup_exit(1, ERR_NO_PLAYER);
