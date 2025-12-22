@@ -21,10 +21,10 @@ void	init_graphics(t_game *game)
 	game->mlx = mlx_init();
 	game->map = game->map_data->map;
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cube3D");
+	open_images(game);
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->data = mlx_get_data_addr(game->img, &game->bpp, &game->line_lengh,
 			&game->endian);
-	load_images(game);
 	printf(" ################3%s\n", game->images[0].data);
 	calibrate_optics(game->camera);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);

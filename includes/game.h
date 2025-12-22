@@ -143,4 +143,5 @@ double			distance(double x1, double y1, double x2, double y2);
 /*---------------*** Debug ***------------------*/
 void			print_map(t_map map, t_camera camera);
 void load_images(t_game *game);
+void	open_images(t_game *game);
 #endif

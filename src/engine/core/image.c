@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "freefire.h"
+#include "minilibx-linux/mlx.h"
 
 // NOTE: handli
 
@@ -43,6 +44,8 @@ void	load_images(t_game *game)
 				&game->images[i].endian);
 		i++;
 	}
+	mlx_put_image_to_window(game->mlx, game->win, game->images[0].img_ptr, 0,
+		0);
 }
 
 /*

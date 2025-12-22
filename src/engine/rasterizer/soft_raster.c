@@ -111,6 +111,7 @@ int	draw_loop(t_game *game)
 		}
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->images[1].img_ptr, 0, 0);
 	if (frame_count % 120 == 0)
 	{
 		printf("Frame %d: player at (%.1f, %.1f), angle: %.2f\n", frame_count,
