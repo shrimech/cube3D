@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
+/*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 02:22:41 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/21 23:39:00 by elhaiba hamza    ###   ########.fr       */
+/*   Created: 2025/12/14 02:22:41 by elhaiba ham       #+#    #+#             */
+/*   Updated: 2025/12/22 05:51:14 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,17 @@ typedef struct s_ray
 	bool		was_vertical;
 }				t_ray;
 
+typedef struct s_image
+{
+	void		*img_ptr;
+	char		*data;
+	int			bpp;
+	int			line_length;
+	int			endian;
+	int			width;
+	int			height;
+}				t_image;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -103,6 +114,7 @@ typedef struct s_game
 	t_camera	*camera;
 	t_map		*map_data;
 	char		**map;
+	t_image		images[4];
 }				t_game;
 
 /*---------------***	Core	***------------------*/
@@ -130,5 +142,5 @@ double			distance(double x1, double y1, double x2, double y2);
 
 /*---------------*** Debug ***------------------*/
 void			print_map(t_map map, t_camera camera);
-
+void load_images(t_game *game);
 #endif

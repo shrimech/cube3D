@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 02:32:10 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/21 21:51:42 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/22 05:53:43 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	init_graphics(t_game *game)
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	game->data = mlx_get_data_addr(game->img, &game->bpp, &game->line_lengh,
 			&game->endian);
+	load_images(game);
+	printf(" ################3%s\n", game->images[0].data);
 	calibrate_optics(game->camera);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_helpers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
+/*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/09 18:34:48 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/21 23:09:43 by elhaiba hamza    ###   ########.fr       */
+/*   Created: 2025/12/09 18:34:48 by elhaiba ham       #+#    #+#             */
+/*   Updated: 2025/12/22 08:40:08 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char	*extract_path(char *line)
 		cleanup_exit(1, ERR_TEXTURE_LINE);
 	}
 	path = ft_strdup(elements[1]);
+	path[ft_strlen(path) - 1] = '\0';
 	return (path);
 }
 

@@ -1,9 +1,9 @@
-NO ./path_to_the_north_texture
+NO /home/shrimech/goinfre/dev/cube3d/maps/orange.xpm
 
-SO ./path_to_the_south_texture
-WE  ./path_to_the_west_texture
+SO /home/shrimech/goinfre/dev/cube3d/maps/orange.xpm
+WE  /home/shrimech/goinfre/dev/cube3d/maps/orange.xpm
 
-EA      ./path_to_the_east_texture
+EA      /home/shrimech/goinfre/dev/cube3d/maps/orange.xpm
 F       255,255,255
 C       255,0,255
 
