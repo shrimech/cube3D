@@ -27,9 +27,9 @@
 
 /*---***	Math	***---*/
 # define PI 3.14159265359
-# define FOV 1.0471975512
+# define FOV 1.39626
 # define STEP_ANGLE (FOV / WIDTH)
-# define MOVE_SPEED 0.05
+# define MOVE_SPEED 0.5
 # define ROT_SPEED 0.03
 
 /*---***	Keys	***---*/

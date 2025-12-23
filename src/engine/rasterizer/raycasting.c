@@ -19,11 +19,11 @@ int	is_wall(t_game *game, double x, double y)
 	int	map_x;
 	int	map_y;
 
-	if (x < 0 || x >= game->map_data->width || y < 0
-		|| y >= game->map_data->height)
+	map_x = (int)(x) / BLOCK;
+	map_y = (int)(y) / BLOCK;
+	if (map_x < 0 || map_x >= game->map_data->width || map_y < 0
+		|| map_y >= game->map_data->height)
 		return (1);
-	map_x = (int)floor(x);
-	map_y = (int)floor(y);
 	if (game->map[map_y][map_x] == '1')
 		return (1);
 	return (0);
@@ -39,7 +39,7 @@ void	check_vertical(t_game *game, t_ray *ray)
 	step.x_intercept = floor(step.px / BLOCK) * BLOCK;
 	if (step.is_facing_right)
 		step.x_intercept += BLOCK;
-	step.y_intercept = step.py + (step.px - step.x_intercept) * tan(ray->angle);
+	step.y_intercept = step.py + (step.x_intercept - step.px) * tan(ray->angle);
 	step.x_step = BLOCK;
 	if (!step.is_facing_right)
 		step.x_step *= -1;
@@ -49,10 +49,10 @@ void	check_vertical(t_game *game, t_ray *ray)
 	while (step.next_x >= 0 && step.next_x <= WIDTH && step.next_y >= 0
 		&& step.next_y <= HEIGHT)
 	{
-		step.check = step.next_y;
+		step.check = step.next_x;
 		if (!step.is_facing_right)
-			step.check -= 1;
-		if (is_wall(game, step.next_x, step.check))
+			step.check -= 0.001;
+		if (is_wall(game, step.check, step.next_y))
 		{
 			ray->vert_x = step.next_x;
 			ray->vert_y = step.next_y;
@@ -87,7 +87,7 @@ void	check_horizontal(t_game *game, t_ray *ray)
 	{
 		step.check = step.next_y;
 		if (!step.is_facing_down)
-			step.check -= 1;
+			step.check -= 0.001;
 		if (is_wall(game, step.next_x, step.check))
 		{
 			ray->horz_x = step.next_x;
@@ -109,6 +109,7 @@ void	cast_ray(t_game *game, double ray_angle, t_ray *ray)
 	check_horizontal(game, ray);
 	check_vertical(game, ray);
 	ray->distance = fmin(ray->vert_dist, ray->horz_dist);
+	printf("distance %lf", ray->distance);
 	if (ray->vert_dist < ray->horz_dist)
 	{
 		ray->wall_hit_x = ray->vert_x;
