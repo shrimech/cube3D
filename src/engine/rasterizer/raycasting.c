@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
 #include <freefire.h>
-#include <math.h>
 
 int	is_wall(t_game *game, double x, double y)
 {
@@ -35,13 +33,13 @@ void	check_vertical(t_game *game, t_ray *ray)
 
 	step.px = game->camera->pos_x;
 	step.py = game->camera->pos_y;
-	step.is_facing_right = (ray->angle < PI / 2 || ray->angle > 3 * PI / 2);
+	ray->is_facing_right = (ray->angle < PI / 2 || ray->angle > 3 * PI / 2);
 	step.x_intercept = floor(step.px / BLOCK) * BLOCK;
-	if (step.is_facing_right)
+	if (ray->is_facing_right)
 		step.x_intercept += BLOCK;
 	step.y_intercept = step.py + (step.x_intercept - step.px) * tan(ray->angle);
 	step.x_step = BLOCK;
-	if (!step.is_facing_right)
+	if (!ray->is_facing_right)
 		step.x_step *= -1;
 	step.y_step = step.x_step * tan(ray->angle);
 	step.next_x = step.x_intercept;
@@ -50,7 +48,7 @@ void	check_vertical(t_game *game, t_ray *ray)
 		&& step.next_y <= HEIGHT)
 	{
 		step.check = step.next_x;
-		if (!step.is_facing_right)
+		if (!ray->is_facing_right)
 			step.check -= 0.001;
 		if (is_wall(game, step.check, step.next_y))
 		{
@@ -71,13 +69,13 @@ void	check_horizontal(t_game *game, t_ray *ray)
 
 	step.px = game->camera->pos_x;
 	step.py = game->camera->pos_y;
-	step.is_facing_down = (ray->angle > 0 && ray->angle < PI);
+	ray->is_facing_down = (ray->angle > 0 && ray->angle < PI);
 	step.y_intercept = floor(step.py / BLOCK) * BLOCK;
-	if (step.is_facing_down)
+	if (ray->is_facing_down)
 		step.y_intercept += BLOCK;
 	step.x_intercept = step.px + (step.y_intercept - step.py) / tan(ray->angle);
 	step.y_step = BLOCK;
-	if (!step.is_facing_down)
+	if (!ray->is_facing_down)
 		step.y_step *= -1;
 	step.x_step = step.y_step / tan(ray->angle);
 	step.next_y = step.y_intercept;
@@ -86,7 +84,7 @@ void	check_horizontal(t_game *game, t_ray *ray)
 		&& step.next_y <= HEIGHT)
 	{
 		step.check = step.next_y;
-		if (!step.is_facing_down)
+		if (!ray->is_facing_down)
 			step.check -= 0.001;
 		if (is_wall(game, step.next_x, step.check))
 		{
@@ -109,7 +107,6 @@ void	cast_ray(t_game *game, double ray_angle, t_ray *ray)
 	check_horizontal(game, ray);
 	check_vertical(game, ray);
 	ray->distance = fmin(ray->vert_dist, ray->horz_dist);
-	printf("distance %lf", ray->distance);
 	if (ray->vert_dist < ray->horz_dist)
 	{
 		ray->wall_hit_x = ray->vert_x;

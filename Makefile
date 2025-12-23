@@ -36,8 +36,7 @@ PARSE = $(PARSE_DIR)/build_map.c \
 
 ENGINE_CORE =		$(ENGINE_CORE_DIR)/boot.c \
 					$(ENGINE_CORE_DIR)/image.c
-ENGINE_PHYSICS =	$(ENGINE_PHYSICS_DIR)/motion.c \
-					$(ENGINE_PHYSICS_DIR)/raycaster.c
+ENGINE_PHYSICS =	$(ENGINE_PHYSICS_DIR)/motion.c
 ENGINE_RASTERIZER =	$(ENGINE_RASTERIZER_DIR)/frame_flush.c \
 					$(ENGINE_RASTERIZER_DIR)/soft_raster.c \
 					$(ENGINE_RASTERIZER_DIR)/draw_utils.c \

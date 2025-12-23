@@ -10,96 +10,60 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
 #include <freefire.h>
 
-void	put_pixel(int x, int y, int color, t_game *game)
-{
-	int	index;
-
-	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
-		return ;
-	index = y * game->line_lengh + x * game->bpp / 8;
-	game->data[index] = color & 0xFF;
-	game->data[index + 1] = (color >> 8) & 0xFF;
-	game->data[index + 2] = (color >> 16) & 0xFF;
-}
-
-void	render_wall(t_game *game, int x, int wall_start, int wall_end)
-{
-	while (wall_start <= wall_end)
-	{
-		put_pixel(x, wall_start, 0xCF4B00, game);
-		wall_start++;
-	}
-}
+// void   render_wall(t_game *game, int x, int wall_start, int wall_end)
+// {
+//        while (wall_start <= wall_end)
+//        {
+//                put_pixel(x, wall_start, 0xCF4B00, game);
+//                wall_start++;
+//        }
+// }
 
 void	draw_three_d(t_game *game)
 {
 	t_ray	ray;
-	double	ray_angle;
-	double	corrected_dist;
-	int		wall_height;
-	int		wall_start;
-	int		wall_end;
-	int		x;
-	double	proj_plane_dist;
-
-	proj_plane_dist = (WIDTH / 2.0) / tan(FOV / 2.0);
-	x = 0;
-	while (x < WIDTH)
+	t_wall wall;
+	wall.proj_plane_dist = (WIDTH / 2.0) / tan(FOV / 2.0);
+	wall.x = 0;
+	while (wall.x < WIDTH)
 	{
-		ray_angle = game->camera->view_angle - (FOV / 2.0) + ((double)x / WIDTH)
+		wall.ray_angle = game->camera->view_angle - (FOV / 2.0) + ((double)wall.x / WIDTH)
 			* FOV;
-		cast_ray(game, ray_angle, &ray);
-		corrected_dist = ray.distance * cos(ray_angle
+		cast_ray(game, wall.ray_angle, &ray);
+		wall.corrected_dist = ray.distance * cos(wall.ray_angle
 				- game->camera->view_angle);
-		if (corrected_dist < 0.1)
-			corrected_dist = 0.1;
-		wall_height = (int)((BLOCK / corrected_dist) * proj_plane_dist);
-		wall_start = (HEIGHT / 2) - (wall_height / 2);
-		if (wall_start < 0)
-			wall_start = 0;
-		wall_end = (HEIGHT / 2) + (wall_height / 2);
-		if (wall_end >= HEIGHT)
-			wall_end = HEIGHT - 1;
-		render_wall(game, x, wall_start, wall_end);
-		x++;
+		if (wall.corrected_dist < 0.1)
+			wall.corrected_dist = 0.1;
+		wall.wall_height = (int)((BLOCK / wall.corrected_dist) * wall.proj_plane_dist);
+		wall.wall_start = (HEIGHT / 2) - (wall.wall_height / 2);
+		if (wall.wall_start < 0)
+			wall.wall_start = 0;
+		wall.wall_end = (HEIGHT / 2) + (wall.wall_height / 2);
+		if (wall.wall_end >= HEIGHT)
+			wall.wall_end = HEIGHT - 1;
+		// render_wall(game, wall.x, wall.wall_start, wall.wall_end);
+		render_wall(game, wall, ray);
+		wall.x++;
 	}
 }
 
-// void	draw_three_d(t_game *game)
-// {
-// 	t_ray	ray;
-// 	double	s_angle;
-// 	double	e_angle;
-// 	int		wall_lenght;
-// 	int		wall_start;
-// 	int		wall_end;
-// 	int x;
-//
-// 	x = 0;
-// 	s_angle = game->camera->view_angle - FOV / 2;
-// 	e_angle = game->camera->view_angle + FOV / 2;
-// 	while (s_angle <= e_angle)
-// 	{
-// 		cast_ray(game, s_angle, &ray);
-// 		wall_lenght = HEIGHT / ray.distance;
-// 		wall_start = (HEIGHT / 2) - (wall_lenght / 2);
-// 		wall_end = (HEIGHT / 2) + (wall_lenght / 2);
-// 		render_wall(game, x, wall_start, wall_end);
-// 		x++;
-// 		s_angle += STEP_ANGLE;
-// 	}
-// }
-
 int	draw_loop(t_game *game)
 {
+	static int	frame_count = 0;
+
 	apply_motion(game, game->camera);
 	clear_image(game);
 	draw_ceiling_floor(game);
 	draw_three_d(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	if (frame_count % 120 == 0)
+	{
+		printf("Frame %d: player at (%.1f, %.1f), angle: %.2f\n", frame_count,
+			game->camera->pos_x, game->camera->pos_y, game->camera->view_angle);
+	}
+	frame_count++;
 	return (0);
 }
 

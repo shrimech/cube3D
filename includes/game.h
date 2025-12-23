@@ -27,7 +27,7 @@
 
 /*---***	Math	***---*/
 # define PI 3.14159265359
-# define FOV 1.39626
+# define FOV PI / 3
 # define STEP_ANGLE (FOV / WIDTH)
 # define MOVE_SPEED 0.5
 # define ROT_SPEED 0.03
@@ -46,19 +46,17 @@
 /*---***		***---*/
 # define BLOCK 30
 
-typedef struct s_camera
+typedef struct s_wall
 {
-	double		pos_x;
-	double		pos_y;
-	t_tile		player;
-	double		view_angle;
-	bool		move_fwd;
-	bool		move_back;
-	bool		truck_left;
-	bool		truck_right;
-	bool		rotate_left;
-	bool		rotate_right;
-}				t_camera;
+	double	ray_angle;
+	double	corrected_dist;  //NOTE: here!
+	double	proj_plane_dist;
+	int		wall_height;
+	int		wall_start;
+	int		wall_end;
+	int		x;
+
+} t_wall;
 
 typedef struct s_ray_step
 {
@@ -81,15 +79,15 @@ typedef struct s_ray
 	double		horz_x;
 	double		horz_y;
 	double		horz_dist;
-	int			horz_content;
 	double		vert_x;
 	double		vert_y;
 	double		vert_dist;
-	bool		vert_content;
-	double		wall_hit_x;
-	double		wall_hit_y;
+	double		wall_hit_x; //NOTE: here!
+	double		wall_hit_y; //NOTE: here!
 	double		distance;
-	bool		was_vertical;
+	bool		is_facing_down; //NOTE: here!
+	bool		is_facing_right; //NOTE: here!
+	bool		was_vertical; //NOTE: here!
 }				t_ray;
 
 typedef struct s_image
@@ -103,6 +101,20 @@ typedef struct s_image
 	int			height;
 }				t_image;
 
+typedef struct s_camera
+{
+	double		pos_x;
+	double		pos_y;
+	t_tile		player;
+	double		view_angle;
+	bool		move_fwd;
+	bool		move_back;
+	bool		truck_left;
+	bool		truck_right;
+	bool		rotate_left;
+	bool		rotate_right;
+}				t_camera;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -115,9 +127,23 @@ typedef struct s_game
 	t_camera	*camera;
 	t_map		*map_data;
 	char		**map;
-	t_image		images[4];
+	t_image		images[4]; //NOTE: here!
 }				t_game;
 
+typedef enum e_texture
+{
+	T_NORTH,
+	T_SOUTH,
+	T_WEST,
+	T_EAST,
+}				t_texture;
+
+typedef struct s_tex_info
+{
+    double  tex_pos;    // The starting y-coordinate on the texture
+    double  step;       // How much to increase tex_pos per screen pixel
+    int     tex_x;      // The x-coordinate on the texture (0 to 63)
+}   t_tex_info;
 /*---------------***	Core	***------------------*/
 t_game			*create_game(void);
 t_camera		*init_camera(void);
@@ -136,12 +162,13 @@ void			clear_image(t_game *game);
 void			draw_ceiling_floor(t_game *game);
 
 /*---------------*** Raycast ***------------------*/
-void	cast_ray(t_game *game, double ray_angle, t_ray *ray);
+void			cast_ray(t_game *game, double ray_angle, t_ray *ray);
 
 /*---------------*** Geometry ***------------------*/
 double			normalize_angle(double angle);
 double			distance(double x1, double y1, double x2, double y2);
 
+void	render_wall(t_game *game, t_wall wall, t_ray ray);
 /*---------------*** Debug ***------------------*/
 void			print_map(t_map map, t_camera camera);
 void			load_images(t_game *game);

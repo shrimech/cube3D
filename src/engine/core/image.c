@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "freefire.h"
+#include "game.h"
 #include "minilibx-linux/mlx.h"
 
 // NOTE: handli
@@ -46,29 +47,100 @@ void	load_images(t_game *game)
 	}
 }
 
-/*
-** Extracts a raw vertical column of pixels from the texture.
-** @param img: The image structure containing data, width, height, etc.
-** @param x: The x-coordinate of the column you want to fetch.
-** @param buffer: A pointer to an int array where the colors will be stored.
-** (Must be size of img->height).
-*/
-void	get_texture_column(t_image *img, int x, int *buffer)
+t_texture	which_tex(t_ray ray)
 {
+	if (ray.was_vertical)
+	{
+		if (ray.is_facing_right)
+		{
+			return (T_WEST);
+		}
+		else
+		{
+			return (T_EAST);
+		}
+	}
+	else
+	{
+		if (ray.is_facing_down)
+		{
+			return (T_NORTH);
+		}
+		else
+		{
+			return (T_SOUTH);
+		}
+	}
+	return (-1);
+}
+
+t_tex_info	info_tex(t_game *game, t_wall wall, t_ray ray, t_texture tex)
+{
+	double		wall_hit_decimal;
+	t_tex_info	info;
+	int			wall_start;
+	int			tex_width;
+
+	tex_width = game->images[tex].width;
+	if (ray.was_vertical)
+		wall_hit_decimal = ray.wall_hit_y / BLOCK;
+	else
+		wall_hit_decimal = ray.wall_hit_x / BLOCK;
+	wall_hit_decimal -= floor(wall_hit_decimal);
+	info.tex_x = (int)(wall_hit_decimal * tex_width);
+	if ((ray.was_vertical && !ray.is_facing_right) || (!ray.was_vertical
+			&& ray.is_facing_down))
+	{
+		info.tex_x = tex_width - info.tex_x - 1;
+	}
+	info.step = 1.0 * game->images[tex].height / wall.wall_height;
+	wall_start = (((double)HEIGHT / 2) - wall.wall_height / 2.0);
+	if (wall_start < 0)
+		wall_start = 0;
+	info.tex_pos = (wall_start - (double)HEIGHT / 2 + wall.wall_height / 2.0)
+		* info.step;
+	return (info);
+}
+
+unsigned int	get_tex_color(t_image tex, int x, int y)
+{
+	char	*pixel;
+
+	if (x < 0)
+		x = 0;
+	if (x >= tex.width)
+		x = tex.width - 1;
+	if (y < 0)
+		y = 0;
+	if (y >= tex.height)
+		y = tex.height - 1;
+	pixel = tex.data + (y * tex.line_length + x * (tex.bpp / 8));
+	return (*(unsigned int *)pixel);
+}
+
+void	draw_text_y(t_game *game, t_wall wall, t_tex_info info, t_texture tex)
+{
+	double			tex_y;
 	int				y;
-	int				offset;
-	char			*pixel_ptr;
 	unsigned int	color;
 
-	if (x < 0 || x >= img->width)
-		return ;
-	y = 0;
-	while (y < img->height)
+	y = wall.wall_start;
+	while (y < wall.wall_end)
 	{
-		offset = (y * img->line_length) + (x * (img->bpp / 8));
-		pixel_ptr = img->data + offset;
-		color = *(unsigned int *)pixel_ptr;
-		buffer[y] = color;
+		tex_y = fmod(info.tex_pos, (double)(game->images[tex].height - 1));
+		info.tex_pos += info.step;
+		color = get_tex_color(game->images[tex], info.tex_x, (int)tex_y);
+		put_pixel(wall.x, y, color, game);
 		y++;
 	}
+}
+
+void	render_wall(t_game *game, t_wall wall, t_ray ray)
+{
+	t_tex_info	info;
+	t_texture	tex;
+
+	tex = which_tex(ray);
+	info = info_tex(game, wall, ray, tex);
+	draw_text_y(game, wall, info, tex);
 }
