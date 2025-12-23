@@ -17,7 +17,7 @@ void	*ft_salloc(size_t nmemb, size_t size)
 {
 	void	*res;
 
-	res = my_alloc(nmemb * size, SCOPE_PARSE);
+	res = my_alloc(nmemb * size, SCOPE_GAME);
 	ft_memset(res, ' ', nmemb * size);
 	return (res);
 }

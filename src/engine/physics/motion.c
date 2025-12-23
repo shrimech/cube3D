@@ -27,12 +27,6 @@ void	calibrate_optics(t_camera *cam)
 		cam->view_angle = 3 * PI / 2;
 	cam->pos_x = cam->pos_x * BLOCK + BLOCK / 2.0;
 	cam->pos_y = cam->pos_y * BLOCK + BLOCK / 2.0;
-	cam->move_fwd = false;
-	cam->move_back = false;
-	cam->truck_left = false;
-	cam->truck_right = false;
-	cam->rotate_left = false;
-	cam->rotate_right = false;
 }
 
 int	assert_motion(int keycode, t_camera *cam)

@@ -103,7 +103,7 @@ void	parse_map(t_map *map, int map_line)
 	int	i;
 
 	i = 0;
-	map->map = malloc((map->height + 1) * 8);
+	map->map = my_alloc((map->height + 1) * 8, SCOPE_GAME);
 	while (i < map->height)
 		map->map[i++] = ft_salloc(1, map->width + 1);
 	overwrite_spaces(map, map_line);
