@@ -19,12 +19,16 @@
 void	init_graphics(t_game *game)
 {
 	game->mlx = mlx_init();
+	// NOTE: handli
 	game->map = game->map_data->map;
 	load_images(game);
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cube3D");
+	// NOTE: handli
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	// NOTE: handli
 	game->data = mlx_get_data_addr(game->img, &game->bpp, &game->line_lengh,
 			&game->endian);
+	// NOTE: handli
 	calibrate_optics(game->camera);
 }
 

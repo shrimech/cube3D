@@ -14,22 +14,26 @@
 #include "game.h"
 #include "minilibx-linux/mlx.h"
 
-// NOTE: handli
+
 
 static void	open_images(t_game *game)
 {
 	game->images[0].img_ptr = mlx_xpm_file_to_image(game->mlx,
 			game->map_data->no, &game->images[0].width,
 			&game->images[0].height);
+	// NOTE: handli
 	game->images[1].img_ptr = mlx_xpm_file_to_image(game->mlx,
 			game->map_data->so, &game->images[1].width,
 			&game->images[1].height);
+	// NOTE: handli
 	game->images[2].img_ptr = mlx_xpm_file_to_image(game->mlx,
 			game->map_data->we, &game->images[2].width,
 			&game->images[2].height);
+	// NOTE: handli
 	game->images[3].img_ptr = mlx_xpm_file_to_image(game->mlx,
 			game->map_data->ea, &game->images[3].width,
 			&game->images[3].height);
+	// NOTE: handli
 }
 
 void	load_images(t_game *game)
@@ -43,6 +47,7 @@ void	load_images(t_game *game)
 		game->images[i].data = mlx_get_data_addr(game->images[i].img_ptr,
 				&game->images[i].bpp, &game->images[i].line_length,
 				&game->images[i].endian);
+		// NOTE: handli
 		i++;
 	}
 }
@@ -53,22 +58,22 @@ t_texture	which_tex(t_ray ray)
 	{
 		if (ray.is_facing_right)
 		{
-			return (T_WEST);
+			return (T_EAST);
 		}
 		else
 		{
-			return (T_EAST);
+			return (T_WEST);
 		}
 	}
 	else
 	{
 		if (ray.is_facing_down)
 		{
-			return (T_NORTH);
+			return (T_SOUTH);
 		}
 		else
 		{
-			return (T_SOUTH);
+			return (T_NORTH);
 		}
 	}
 	return (-1);
@@ -125,7 +130,7 @@ void	draw_text_y(t_game *game, t_wall wall, t_tex_info info, t_texture tex)
 	unsigned int	color;
 
 	y = wall.wall_start;
-	while (y < wall.wall_end)
+	while (y <= wall.wall_end)
 	{
 		tex_y = fmod(info.tex_pos, (double)(game->images[tex].height - 1));
 		info.tex_pos += info.step;

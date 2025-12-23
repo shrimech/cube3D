@@ -14,10 +14,10 @@
 
 int	exit_game(int keycode, t_game *game)
 {
-	printf("%d was pressed", keycode);
-	mlx_destroy_window(game->mlx, game->win);
-    exit(0);
-    return (0);
+	(void)game;
+	(void)keycode;
+	cleanup_exit(0, "");
+	return (0);
 }
 
 int	main(void)
@@ -28,13 +28,10 @@ int	main(void)
 	fd = open("./maps/map.test.cub", O_RDONLY);
 	if (fd < 0)
 		cleanup_exit(1, ERR_OPEN);
-
 	game = create_game();
+	collector_init(game);
 	game->map_data->file_buffer = read_map(game->map_data, fd);
 	parse_hole_map(game->map_data, game);
-	print_texture(*game->map_data);
-	print_colors(*game->map_data);
-	print_map(*game->map_data, *game->camera);
 	init_graphics(game);
 	mlx_hook(game->win, ON_DESTROY, 0, exit_game, game);
 	mlx_hook(game->win, 2, 1L << 0, assert_motion, game->camera);

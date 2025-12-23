@@ -52,13 +52,12 @@ MISC =	$(MISC_DIR)/helpers.c \
 		$(MISC_DIR)/memory.c \
 		$(MISC_DIR)/destroy.c
 
-TEST = $(PARSE_DIR)/debug.c
 
 # -------Main----------
 
 MAIN_SRCS = freefire.c
 
-SRCS = $(GNL) $(PARSE) $(MAIN_SRCS) $(TEST) $(MISC) $(ENGINE)
+SRCS = $(GNL) $(PARSE) $(MAIN_SRCS) $(MISC) $(ENGINE)
 
 # -------Object files----------
 

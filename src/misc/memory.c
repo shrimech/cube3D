@@ -21,7 +21,6 @@ static t_collect	*g_tail = NULL;
 
 void	collector_init(t_game *game)
 {
-	game = my_alloc(sizeof(t_game), SCOPE_GAME);
 	g_game = game;
 }
 
@@ -57,6 +56,7 @@ void	cleanup_exit(int exit_code, char *error)
 	t_collect	*curr;
 	t_collect	*next;
 
+	destroy_game(g_game);
 	collector_cleanup(SCOPE_PARSE);
 	collector_cleanup(SCOPE_GAME);
 	curr = g_head;
@@ -66,9 +66,12 @@ void	cleanup_exit(int exit_code, char *error)
 		free(curr);
 		curr = next;
 	}
-	ft_putstr_fd("Error: ", 2);
-	ft_putstr_fd(error, 2);
-	ft_putstr_fd("\n", 2);
+	if (exit_code > 0)
+	{
+		ft_putstr_fd("Error: ", 2);
+		ft_putstr_fd(error, 2);
+		ft_putstr_fd("\n", 2);
+	}
 	exit(exit_code);
 }
 

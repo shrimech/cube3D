@@ -12,12 +12,7 @@
 
 #include "freefire.h"
 
-/*
-** destroy al mlx resources
-** @param t_game *game - pointer to game structure containing MLX resources
-** Destroys all MLX resources including texture images, game image, window and display
-*/
-void	destroy_game(t_game *game)
+void	destroy_textures(t_game *game)
 {
 	int	i;
 
@@ -33,6 +28,12 @@ void	destroy_game(t_game *game)
 		}
 		i++;
 	}
+}
+
+void	destroy_game(t_game *game)
+{
+	(void)game;
+	destroy_textures(game);
 	if (game->img && game->mlx)
 	{
 		mlx_destroy_image(game->mlx, game->img);

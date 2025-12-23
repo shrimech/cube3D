@@ -44,6 +44,7 @@ char	*extract_path(char *line)
 		cleanup_exit(1, ERR_TEXTURE_LINE);
 	}
 	path = ft_strdup(elements[1]);
+	collector_register(path, SCOPE_PARSE);
 	path[ft_strlen(path) - 1] = '\0';
 	return (path);
 }

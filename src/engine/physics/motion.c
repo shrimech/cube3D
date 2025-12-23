@@ -34,7 +34,7 @@ int	assert_motion(int keycode, t_camera *cam)
 	if (keycode == KEY_ESC)
 	{
 		printf("ESC key pressed - exiting...\n");
-		exit(0);
+		cleanup_exit(0, "");
 	}
 	if (keycode == KEY_W)
 		cam->move_fwd = true;
@@ -81,14 +81,14 @@ int	is_valid_move(t_game *game, double x, double y)
 		return (0);
 	return (1);
 }
-
+// NOTE: 25 line
 void	apply_motion(t_game *game, t_camera *cam)
 {
-	float	move_step;
-	float	cos_angle;
-	float	sin_angle;
-	float	new_x;
-	float	new_y;
+	double	move_step;
+	double	cos_angle;
+	double	sin_angle;
+	double	new_x;
+	double	new_y;
 
 	new_x = 0;
 	new_y = 0;
