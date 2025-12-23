@@ -130,11 +130,10 @@ void			apply_motion(t_game *game, t_camera *cam);
 
 /*---------------*** Rasterizer ***------------------*/
 void			put_pixel(int x, int y, int color, t_game *game);
-void			draw_square(int x, int y, int size, int color, t_game *game);
 int				draw_loop(t_game *game);
 void			clear_image(t_game *game);
-void			draw_line(int x0, int y0, int x1, int y1, int color,
-					t_game *game);
+void    draw_ceiling_floor(t_game *game)
+;
 
 /*---------------*** Geometry ***------------------*/
 double			normalize_angle(double angle);
@@ -142,6 +141,6 @@ double			distance(double x1, double y1, double x2, double y2);
 
 /*---------------*** Debug ***------------------*/
 void			print_map(t_map map, t_camera camera);
-void load_images(t_game *game);
-void	open_images(t_game *game);
+void			load_images(t_game *game);
+
 #endif

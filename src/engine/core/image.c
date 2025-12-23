@@ -15,7 +15,7 @@
 
 // NOTE: handli
 
-void	open_images(t_game *game)
+static void	open_images(t_game *game)
 {
 	game->images[0].img_ptr = mlx_xpm_file_to_image(game->mlx,
 			game->map_data->no, &game->images[0].width,
