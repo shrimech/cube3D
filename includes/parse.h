@@ -42,9 +42,4 @@ int		extract_color( char *element);
 //---------------------------- Helpers ----------------
 void	*ft_salloc(size_t nmemb, size_t size);
 
-//---------------------------- Eebug ----------------
-void	print_hole_map(t_map map);
-void	print_texture(t_map map);
-void	print_colors(t_map map);
-
 #endif

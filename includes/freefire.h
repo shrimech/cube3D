@@ -13,13 +13,11 @@
 #ifndef FREEFIRE_H
 # define FREEFIRE_H
 
-# include "game.h"
 # include "get_next_line.h"
 # include "libft.h"
-# include "parse.h"
 # include "types.h"
-# include <stdio.h>
-# include <unistd.h>
+# include "game.h"
+# include "game.h"
 
 /*---------------***	GB_COL	***------------------*/
 void	*my_alloc(size_t size, t_mem_scope scope);
@@ -31,5 +29,7 @@ void	append_collected(t_collect **head, t_collect **tail,
 			t_collect *new_col);
 void	delete_collected(t_collect **head, t_collect *prev,
 			t_collect **to_delete);
+
+/*---------------***	PARSE	***------------------*/
 void	parse_hole_map(t_map *map, t_game *game);
 #endif

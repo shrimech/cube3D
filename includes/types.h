@@ -40,17 +40,6 @@
 # define C "C "
 
 /*---------------*** enums ***------------------*/
-typedef enum e_tile
-{
-	E_WALL = '1',
-	E_EMPTY = '0',
-	E_EAST = 'E',
-	E_SOUTH = 'S',
-	E_WEST = 'W',
-	E_NORTH = 'N',
-	E_SPACE = ' ',
-}			t_tile;
-
 /* 000001
  * 000010
  * 000100
@@ -70,6 +59,17 @@ typedef enum e_identifier
 	E_C = 1 << 5,
 	E_ALL = E_NO | E_SO | E_WE | E_EA | E_F | E_C,
 }			t_identifier;
+
+typedef enum e_tile
+{
+	E_WALL = '1',
+	E_EMPTY = '0',
+	E_EAST = 'E',
+	E_SOUTH = 'S',
+	E_WEST = 'W',
+	E_NORTH = 'N',
+	E_SPACE = ' ',
+}			t_tile;
 
 typedef struct s_map
 {
