@@ -12,9 +12,6 @@
 
 #include "freefire.h"
 
-
-
-
 void    draw_ceiling_floor(t_game *game)
 {
     int     x;
@@ -35,3 +32,6 @@ void    draw_ceiling_floor(t_game *game)
         y++;
     }
 }
+
+
+

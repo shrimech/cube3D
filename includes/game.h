@@ -28,6 +28,7 @@
 /*---***	Math	***---*/
 # define PI 3.14159265359
 # define FOV 1.0471975512
+# define STEP_ANGLE (FOV / WIDTH)
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.03
 
@@ -132,8 +133,10 @@ void			apply_motion(t_game *game, t_camera *cam);
 void			put_pixel(int x, int y, int color, t_game *game);
 int				draw_loop(t_game *game);
 void			clear_image(t_game *game);
-void    draw_ceiling_floor(t_game *game)
-;
+void			draw_ceiling_floor(t_game *game);
+
+/*---------------*** Raycast ***------------------*/
+void	cast_ray(t_game *game, double ray_angle, t_ray *ray);
 
 /*---------------*** Geometry ***------------------*/
 double			normalize_angle(double angle);

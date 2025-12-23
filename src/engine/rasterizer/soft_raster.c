@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "game.h"
 #include <freefire.h>
 
 void	put_pixel(int x, int y, int color, t_game *game)
@@ -25,13 +26,30 @@ void	put_pixel(int x, int y, int color, t_game *game)
 }
 
 
+void	draw_three_d(t_game *game)
+{
+	t_ray ray;
+	int s_angle;
+	int e_angle;
+
+	s_angle = game->camera->view_angle - FOV / 2;
+	e_angle = game->camera->view_angle + FOV / 2;
+	while (s_angle <= e_angle)
+	{
+		cast_ray(game, s_angle, &ray);
+		
+		s_angle += STEP_ANGLE;
+	}
+}
+
+
 
 int	draw_loop(t_game *game)
 {
 	apply_motion(game, game->camera);
 	clear_image(game);
 	draw_ceiling_floor(game);
-
+	draw_three_d(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 
 	return (0);
