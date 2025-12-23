@@ -6,7 +6,7 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:59:47 by shrimech          #+#    #+#             */
-/*   Updated: 2025/12/20 01:15:56 by shrimech         ###   ########.fr       */
+/*   Updated: 2025/12/23 21:46:55 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,31 @@ void	put_pixel(int x, int y, int color, t_game *game)
 	game->data[index] = color & 0xFF;
 	game->data[index + 1] = (color >> 8) & 0xFF;
 	game->data[index + 2] = (color >> 16) & 0xFF;
+}
+
+void	draw_text_y(t_game *game, t_wall wall, t_tex_info info, t_texture tex)
+{
+	double			tex_y;
+	int				y;
+	unsigned int	color;
+
+	y = wall.wall_start;
+	while (y <= wall.wall_end)
+	{
+		tex_y = fmod(info.tex_pos, (double)(game->images[tex].height - 1));
+		info.tex_pos += info.step;
+		color = get_tex_color(game->images[tex], info.tex_x, (int)tex_y);
+		put_pixel(wall.x, y, color, game);
+		y++;
+	}
+}
+
+void	render_wall(t_game *game, t_wall wall, t_ray ray)
+{
+	t_tex_info	info;
+	t_texture	tex;
+
+	tex = which_tex(ray);
+	info = info_tex(game, wall, ray, tex);
+	draw_text_y(game, wall, info, tex);
 }

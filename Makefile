@@ -36,12 +36,15 @@ PARSE = $(PARSE_DIR)/build_map.c \
 
 ENGINE_CORE =		$(ENGINE_CORE_DIR)/boot.c \
 					$(ENGINE_CORE_DIR)/image.c
-ENGINE_PHYSICS =	$(ENGINE_PHYSICS_DIR)/motion.c
+ENGINE_PHYSICS =	$(ENGINE_PHYSICS_DIR)/motion.c \
+					$(ENGINE_PHYSICS_DIR)/motion_helpers.c
 ENGINE_RASTERIZER =	$(ENGINE_RASTERIZER_DIR)/frame_flush.c \
 					$(ENGINE_RASTERIZER_DIR)/soft_raster.c \
 					$(ENGINE_RASTERIZER_DIR)/draw_utils.c \
 					$(ENGINE_RASTERIZER_DIR)/geometry.c \
-					$(ENGINE_RASTERIZER_DIR)/raycasting.c
+					$(ENGINE_RASTERIZER_DIR)/raycasting.c \
+					$(ENGINE_RASTERIZER_DIR)/check_horizontal.c \
+					$(ENGINE_RASTERIZER_DIR)/check_vertical.c
 
 ENGINE = $(ENGINE_CORE) $(ENGINE_PHYSICS)  $(ENGINE_RASTERIZER)
 
@@ -64,6 +67,7 @@ SRCS = $(GNL) $(PARSE) $(MAIN_SRCS) $(MISC) $(ENGINE)
 OBJS = $(SRCS:.c=.o)
 
 all: $(LIBFT) $(NAME)
+	make -C $(MLX_PATH)
 
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_PATH)/libmlx.a $(MLX_FLAGS) -o $(NAME)

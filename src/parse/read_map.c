@@ -6,13 +6,11 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 06:52:10 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/21 22:55:51 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/23 22:58:28 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "types.h"
 #include <freefire.h>
-#include <stdlib.h>
 
 t_map	*map_init(void)
 {

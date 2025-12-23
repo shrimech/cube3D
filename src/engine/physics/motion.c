@@ -6,14 +6,11 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 04:10:30 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/21 19:57:03 by elhaiba hamza    ###   ########.fr       */
+/*   Updated: 2025/12/23 21:58:39 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
-#include <freefire.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "freefire.h"
 
 void	calibrate_optics(t_camera *cam)
 {
@@ -81,50 +78,13 @@ int	is_valid_move(t_game *game, double x, double y)
 		return (0);
 	return (1);
 }
-// NOTE: 25 line
+
 void	apply_motion(t_game *game, t_camera *cam)
 {
-	double	move_step;
-	double	cos_angle;
-	double	sin_angle;
-	double	new_x;
-	double	new_y;
+	double	dx;
+	double	dy;
 
-	new_x = 0;
-	new_y = 0;
-	if (cam->rotate_left)
-		cam->view_angle -= ROT_SPEED;
-	if (cam->rotate_right)
-		cam->view_angle += ROT_SPEED;
-	if (cam->view_angle < 0)
-		cam->view_angle += 2 * PI;
-	if (cam->view_angle > 2 * PI)
-		cam->view_angle -= 2 * PI;
-	move_step = MOVE_SPEED;
-	cos_angle = cos(cam->view_angle);
-	sin_angle = sin(cam->view_angle);
-	if (cam->move_fwd)
-	{
-		new_x += cos_angle * move_step;
-		new_y += sin_angle * move_step;
-	}
-	if (cam->move_back)
-	{
-		new_x -= cos_angle * move_step;
-		new_y -= sin_angle * move_step;
-	}
-	if (cam->truck_left)
-	{
-		new_x += sin_angle * move_step;
-		new_y -= cos_angle * move_step;
-	}
-	if (cam->truck_right)
-	{
-		new_x -= sin_angle * move_step;
-		new_y += cos_angle * move_step;
-	}
-	if (is_valid_move(game, cam->pos_x + new_x, cam->pos_y))
-		cam->pos_x += new_x;
-	if (is_valid_move(game, cam->pos_x, cam->pos_y + new_y))
-		cam->pos_y += new_y;
+	update_rotation(cam);
+	compute_motion(cam, &dx, &dy);
+	apply_translation(game, cam, dx, dy);
 }

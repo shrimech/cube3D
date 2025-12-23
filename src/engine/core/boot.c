@@ -6,29 +6,29 @@
 /*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 02:32:10 by elhaiba ham       #+#    #+#             */
-/*   Updated: 2025/12/22 05:53:43 by shrimech         ###   ########.fr       */
+/*   Updated: 2025/12/23 23:00:33 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
-#include "parse.h"
-#include "types.h"
 #include <freefire.h>
-#include <stdbool.h>
 
 void	init_graphics(t_game *game)
 {
 	game->mlx = mlx_init();
-	// NOTE: handli
+	if (!game->mlx)
+		cleanup_exit(1, "Error: initializing mlx\n");
 	game->map = game->map_data->map;
 	load_images(game);
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cube3D");
-	// NOTE: handli
+	if (!game->win)
+		cleanup_exit(1, "Error: creating window\n");
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	// NOTE: handli
+	if (!game->img)
+		cleanup_exit(1, "Error: creating image\n");
 	game->data = mlx_get_data_addr(game->img, &game->bpp, &game->line_lengh,
 			&game->endian);
-	// NOTE: handli
+	if (!game->data)
+		cleanup_exit(1, "Error: getting image data address\n");
 	calibrate_optics(game->camera);
 }
 

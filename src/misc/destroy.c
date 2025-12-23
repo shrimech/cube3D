@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
+/*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/22 16:01:40 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/22 16:13:59 by elhaiba hamza    ###   ########.fr       */
+/*   Created: 2025/12/22 16:01:40 by elhaiba ham       #+#    #+#             */
+/*   Updated: 2025/12/23 22:14:57 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	destroy_textures(t_game *game)
 
 void	destroy_game(t_game *game)
 {
-	(void)game;
+	if (!game)
+		return ;
 	destroy_textures(game);
 	if (game->img && game->mlx)
 	{

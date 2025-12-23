@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
+/*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/13 13:33:26 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/21 23:19:15 by elhaiba hamza    ###   ########.fr       */
+/*   Created: 2025/12/13 13:33:26 by elhaiba ham       #+#    #+#             */
+/*   Updated: 2025/12/23 22:22:21 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
-#include "libft.h"
-#include "types.h"
-#include <freefire.h>
+#include "freefire.h"
 
 static t_game		*g_game = NULL;
 static t_collect	*g_head = NULL;
@@ -30,6 +27,8 @@ void	collector_cleanup(t_mem_scope scope)
 	t_collect	*curr;
 	t_collect	*next;
 
+	if (!g_head)
+		return ;
 	prev = NULL;
 	curr = g_head;
 	while (curr)
