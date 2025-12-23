@@ -4,7 +4,7 @@ SO ./maps/blue.xpm
 WE  ./maps/gold.xpm
 
 EA      ./maps/green.xpm
-F       255,255,255
+F       255,255,1q
 C      0,0,0
 
         1111111111111111111111111

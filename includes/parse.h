@@ -34,6 +34,7 @@ bool	is_player(char c);
 void	map_border(t_map *map);
 void	check_start_end(t_map *map);
 bool	check_for_an_space(t_map *map, int i, int j);
+bool	is_number(char *str);
 
 //---------------------------- Extractors ----------------
 char	*extract_path(char *line);

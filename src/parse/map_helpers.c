@@ -60,6 +60,8 @@ int	takergb(char **rgb_str)
 	while (i < 3)
 	{
 		value = ft_atoi(rgb_str[i]);
+		if (!is_number(rgb_str[i]))
+			value = -1;
 		if (value != (unsigned char)value)
 			cleanup_exit(1, ERR_RGB);
 		rgb |= (value << (16 - 8 * i));

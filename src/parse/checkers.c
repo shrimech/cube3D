@@ -11,7 +11,21 @@
 /* ************************************************************************** */
 
 #include "freefire.h"
-#include "types.h"
+#include "libft.h"
+
+bool	is_number(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (false);
+		i++;
+	}
+	return (true);
+}
 
 bool	is_player(char c)
 {
