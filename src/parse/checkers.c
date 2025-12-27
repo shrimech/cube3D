@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elhaiba hamza <ehamza@student.1337.ma>     +#+  +:+       +#+        */
+/*   By: shrimech <shrimech@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/19 16:33:06 by elhaiba hamza     #+#    #+#             */
-/*   Updated: 2025/12/21 22:56:39 by elhaiba hamza    ###   ########.fr       */
+/*   Created: 2025/12/19 16:33:06 by elhaiba ham       #+#    #+#             */
+/*   Updated: 2025/12/26 11:18:01 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	map_border(t_map *map)
 		j = 1;
 		while (j < map->width - 1)
 		{
-			if (map->map[i][j] == E_EMPTY)
+			if (map->map[i][j] == E_EMPTY || is_player(map->map[i][j]))
 			{
 				if (check_for_an_space(map, i, j))
 				{
